@@ -27,4 +27,6 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Check
-        run: ./gradlew check
+        run: | 
+           chmod +x ./gradlew
+           ./gradlew check
