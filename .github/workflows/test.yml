@@ -30,3 +30,7 @@ jobs:
         run: | 
            chmod +x ./gradlew
            ./gradlew check
+      - name: Create Manual Approval Issue
+        uses: toppulous/create-manual-approval-issue@v1
+      - name: Deploy
+        run: echo deploying!
