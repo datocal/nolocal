@@ -15,6 +15,6 @@ class HelloControllerTest : IntegrationTest() {
             .get("/hello")
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body(Matchers.equalTo("hellow"))
+            .body(Matchers.equalTo("hello"))
     }
 }
