@@ -22,9 +22,7 @@ jobs:
            ./gradlew check
       - name: Build Jar
         run: ./gradlew bootJar
-      - name: Get Version Number
-        run: echo "::set-env name=VERSION::$(./gradlew properties -q | grep "version:" | awk '{print $2}')"
       - name: Publish Jar
-        run: echo nolocal-${{env.VERSION}}.jar
-      - name: Deploy
-        run: echo deploying!
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: ./build/libs/*.jar
