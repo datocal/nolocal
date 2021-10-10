@@ -34,4 +34,6 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-          echo ls
+          pwd
+          ls
+          ls $GITHUB_WORKSPACE 
