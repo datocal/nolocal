@@ -5,6 +5,7 @@ plugins {
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.unbroken-dome.test-sets") version "4.0.0"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
+    id("info.solidsoft.pitest") version "1.7.0"
     kotlin("jvm") version "1.5.31"
     kotlin("plugin.spring") version "1.5.31"
 }
@@ -28,6 +29,12 @@ testSets {
 tasks.check {
     dependsOn("integrationTest")
 }
+
+pitest {
+    junit5PluginVersion.set("0.14")
+    testSourceSets.set(setOf(sourceSets.test.get(), testSets["integrationTest"].sourceSet))
+}
+
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")

@@ -5,11 +5,10 @@ import org.hamcrest.Matchers
 import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
-class HelloControllerTest : IntegrationTest() {
+class HelloControllerIntegrationTest : IntegrationTest() {
 
     @Test
     fun `should say hello`() {
-        println("testsdasdasda")
         RestAssuredMockMvc.given()
             .`when`()
             .get("/hello")
