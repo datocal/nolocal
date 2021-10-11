@@ -23,7 +23,6 @@ jobs:
       - name: Codecov coverage report upload
         uses: codecov/codecov-action@v2.1.0 
         with:
-          directory: ./build/jacoco
           token: ${{secrets.CODECOV_TOKEN}}
       - name: Build Jar
         run: ./gradlew --no-daemon bootJar
