@@ -30,3 +30,11 @@ jobs:
         uses: actions/upload-artifact@v2.2.4
         with:
           path: ./build/libs/*.jar
+      - name: Install Oracle Cloud Infrastructure CLI
+        uses: bytesbay/oci-cli-action@v1.0.2 
+        with:
+          user: ${{secrets.OCI_USER_OCID}}
+          fingerprint: ${{secrets.OCI_FINGERPRINT}}
+          tenancy: ${{secrets.OCI_TENANCY_OCID}}
+          region: ${{secrets.OCI_REGION}}
+          api_key: ${{secrets.OCI_KEY_FILE}}
