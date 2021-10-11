@@ -34,7 +34,7 @@ jobs:
         run: ./gradlew --no-daemon bootJar
       - name: Publish Jar
         uses: actions/upload-artifact@v2.2.4
-        with:
+        with: 
           path: ./build/libs/*.jar
       - name: Install Oracle Cloud Infrastructure CLI
         uses: bytesbay/oci-cli-action@v1.0.2 
