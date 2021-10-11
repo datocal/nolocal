@@ -8,6 +8,7 @@ plugins {
     id("info.solidsoft.pitest") version "1.7.0"
     kotlin("jvm") version "1.5.31"
     kotlin("plugin.spring") version "1.5.31"
+    jacoco
 }
 
 group = "com.davidtca"
