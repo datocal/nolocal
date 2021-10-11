@@ -28,7 +28,15 @@ testSets {
     }
 }
 tasks.check {
-    dependsOn("integrationTest")
+    dependsOn("integrationTest", "jacocoTestReport", "jacocoIntegrationTestReport")
+}
+
+tasks.getByName("jacocoIntegrationTestReport") {
+    this as JacocoReport
+    reports.xml.required.set(true)
+}
+tasks.jacocoTestReport {
+    reports.xml.required.set(true)
 }
 
 pitest {
