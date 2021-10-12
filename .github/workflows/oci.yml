@@ -20,11 +20,8 @@ jobs:
           api_key: ${{secrets.OCI_KEY_FILE}}
       - name: Set up ssh keys
         run: |
-          echo "${{secrets.VM_SSH_PUB_KEY}}" > /home/runner/.oci/id_vm.pub
-          echo "${{secrets.VM_SSH_PRIVATE_KEY}}" > /home/runner/.oci/id_vm.key
-      - name: log config file
-        run: |
-            cat ~/.oci/config
+          echo "${{secrets.VM_SSH_PUB_KEY}}" >> /home/runner/.oci/id_vm.pub
+          echo "${{secrets.VM_SSH_PRIVATE_KEY}}" >> /home/runner/.oci/id_vm.key
       - name: Check existing instance
         run: |
           echo "INSTANCE_OCID=$( \
