@@ -55,6 +55,7 @@ jobs:
                 --raw-output \
             )"
       - name: Debug folders
+        if: always()
         run: |
               ls /home/runner/.oci/ 
               cat /home/runner/.oci/id_vm.pub
