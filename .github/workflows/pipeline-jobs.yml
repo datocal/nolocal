@@ -17,7 +17,7 @@ jobs:
       - name: Gradlew Check
         run: | 
            chmod +x ./gradlew
-           ./gradlew check --no-daemon
+           ./gradlew --no-daemon check
       - name: Codecov coverage report upload
         uses: codecov/codecov-action@v2.1.0 
         with:
@@ -47,8 +47,8 @@ jobs:
           version: 1.5.31
       - name: Build Jar
         run: |
-          chmod +x ./gradlew --no-daemon
-          ./gradlew bootJar
+          chmod +x ./gradlew
+          ./gradlew --no-daemon bootJar
       - name: Rename Jar
         run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal-new.jar
       - name: Publish Jar
