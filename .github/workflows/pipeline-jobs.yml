@@ -124,8 +124,6 @@ jobs:
         with:
           name: artifact
           path: .
-      - name: Unzip artifact
-        run: unzip artifact.zip
       - name: Push JAR using tortilla
         uses: betanzos/scp-upload@v1
         with:
