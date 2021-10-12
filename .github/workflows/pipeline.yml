@@ -106,12 +106,17 @@ jobs:
             fi
             sudo mkdir -p /app
             sudo apt install openjdk-11-jre-headless -y
-      - name: Debug files
-        run: ls -li
-      - name: Push JAR
+      - name: Push JAR using tortilla
         uses: betanzos/scp-upload@v1
         with:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           source: "./nolocal.jar"
+      - name: Start App
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.INSTANCE_IP }}
+          username: ubuntu
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          script: nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
