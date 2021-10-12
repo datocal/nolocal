@@ -54,11 +54,12 @@ jobs:
       - name: Publish Jar
         uses: actions/upload-artifact@v2.2.4
         with: 
-          path: ./nolocal.jar
+          path: ./nolocal-new.jar
 
   PrepareOracleCLoud:
-    needs: [ Check, Snyk, PrepareJar ]
     runs-on: ubuntu-latest
+    outputs:
+      ip: ${{ steps.getIP.outputs.ip }}
     steps:
       - name: Install Oracle Cloud Infrastructure CLI
         uses: bytesbay/oci-cli-action@v1.0.2
@@ -99,25 +100,26 @@ jobs:
               --raw-output \
           )" >> $GITHUB_ENV
       - name: Get Instance IP
+        id : getIP
         run: |
-          echo "INSTANCE_IP=$( \
+          echo "::set-output name=ip::$( \
             oci compute instance list-vnics \
             --instance-id ${{env.INSTANCE_OCID}} \
             --query 'data [0]."public-ip"' \
             --raw-output \
-          )" >> $GITHUB_ENV
+          )"
       - name: SSH wait
         run: |
-          while ! nc -w5 -z ${{ env.INSTANCE_IP }} 22; do
+          while ! nc -w5 -z ${{ outputs.ip }} 22; do
                   sleep 5
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
 
   Deploy:
     runs-on: ubuntu-latest
-    needs: [PrepareOracleCLoud]
+    needs: [ Check, Snyk, PrepareJar, PrepareOracleCLoud]
     steps:
-      - name: Download a Build Artifact
+      - name: Download the nolocal jar artifact
         uses: actions/download-artifact@v2.0.10
         with:
           name: artifact
@@ -127,14 +129,14 @@ jobs:
       - name: Push JAR using tortilla
         uses: betanzos/scp-upload@v1
         with:
-          host: ${{ env.INSTANCE_IP }}
+          host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           source: "./nolocal-new.jar"
       - name: Stop App
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.INSTANCE_IP }}
+          host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
           key: ${{secrets.VM_SSH_PRIVATE_KEY}}
           script: |
@@ -149,7 +151,7 @@ jobs:
       - name: Start App
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ env.INSTANCE_IP }}
+          host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
