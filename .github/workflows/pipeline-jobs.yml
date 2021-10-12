@@ -110,7 +110,7 @@ jobs:
           )"
       - name: SSH wait
         run: |
-          while ! nc -w5 -z ${{ outputs.ip }} 22; do
+          while ! nc -w5 -z ${{ steps.getIP.outputs.ip }} 22; do
                   sleep 5
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
