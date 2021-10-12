@@ -38,6 +38,10 @@ jobs:
           path: ./build/libs/*.jar
       - name: Rename Jar
         run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal.jar
+      - name: Debug files
+        run: | 
+            ls 
+            ls ./build/libs
       - name: Install Oracle Cloud Infrastructure CLI
         uses: bytesbay/oci-cli-action@v1.0.2
         with:
@@ -112,6 +116,6 @@ jobs:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "nolocal.jar"
+          source: "./nolocal.jar"
           target: "app"
           strip_components: 2
