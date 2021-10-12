@@ -7,6 +7,6 @@ internal class NoLocalApplicationIntegrationTest {
     @Test
     // Dummy test to get Coverage
     fun mainTest() {
-        main(arrayOf("-server.port=0"))
+        main(arrayOf("--server.port=0"))
     }
 }

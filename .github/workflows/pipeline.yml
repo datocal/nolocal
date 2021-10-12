@@ -1,4 +1,4 @@
-name: Full pipeline
+name: Pipeline
 on:
   push:
     branches: [ master ]
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Full-Pipeline:
+  Pipeline:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout project
