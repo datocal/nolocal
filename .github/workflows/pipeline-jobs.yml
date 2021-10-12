@@ -114,6 +114,16 @@ jobs:
                   sleep 5
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
+      - name: Prepare machine
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ steps.getIP.outputs.ip }}
+          username: ubuntu
+          key: ${{secrets.VM_SSH_PRIVATE_KEY}}
+          script: |
+            sudo apt install openjdk-11-jre-headless -y
+            sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 8080 -j ACCEPT
+            sudo netfilter-persistent save
 
   Deploy:
     runs-on: ubuntu-latest
@@ -144,8 +154,6 @@ jobs:
             else
               kill -9 $pid
             fi
-            sudo mkdir -p /app
-            sudo apt install openjdk-11-jre-headless -y
       - name: Start App
         uses: appleboy/ssh-action@master
         with:

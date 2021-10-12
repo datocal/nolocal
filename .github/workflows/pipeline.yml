@@ -35,7 +35,7 @@ jobs:
         with: 
           path: ./build/libs/*.jar
       - name: Rename Jar
-        run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal.jar
+        run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal-new.jar
       - name: Install Oracle Cloud Infrastructure CLI
         uses: bytesbay/oci-cli-action@v1.0.2
         with:
@@ -88,7 +88,23 @@ jobs:
                   sleep 5
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
-      #no blue green deployment... we are here for the KILL
+      - name: Prepare machine
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.INSTANCE_IP }}
+          username: ubuntu
+          key: ${{secrets.VM_SSH_PRIVATE_KEY}}
+          script: |
+            sudo apt install openjdk-11-jre-headless -y
+            sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 8080 -j ACCEPT
+            sudo netfilter-persistent save
+      - name: Push JAR using tortilla
+        uses: betanzos/scp-upload@v1
+        with:
+          host: ${{ env.INSTANCE_IP }}
+          username: ubuntu
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          source: "nolocal-new.jar"
       - name: Stop App
         uses: appleboy/ssh-action@master
         with:
@@ -102,19 +118,12 @@ jobs:
             else
               kill -9 $pid
             fi
-            sudo mkdir -p /app
-            sudo apt install openjdk-11-jre-headless -y
-      - name: Push JAR using tortilla
-        uses: betanzos/scp-upload@v1
-        with:
-          host: ${{ env.INSTANCE_IP }}
-          username: ubuntu
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "./nolocal.jar"
       - name: Start App
         uses: appleboy/ssh-action@master
         with:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          script: nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
+          script: |
+            mv nolocal-new.jar nolocal.jar -f
+            nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
