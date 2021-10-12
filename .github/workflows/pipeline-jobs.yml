@@ -58,7 +58,9 @@ jobs:
   PreDeploy:
     runs-on: ubuntu-latest
     needs: [Check, Snyk, PrepareJar]
-
+    steps:
+      - name: Verify
+        run: pwd
   Deploy:
     runs-on: ubuntu-latest
     steps:
