@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  Full-Pipeline:
+  OCI:
     runs-on: ubuntu-latest
     steps:
       - name: Install Oracle Cloud Infrastructure CLI
@@ -21,7 +21,6 @@ jobs:
       - name: Set up ssh keys
         run: |
           echo "${{secrets.VM_SSH_PUB_KEY}}" >> /home/runner/.oci/id_vm.pub
-          echo "${{secrets.VM_SSH_PRIVATE_KEY}}" >> /home/runner/.oci/id_vm.key
       - name: Check existing instance
         run: |
           echo "INSTANCE_OCID=$( \
@@ -49,3 +48,33 @@ jobs:
               --query "data.id" \
               --raw-output \
           )" >> $GITHUB_ENV
+      - name: Get Instance IP
+        run: |
+          echo "INSTANCE_IP=$( \
+            oci compute instance list-vnics \
+            --instance-id ${{env.INSTANCE_OCID}} \
+            --query 'data [0]."public-ip"' \
+            --raw-output \
+          )" >> $GITHUB_ENV
+      - name: SSH wait
+        run: |
+          while ! nc -w5 -z ${{ env.INSTANCE_IP }} 22; do
+                  sleep 5
+                  echo "SSH not available, retrying..."
+          done; echo "SSH ready!"
+      #no blue green deployment... we are here for the KILL 
+      - name: Stop App
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.INSTANCE_IP }}
+          username: ubuntu
+          key: ${{secrets.VM_SSH_PRIVATE_KEY}}
+          script: |
+            pid=`ps aux | grep "nolocal.jar" | awk '{print $2}'`
+            if [ "$pid" == "" ]; then
+              echo "Process not found"
+            else
+              kill -9 $pid
+            fi
+            sudo mkdir -p /app
+          
