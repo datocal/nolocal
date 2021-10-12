@@ -1,0 +1,54 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  Full-Pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Oracle Cloud Infrastructure CLI
+        uses: bytesbay/oci-cli-action@v1.0.2
+        with:
+          user: ${{secrets.OCI_USER_OCID}}
+          fingerprint: ${{secrets.OCI_FINGERPRINT}}
+          tenancy: ${{secrets.OCI_TENANCY_OCID}}
+          region: ${{secrets.OCI_REGION}}
+          api_key: ${{secrets.OCI_KEY_FILE}}
+      - name: Set up ssh keys
+        run: |
+          echo "${{secrets.VM_SSH_PUB_KEY}}" > /home/runner/.oci/id_vm.pub
+          echo "${{secrets.VM_SSH_PRIVATE_KEY}}" > /home/runner/.oci/id_vm.key
+      - name: log config file
+        run: |
+            cat ~/.oci/config
+      - name: Check existing instance
+        run: |
+          echo "INSTANCE_OCID=$( \
+              oci compute instance list \
+              --lifecycle-state RUNNING \
+              --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
+              --display-name nolocal \
+              --query "data [0].id" \
+              --raw-output \
+          )" >> $GITHUB_ENV
+      - name: Create Instance
+        if: ${{!env.INSTANCE_OCID}}
+        run: |
+          echo "INSTANCE_OCID=$( \
+            oci compute instance launch \
+              --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
+              --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
+              --shape ${{secrets.VM_SHAPE}} \
+              --assign-public-ip true \
+              --display-name nolocal \
+              --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} \
+              --ssh-authorized-keys-file /home/runner/.oci/id_vm.pub \
+              --subnet-id ${{secrets.VM_SUBNET_OCID}} \
+              --wait-for-state RUNNING \
+              --query "data.id" \
+              --raw-output \
+          )" >> $GITHUB_ENV
