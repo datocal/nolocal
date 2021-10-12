@@ -1,4 +1,4 @@
-name: CI
+name: OCI
 on:
   push:
     branches: [ master ]
@@ -15,7 +15,7 @@ jobs:
         with:
           user: ${{secrets.OCI_USER_OCID}}
           fingerprint: ${{secrets.OCI_FINGERPRINT}}
-          tenancy: ${{secrets.OCI_TENANCY_OCID}}
+          tenancy: ${{secrets.OCI_TENANCY}}
           region: ${{secrets.OCI_REGION}}
           api_key: ${{secrets.OCI_KEY_FILE}}
       - name: Set up ssh keys
