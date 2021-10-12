@@ -31,7 +31,8 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v2
       - name: Snyk
-        run: | 
+        run: |
+            chmod +x ./gradlew
             brew tap snyk/tap
             brew install snyk
             snyk auth ${{secrets.SNYK_TOKEN}}
