@@ -2,8 +2,6 @@ name: Pipeline
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -52,19 +50,14 @@ jobs:
           chmod +x ./gradlew
           ./gradlew bootJar
       - name: Rename Jar
-        run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal.jar
+        run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal-new.jar
       - name: Publish Jar
         uses: actions/upload-artifact@v2.2.4
         with: 
           path: ./nolocal.jar
 
-  PreDeploy:
-    runs-on: ubuntu-latest
-    needs: [Check, Snyk, PrepareJar]
-    steps:
-      - name: Verify
-        run: pwd
-  Deploy:
+  PrepareOracleCLoud:
+    needs: [ Check, Snyk, PrepareJar ]
     runs-on: ubuntu-latest
     steps:
       - name: Install Oracle Cloud Infrastructure CLI
@@ -119,13 +112,25 @@ jobs:
                   sleep 5
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
-      - name: Wait for jobs
-        uses: lewagon/wait-on-check-action@v1.1.1
+
+  Deploy:
+    runs-on: ubuntu-latest
+    needs: [PrepareOracleCLoud]
+    steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2.0.10
         with:
-          ref: master
-          check-name: 'PreDeploy'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+          name: artifact
+          path: .
+      - name: Unzip artifact
+        run: unzip artifact.zip
+      - name: Push JAR using tortilla
+        uses: betanzos/scp-upload@v1
+        with:
+          host: ${{ env.INSTANCE_IP }}
+          username: ubuntu
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          source: "./nolocal-new.jar"
       - name: Stop App
         uses: appleboy/ssh-action@master
         with:
@@ -141,24 +146,12 @@ jobs:
             fi
             sudo mkdir -p /app
             sudo apt install openjdk-11-jre-headless -y
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v2.0.10
-        with:
-          name: artifact
-          path: .
-      - name: Unzip artifact
-        run: unzip artifact.zip
-      - name: Push JAR using tortilla
-        uses: betanzos/scp-upload@v1
-        with:
-          host: ${{ env.INSTANCE_IP }}
-          username: ubuntu
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "./nolocal.jar"
       - name: Start App
         uses: appleboy/ssh-action@master
         with:
           host: ${{ env.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          script: nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
+          script: |
+            mv nolocal-new.jar nolocal.jar -f
+            nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
