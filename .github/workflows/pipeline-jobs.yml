@@ -1,4 +1,4 @@
-name: Pipeline
+name: Concurrent Pipeline
 on:
   push:
     branches: [ master ]
