@@ -44,18 +44,34 @@ jobs:
           tenancy: ${{secrets.OCI_TENANCY_OCID}}
           region: ${{secrets.OCI_REGION}}
           api_key: ${{secrets.OCI_KEY_FILE}}
+      - name: Set up ssh keys
+        run: | 
+          echo "${{secrets.VM_SSH_PUB_KEY}}" > /home/runner/.oci/id_vm.pub
+          echo "${{secrets.VM_SSH_PRIVATE_KEY}}" > /home/runner/.oci/id_vm.key
       - name: Check existing instance
         run: |
-            echo "::set-env name=INSTANCE_OCID::$( \
+            echo "INSTANCE_OCID=$( \
                 oci compute instance list \
                 --lifecycle-state RUNNING \
                 --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
                 --display-name nolocal \
                 --query "data [0].id" \
                 --raw-output \
-            )"
-      - name: Debug folders
-        if: always()
+            )" >> $GITHUB_ENV
+      - name: Create Instance
+        if: ${{!env.INSTANCE_OCID}}
         run: |
-              ls /home/runner/.oci/ 
-              cat /home/runner/.oci/id_vm.pub
+          echo "INSTANCE_OCID=$( \
+            oci compute instance launch \
+              --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
+              --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
+              --shape ${{secrets.VM_SHAPE}} \
+              --assign-public-ip true \
+              --display-name nolocal \
+              --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} \
+              --ssh-authorized-keys-file /home/runner/.oci/id_vm.pub \
+              --subnet-id ${{secrets.VM_SUBNET_OCID}} \
+              --wait-for-state RUNNING \
+              --query "data.id" \
+              --raw-output \
+          )" >> $GITHUB_ENV
