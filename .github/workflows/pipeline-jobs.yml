@@ -47,7 +47,9 @@ jobs:
         with:
           version: 1.5.31
       - name: Build Jar
-        run: ./gradlew bootJar
+        run: |
+          chmod +x ./gradlew
+          ./gradlew bootJar
       - name: Rename Jar
         run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal.jar
       - name: Publish Jar
