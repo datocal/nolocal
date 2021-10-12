@@ -44,3 +44,17 @@ jobs:
           tenancy: ${{secrets.OCI_TENANCY_OCID}}
           region: ${{secrets.OCI_REGION}}
           api_key: ${{secrets.OCI_KEY_FILE}}
+      - name: Check existing instance
+        run: |
+            echo "::set-env name=INSTANCE_OCID::$( \
+                oci compute instance list \
+                --lifecycle-state RUNNING \
+                --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
+                --display-name nolocal \
+                --query "data [0].id" \
+                --raw-output \
+            )"
+      - name: Debug folders
+        run: |
+              ls /home/runner/.oci/ 
+              cat /home/runner/.oci/id_vm.pub
