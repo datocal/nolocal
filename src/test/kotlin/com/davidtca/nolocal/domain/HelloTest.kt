@@ -6,6 +6,6 @@ import org.junit.jupiter.api.Test
 internal class HelloTest {
     @Test
     fun helloTest() {
-        assertEquals("hello", Hello().hello())
+        assertEquals("hello2", Hello().hello())
     }
 }
