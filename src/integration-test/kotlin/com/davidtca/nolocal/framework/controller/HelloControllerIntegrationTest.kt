@@ -14,6 +14,6 @@ class HelloControllerIntegrationTest : IntegrationTest() {
             .get("/hello")
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body(Matchers.equalTo("hello, dummy-token"))
+            .body(Matchers.equalTo("hello, world"))
     }
 }
