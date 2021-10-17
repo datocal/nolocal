@@ -144,7 +144,7 @@ jobs:
 
   Deploy:
     runs-on: ubuntu-latest
-    needs: [ Check, Snyk, PrepareJar, PrepareOracleCLoud]
+    needs: [ Check, Snyk, PrepareJar, BuildDocs, PrepareOracleCLoud]
     steps:
       - name: Download the nolocal jar artifact
         uses: actions/download-artifact@v2.0.10
