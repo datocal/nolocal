@@ -51,4 +51,18 @@ class DiscordCommandRegisterTest {
         captor.value.onMessageCreate(eventMock)
         verify(commandMock, never()).accept(eventMock)
     }
+
+    @Test
+    fun `should not call command for normal message`() {
+        val commandMock = mock(DiscordCommandRunner::class.java)
+        val eventMock = mock(MessageCreateEvent::class.java)
+        `when`(eventMock.messageContent).thenReturn("Hello, friend")
+
+        DiscordCommandRegister(discordApi = discordApi, registry = mapOf("ping" to commandMock))
+
+        val captor = ArgumentCaptor.forClass(MessageCreateListener::class.java)
+        verify(discordApi).addMessageCreateListener(captor.capture())
+        captor.value.onMessageCreate(eventMock)
+        verify(commandMock, never()).accept(eventMock)
+    }
 }
