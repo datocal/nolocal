@@ -8,12 +8,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
-  url: 'https://davidtourino.github.io/nolocal',
+  url: 'https://datocal.github.io/nolocal',
   baseUrl: '/nolocal/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'davidtourino', // Usually your GitHub org/user name.
+  organizationName: 'datocal', // Usually your GitHub org/user name.
   projectName: 'nolocal', // Usually your repo name.
   trailingSlash: true,
   presets: [
