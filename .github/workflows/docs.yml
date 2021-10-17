@@ -15,6 +15,7 @@ jobs:
           cd docs
           npm install
           npm run build
+          date >> runs.txt
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
         with:
