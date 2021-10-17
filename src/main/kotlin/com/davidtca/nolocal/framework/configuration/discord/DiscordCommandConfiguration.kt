@@ -1,0 +1,25 @@
+package com.davidtca.nolocal.framework.configuration.discord
+
+import com.davidtca.nolocal.framework.controller.discord.DiscordCommandRunner
+import com.davidtca.nolocal.framework.controller.discord.PingCommandRunner
+import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Configuration
+
+@Configuration
+class DiscordCommandConfiguration {
+
+    @Bean
+    fun registerMap(
+        pingCommandRunner: PingCommandRunner,
+    ): Map<String, DiscordCommandRunner> {
+        return mapOf(
+            "ping" to pingCommandRunner,
+            "culo" to pingCommandRunner,
+        )
+    }
+
+    @Bean
+    fun pingCommandRunner(): DiscordCommandRunner {
+        return PingCommandRunner()
+    }
+}

@@ -25,6 +25,7 @@ extra["testcontainersVersion"] = "1.16.0"
 testSets {
     "integrationTest" {
         dirName = "integration-test"
+        systemProperty("spring.profiles.active", "test")
     }
 }
 tasks.check {

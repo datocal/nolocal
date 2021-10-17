@@ -1,3 +1,9 @@
+logging:
+  level:
+    root: TRACE
+spring:
+  profiles:
+    active: production
 secrets:
   discord:
     token: ${DISCORD_TOKEN:dummy-token}

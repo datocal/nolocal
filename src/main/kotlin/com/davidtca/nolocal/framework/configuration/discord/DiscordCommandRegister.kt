@@ -1,16 +1,21 @@
 package com.davidtca.nolocal.framework.configuration.discord
 
+import com.davidtca.nolocal.framework.command
+import com.davidtca.nolocal.framework.controller.discord.DiscordCommandRunner
+import com.davidtca.nolocal.framework.isCommand
 import org.javacord.api.DiscordApi
-import org.springframework.stereotype.Service
+import org.springframework.context.annotation.Configuration
 
-
-@Service
-class DiscordCommandRegister(discordApi: DiscordApi) {
+@Configuration
+class DiscordCommandRegister(
+    private val registry: Map<String, DiscordCommandRunner>,
+    discordApi: DiscordApi,
+) {
 
     init {
         discordApi.addMessageCreateListener { event ->
-            if (event.messageContent.equals("+ping", ignoreCase = true)){
-                event.channel.sendMessage("Pong!")
+            if (isCommand(event.messageContent)) {
+                registry[command(event.messageContent)]?.accept(event)
             }
         }
     }
