@@ -11,7 +11,7 @@ plugins {
     jacoco
 }
 
-group = "com.davidtca"
+group = "com.datocal"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
