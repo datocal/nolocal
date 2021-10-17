@@ -22,7 +22,7 @@ jobs:
         uses: codecov/codecov-action@v2.1.0 
         with:
           token: ${{secrets.CODECOV_TOKEN}}
-  
+
   BuildDocs:
     runs-on: ubuntu-latest
     steps:
@@ -31,14 +31,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2.4.1
       - name: Build docs
-        run: | 
+        run: |
           cd docs
           npm install
           npm run build
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
-        with: 
-          path: ./build/
+        with:
+          path: docs/build/
+          name: documentation
+      - name: Github Pages Deploy
+        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        with:
+          dir: ./docs/build/
+          branch: docs
+          token: ${{secrets.TOKEN_GITHUB}}
 
   Snyk:
     runs-on: ubuntu-latest

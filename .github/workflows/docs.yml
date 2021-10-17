@@ -19,7 +19,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.4
         with:
           path: docs/build/
-      - name: Github Pages Deploy Action
+      - name: Github Pages Deploy
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
           dir: ./docs/build/
