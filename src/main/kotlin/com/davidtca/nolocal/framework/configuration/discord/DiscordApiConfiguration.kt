@@ -14,7 +14,7 @@ class DiscordApiConfiguration {
     @Value("\${secrets.discord.token}")
     private lateinit var token: String
 
-    @Bean
+    @Bean(destroyMethod = "disconnect")
     fun discordApi(): DiscordApi {
         return DiscordApiBuilder().setToken(token).login().join()
     }

@@ -2,6 +2,7 @@ package com.davidtca.nolocal.framework.configuration.discord
 
 import com.davidtca.nolocal.framework.controller.discord.DiscordCommandRunner
 import com.davidtca.nolocal.framework.controller.discord.PingCommandRunner
+import org.javacord.api.DiscordApi
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -9,6 +10,11 @@ import org.springframework.context.annotation.Configuration
 class DiscordCommandConfiguration {
 
     @Bean
+    fun pingCommandRunner(): PingCommandRunner {
+        return PingCommandRunner()
+    }
+
+    @Bean("registerMap")
     fun registerMap(
         pingCommandRunner: PingCommandRunner,
     ): Map<String, DiscordCommandRunner> {
@@ -19,7 +25,10 @@ class DiscordCommandConfiguration {
     }
 
     @Bean
-    fun pingCommandRunner(): DiscordCommandRunner {
-        return PingCommandRunner()
+    fun discordCommandRegister(
+        discordApi: DiscordApi,
+        registerMap: Map<String, DiscordCommandRunner>
+    ): DiscordCommandRegister {
+        return DiscordCommandRegister(registerMap, discordApi)
     }
 }

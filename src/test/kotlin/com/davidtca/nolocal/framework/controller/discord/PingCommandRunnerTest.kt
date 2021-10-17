@@ -28,4 +28,13 @@ internal class PingCommandRunnerTest {
 
         verify(channelMock).sendMessage("El ping tuyo")
     }
+
+    @Test
+    fun `should say culo message`() {
+        Mockito.`when`(eventMock.messageContent).thenReturn("+culo")
+
+        commandRunner.accept(eventMock)
+
+        verify(channelMock).sendMessage("El culo tuyo")
+    }
 }
