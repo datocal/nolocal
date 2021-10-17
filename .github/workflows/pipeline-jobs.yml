@@ -33,6 +33,7 @@ jobs:
       - name: Build docs
         run: | 
           cd docs
+          npm install
           npm run build
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
