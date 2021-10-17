@@ -3,6 +3,7 @@ package com.davidtca.nolocal.framework.configuration.discord
 import com.davidtca.nolocal.framework.controller.discord.DiscordCommandRunner
 import com.davidtca.nolocal.framework.controller.discord.PingCommandRunner
 import org.javacord.api.DiscordApi
+import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -27,7 +28,7 @@ class DiscordCommandConfiguration {
     @Bean
     fun discordCommandRegister(
         discordApi: DiscordApi,
-        registerMap: Map<String, DiscordCommandRunner>
+        @Qualifier("registerMap") registerMap: Map<String, DiscordCommandRunner>
     ): DiscordCommandRegister {
         return DiscordCommandRegister(registerMap, discordApi)
     }
