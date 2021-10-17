@@ -15,11 +15,7 @@ jobs:
           cd docs
           npm install
           npm run build
-      - name: Build docs
-        run: |
-          pwd
-          ls -li
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
         with:
-          path: ./build/
+          path: docs/build/
