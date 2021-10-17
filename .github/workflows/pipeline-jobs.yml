@@ -71,8 +71,6 @@ jobs:
         with:
           version: 1.5.31
       - name: Build Jar
-        env:
-          DISCORD_TOKEN: ${{secrets.DISCORD_TOKEN}}
         run: |
           chmod +x ./gradlew
           ./gradlew --no-daemon bootJar
@@ -189,4 +187,5 @@ jobs:
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
             mv nolocal-new.jar nolocal.jar -f
+            export DISCORD_TOKEN=${{secrets.DISCORD_TOKEN}}
             nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
