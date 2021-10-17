@@ -24,4 +24,4 @@ jobs:
         with:
           dir: ./docs/build/
           branch: docs
-          token: ${{TOKEN_GITHUB}}
+          token: ${{secrets.TOKEN_GITHUB}}
