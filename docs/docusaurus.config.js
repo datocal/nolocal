@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'My Site',
   tagline: 'Dinosaurs are cool',
-  url: 'https://datocal.github.io/nolocal',
+  url: 'https://datocal.github.io',
   baseUrl: '/nolocal/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

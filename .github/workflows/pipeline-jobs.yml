@@ -38,7 +38,7 @@ jobs:
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
         with: 
-          path: build
+          path: ./build/
 
   Snyk:
     runs-on: ubuntu-latest

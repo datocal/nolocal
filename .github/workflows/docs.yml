@@ -1,0 +1,21 @@
+name: Generate docs
+on:
+  workflow_dispatch:
+
+jobs:
+  BuildDocs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.4.1
+      - name: Build docs
+        run: |
+          cd docs
+          npm install
+          npm run build
+      - name: Upload docs
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: ./build/
