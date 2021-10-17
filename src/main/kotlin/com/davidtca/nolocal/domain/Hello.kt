@@ -1,8 +1,8 @@
 package com.davidtca.nolocal.domain
 
-class Hello {
+class Hello(private val token: String) {
 
     fun hello(): String {
-        return "hello"
+        return "hello, $token"
     }
 }

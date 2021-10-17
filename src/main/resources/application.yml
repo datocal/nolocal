@@ -1,0 +1,3 @@
+secrets:
+  discord:
+    token: ${DISCORD_TOKEN:dummy-token}
