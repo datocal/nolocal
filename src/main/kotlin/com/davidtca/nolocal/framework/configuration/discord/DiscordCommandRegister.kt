@@ -7,10 +7,14 @@ import org.javacord.api.DiscordApi
 
 class DiscordCommandRegister(
     private val registry: Map<String, DiscordCommandRunner>,
-    discordApi: DiscordApi,
+    private val discordApi: DiscordApi,
 ) {
 
     init {
+        registerMessages()
+    }
+
+    private fun registerMessages() {
         discordApi.addMessageCreateListener { event ->
             if (isCommand(event.messageContent)) {
                 registry[command(event.messageContent)]?.accept(event)
