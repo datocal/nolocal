@@ -36,6 +36,7 @@ jobs:
           npm install
           npm run build
           date >> runs.txt
+          git status
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
         with:
