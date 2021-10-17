@@ -22,6 +22,22 @@ jobs:
         uses: codecov/codecov-action@v2.1.0 
         with:
           token: ${{secrets.CODECOV_TOKEN}}
+  
+  BuildDocs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2.4.1
+      - name: Build docs
+        run: | 
+          cd docs
+          npm run build
+      - name: Upload docs
+        uses: actions/upload-artifact@v2.2.4
+        with: 
+          path: build
 
   Snyk:
     runs-on: ubuntu-latest
