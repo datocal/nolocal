@@ -28,7 +28,7 @@ class DiscordCommandConfiguration {
     ): Map<String, DiscordCommandRunner> {
         return mapOf(
             "default" to pingCommandRunner,
-            "roulette" to pingCommandRunner,
+            "roulette" to roulette,
         )
     }
 
