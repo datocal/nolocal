@@ -39,17 +39,17 @@ class DiscordCommandRegisterTest {
     }
 
     @Test
-    fun `should not call command for an invalid command`() {
+    fun `should call command for an invalid command`() {
         val commandMock = mock(DiscordCommandRunner::class.java)
         val eventMock = mock(MessageCreateEvent::class.java)
         `when`(eventMock.messageContent).thenReturn("+pong")
 
-        DiscordCommandRegister(discordApi = discordApi, registry = mapOf("ping" to commandMock))
+        DiscordCommandRegister(discordApi = discordApi, registry = mapOf("default" to commandMock))
 
         val captor = ArgumentCaptor.forClass(MessageCreateListener::class.java)
         verify(discordApi).addMessageCreateListener(captor.capture())
         captor.value.onMessageCreate(eventMock)
-        verify(commandMock, never()).accept(eventMock)
+        verify(commandMock).accept(eventMock)
     }
 
     @Test
