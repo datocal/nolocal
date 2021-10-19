@@ -5,14 +5,13 @@ import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseRequest
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseResponse
 import org.javacord.api.entity.channel.TextChannel
 import org.javacord.api.event.message.MessageCreateEvent
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
 import org.mockito.Mockito.verify
 
-internal class RouletteCommandRunnerTest{
+internal class RouletteCommandRunnerTest {
 
     private val useCase = mock(GetRandomItemUseCase::class.java)
     private val eventMock: MessageCreateEvent = mock(MessageCreateEvent::class.java)
@@ -26,7 +25,7 @@ internal class RouletteCommandRunnerTest{
     }
 
     @Test
-    fun `should request random item with a 3-element list`(){
+    fun `should request random item with a 3-element list`() {
         Mockito.`when`(eventMock.messageContent).thenReturn("+roulette Test \n ~~Test2~~ \n Test3")
         Mockito.`when`(
             useCase.execute(
@@ -40,7 +39,7 @@ internal class RouletteCommandRunnerTest{
     }
 
     @Test
-    fun `should return custom message when all elements are filtered`(){
+    fun `should return custom message when all elements are filtered`() {
         Mockito.`when`(eventMock.messageContent).thenReturn("+roulette ~~Test~~ \n ~~Test2~~")
         Mockito.`when`(
             useCase.execute(
@@ -51,5 +50,4 @@ internal class RouletteCommandRunnerTest{
 
         verify(channelMock).sendMessage("No items found")
     }
-
 }
