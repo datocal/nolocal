@@ -1,4 +1,4 @@
-package com.datocal.nolocal.framework.controller.discord
+package com.datocal.nolocal.framework.command
 
 import org.javacord.api.event.message.MessageCreateEvent
 

@@ -5,15 +5,15 @@ import org.hamcrest.Matchers
 import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
-class HelloControllerIntegrationTest : IntegrationTest() {
+class PingControllerIntegrationTest : IntegrationTest() {
 
     @Test
     fun `should say hello`() {
         RestAssuredMockMvc.given()
             .`when`()
-            .get("/hello")
+            .get("/ping")
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body(Matchers.equalTo("hello, world"))
+            .body(Matchers.equalTo("El culo tuyo"))
     }
 }

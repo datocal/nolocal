@@ -1,5 +1,6 @@
-package com.datocal.nolocal.framework.controller.discord
+package com.datocal.nolocal.framework.command
 
+import com.datocal.nolocal.domain.dummy.Ping
 import org.javacord.api.entity.channel.TextChannel
 import org.javacord.api.event.message.MessageCreateEvent
 import org.junit.jupiter.api.BeforeEach
@@ -10,7 +11,7 @@ import org.mockito.Mockito.verify
 
 internal class PingCommandRunnerTest {
 
-    private val commandRunner = PingCommandRunner()
+    private val commandRunner = PingCommandRunner(Ping())
 
     private val eventMock: MessageCreateEvent = mock(MessageCreateEvent::class.java)
     private var channelMock: TextChannel = mock(TextChannel::class.java)

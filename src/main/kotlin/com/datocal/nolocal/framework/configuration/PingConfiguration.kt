@@ -1,14 +1,14 @@
 package com.datocal.nolocal.framework.configuration
 
-import com.datocal.nolocal.domain.Hello
+import com.datocal.nolocal.domain.dummy.Ping
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 @Configuration
-class HelloConfiguration {
+class PingConfiguration {
 
     @Bean
-    fun hello(): Hello {
-        return Hello("world")
+    fun ping(): Ping {
+        return Ping()
     }
 }

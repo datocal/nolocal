@@ -1,8 +1,9 @@
 package com.datocal.nolocal.framework.configuration.discord
 
-import com.datocal.nolocal.framework.controller.discord.DiscordCommandRunner
-import com.datocal.nolocal.framework.controller.discord.PingCommandRunner
-import com.datocal.nolocal.framework.controller.discord.RouletteCommandRunner
+import com.datocal.nolocal.domain.dummy.Ping
+import com.datocal.nolocal.framework.command.DiscordCommandRunner
+import com.datocal.nolocal.framework.command.PingCommandRunner
+import com.datocal.nolocal.framework.command.RouletteCommandRunner
 import org.javacord.api.DiscordApi
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.context.annotation.Bean
@@ -12,8 +13,8 @@ import org.springframework.context.annotation.Configuration
 class DiscordCommandConfiguration {
 
     @Bean
-    fun pingCommandRunner(): PingCommandRunner {
-        return PingCommandRunner()
+    fun pingCommandRunner(ping: Ping): PingCommandRunner {
+        return PingCommandRunner(ping)
     }
 
     @Bean

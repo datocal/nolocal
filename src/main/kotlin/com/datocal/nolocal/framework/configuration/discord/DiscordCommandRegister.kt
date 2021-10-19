@@ -1,7 +1,7 @@
 package com.datocal.nolocal.framework.configuration.discord
 
 import com.datocal.nolocal.framework.command
-import com.datocal.nolocal.framework.controller.discord.DiscordCommandRunner
+import com.datocal.nolocal.framework.command.DiscordCommandRunner
 import com.datocal.nolocal.framework.isCommand
 import org.javacord.api.DiscordApi
 
