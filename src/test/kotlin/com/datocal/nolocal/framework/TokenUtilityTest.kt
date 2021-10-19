@@ -9,31 +9,31 @@ internal class TokenUtilityTest {
 
     @Test
     fun `should return true command for a command`() {
-        assertTrue(isCommand("+ping"))
+        assertTrue(rawMessageContainsCommand("+ping"))
     }
 
     @Test
     fun `should return false command for a random text`() {
-        assertFalse(isCommand("Hello, my friend"))
+        assertFalse(rawMessageContainsCommand("Hello, my friend"))
     }
 
     @Test
     fun `should return false command for another command`() {
-        assertFalse(isCommand("!ping"))
+        assertFalse(rawMessageContainsCommand("!ping"))
     }
 
     @Test
     fun `should get empty for empty command`() {
-        assertEquals("", command("+"))
+        assertEquals("", getCommandFromRawMessage("+"))
     }
 
     @Test
     fun `should get ping for +ping command`() {
-        assertEquals("ping", command("+ping"))
+        assertEquals("ping", getCommandFromRawMessage("+ping"))
     }
 
     @Test
     fun `should get ping for +ping command with parameters`() {
-        assertEquals("ping", command("+ping hello"))
+        assertEquals("ping", getCommandFromRawMessage("+ping hello"))
     }
 }
