@@ -13,6 +13,8 @@ jobs:
         with:
           version: 1.5.31
       - name: Mutation test run
+        env: 
+          spring.profiles.active: true
         run: | 
            chmod +x ./gradlew
            ./gradlew pitest
