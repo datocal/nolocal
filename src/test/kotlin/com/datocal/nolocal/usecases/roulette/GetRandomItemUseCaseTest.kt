@@ -3,10 +3,10 @@ package com.datocal.nolocal.usecases.roulette
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class GetRandomItemUseCaseTest{
+internal class GetRandomItemUseCaseTest {
 
     @Test
-    fun `should call roulette`(){
+    fun `should call roulette`() {
         val useCase = GetRandomItemUseCase()
         val request = GetRandomItemUseCaseRequest(items = listOf("a", "a", "a"))
 
@@ -14,5 +14,4 @@ internal class GetRandomItemUseCaseTest{
 
         assertEquals("a", response.item)
     }
-
 }
