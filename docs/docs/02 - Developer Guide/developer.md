@@ -1,7 +1,7 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
-# Getting Started
+# Building it
 
 To-do docs

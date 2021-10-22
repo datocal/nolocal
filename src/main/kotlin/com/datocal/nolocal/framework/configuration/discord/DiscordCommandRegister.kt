@@ -21,7 +21,7 @@ class DiscordCommandRegister(
     private fun registerMessages() {
         discordApi.addMessageCreateListener { event ->
             if (rawMessageContainsCommand(event.messageContent)) {
-                (registry[getCommandFromRawMessage(event.messageContent)] ?: registry[DEFAULT_COMMAND])?.accept(event)
+                (registry[getCommandFromRawMessage(event.messageContent)] ?: registry[DEFAULT_COMMAND])!!.accept(event)
             }
         }
     }
