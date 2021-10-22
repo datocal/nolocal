@@ -15,7 +15,7 @@ jobs:
       - name: Mutation test run
         run: | 
            chmod +x ./gradlew
-           ./gradlew pitest
+           SPRING_PROFILES_ACTIVE=test ./gradlew pitest
       - name: Publish Test Report
         if: always()
         uses: actions/upload-artifact@v2-preview
