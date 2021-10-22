@@ -6,8 +6,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'NoLocal',
+  tagline: 'Create your service easily',
   url: 'https://datocal.github.io',
   baseUrl: '/nolocal/',
   onBrokenLinks: 'throw',
@@ -15,7 +15,6 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'datocal', // Usually your GitHub org/user name.
   projectName: 'nolocal', // Usually your repo name.
-  trailingSlash: true,
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -25,12 +24,7 @@ const config = {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+          routeBasePath: '/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -43,9 +37,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'NoLocal',
         logo: {
-          alt: 'My Site Logo',
+          alt: 'NoLocal Logo',
           src: 'img/logo.svg',
         },
         items: [
@@ -53,11 +47,26 @@ const config = {
             type: 'doc',
             docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            label: 'User Guide',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            to: '/docs-developer/developer',
+            label: 'Developer Guide',
+            position: 'left',
+            activeBaseRegex: `/docs-developer/`,
+          },
+          {
+            href: 'https://codecov.io/gh/datocal/nolocal',
+            label: 'Codecov',
+            position: 'right',
+          },
+          {
+            href: 'https://codeclimate.com/github/davidtourino/nolocal/maintainability',
+            label: 'Codeclimate',
+            position: 'right',
+          },
+          {
+            href: 'https://github.com/datocal/nolocal',
             label: 'GitHub',
             position: 'right',
           },
@@ -65,48 +74,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
-          {
-            title: 'Community',
-            items: [
-              {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} NoLocal, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
