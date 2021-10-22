@@ -44,18 +44,6 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            docId: 'intro',
-            position: 'left',
-            label: 'User Guide',
-          },
-          {
-            to: '/docs-developer/developer',
-            label: 'Developer Guide',
-            position: 'left',
-            activeBaseRegex: `/docs-developer/`,
-          },
-          {
             href: 'https://codecov.io/gh/datocal/nolocal',
             label: 'Codecov',
             position: 'right',
