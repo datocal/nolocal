@@ -54,6 +54,11 @@ const config = {
             position: 'right',
           },
           {
+            href: 'https://sonarcloud.io/summary/overall?id=datocal_nolocal',
+            label: 'SonarCloud',
+            position: 'right',
+          },
+          {
             href: 'https://github.com/datocal/nolocal',
             label: 'GitHub',
             position: 'right',
