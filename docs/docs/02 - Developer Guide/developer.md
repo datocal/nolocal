@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-#Tech stack
+# Tech stack
 
 | Technology     | Type                  | Description                                                                       | Reference |
 |----------------|-----------------------|-----------------------------------------------------------------------------------|-----------|
@@ -37,18 +37,18 @@ Or even simplier
     
     java -jar nolocal.jar
 
-#Testing it 
+# Testing it 
 All the tests are under the check task in gradle, so to run all the suite run:
 
     ./gradlew check
 
 You won't need any token here since it will not connect to the discord server during tests.
 
-##Integration testing
-There is a specific module for integration testing on [integration-test](../../../src/integration-test)
+## Integration testing
+There is a specific module for integration testing on [integration-test](https://github.com/datocal/nolocal/tree/master/src/integration-test)
 The tests are included inside the gradle _check_ task, using the [test-sets library](https://plugins.gradle.org/plugin/org.unbroken-dome.test-sets)
 
-##Mutation testing
+## Mutation testing
 You can run the mutation testing too! to do that, simply run
     
     ./gradlew pitest
