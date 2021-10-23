@@ -2,7 +2,9 @@
 sidebar_position: 1
 ---
 
-# Tech stack
+# Quickstart
+
+## Tech stack
 
 | Technology     | Type                  | Description                                                                       | Reference |
 |----------------|-----------------------|-----------------------------------------------------------------------------------|-----------|
@@ -27,7 +29,7 @@ This command will generate the jar output under build/libs
 ## Running it
 
 Tu run it, you need to have an environment variable called DISCORD_TOKEN with the secret token of your bot.
-You can change the [application.yml](../../../src/main/resources/application.yml) too.
+You can change the [application.yml](https://github.com/datocal/nolocal/blob/master/src/main/resources/application.yml) too.
 
 With that in mind, just do:
 
