@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-## +(Any other command)
+# +(Any other command)
 Any non existent command will always produce the same output.
 
 Request:
