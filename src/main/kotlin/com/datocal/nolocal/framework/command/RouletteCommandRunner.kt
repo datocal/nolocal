@@ -1,6 +1,5 @@
 package com.datocal.nolocal.framework.command
 
-import com.datocal.nolocal.framework.ROULETTE_COMMAND
 import com.datocal.nolocal.framework.removeCommandFromRawMessage
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCase
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseRequest
@@ -8,7 +7,7 @@ import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseResponse
 import org.javacord.api.event.message.MessageCreateEvent
 import org.springframework.stereotype.Component
 
-@Component(ROULETTE_COMMAND)
+@Component("roulette")
 class RouletteCommandRunner(
     private val getRandomItemUseCase: GetRandomItemUseCase,
 ) : DiscordCommandRunner {

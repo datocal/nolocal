@@ -19,4 +19,3 @@ fun rawMessageContainsCommand(message: String): Boolean {
 const val TOKEN_DELIMITER = " "
 const val BOT_PREFIX = "+"
 const val DEFAULT_COMMAND = "default"
-const val ROULETTE_COMMAND = "roulette"
