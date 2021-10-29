@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // I'm new to gradle and kotlin so this file will need a rework, for sure...
 
 plugins {
-    id("org.springframework.boot") version "2.5.5"
+    id("org.springframework.boot") version "2.5.6"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("org.unbroken-dome.test-sets") version "4.0.0"
     id("org.jlleitschuh.gradle.ktlint") version "10.2.0"
