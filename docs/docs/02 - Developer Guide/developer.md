@@ -17,6 +17,9 @@ sidebar_position: 1
 | Codecov        | Coverage Analisis     | Tool to show the testing coverage and its evolution                               |[Link](https://about.codecov.io/)             |
 | Docusaurus     | Static site generator | Tool to generate a static site for documentation                                  |[Link](https://docusaurus.io/)                |
 | Oracle Cloud   | Hosting               | Cloud provider of this service deployment (free tier)                             |[Link](https://www.oracle.com/cloud/)         
+| Micrometer     | Library               | Library to export application metrics for JVM-based applications                  |[Link](https://micrometer.io/)
+| New Relic      | Monitoring            | Observability platform using metrics exported by micrometer                       |[Link](https://newrelic.com/)
+| Uptime Robot   | Monitoring            | Monitor to check the health of the application periodically by external http calls|[Link](https://uptimerobot.com/)
 
 ## Building it
 
