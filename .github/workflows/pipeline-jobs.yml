@@ -189,4 +189,4 @@ jobs:
             mv nolocal-new.jar nolocal.jar -f
             export DISCORD_TOKEN="${{secrets.DISCORD_TOKEN}}"
             export INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"
-            nohup java -jar ~/nolocal.jar &
+            nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
