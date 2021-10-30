@@ -1,0 +1,5 @@
+ignore:
+  'nSNYK-JAVA-ORGSPRINGFRAMEWORKCLOUD-1767776':
+    - '*':
+        reason: Up to date
+        expires: 2022-04-04T17:33:45.004Z

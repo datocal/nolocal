@@ -6,3 +6,5 @@ secrets:
     token: ${DISCORD_TOKEN:dummy-token}
   newrelic:
     apikey: ${INSIGHTS_KEY:dummy-key}
+logging:
+  path: /var/log
