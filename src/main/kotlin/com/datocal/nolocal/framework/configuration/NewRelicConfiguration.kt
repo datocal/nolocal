@@ -46,6 +46,10 @@ class NewRelicConfiguration {
             override fun serviceName(): String {
                 return "NoLocal - Spring Boot Application"
             }
+
+            override fun uri(): String {
+                return "https://metric-api.eu.newrelic.com/metric/v1"
+            }
         }
     }
 
