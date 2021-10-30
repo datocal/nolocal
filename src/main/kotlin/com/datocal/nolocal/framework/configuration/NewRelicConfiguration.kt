@@ -44,7 +44,7 @@ class NewRelicConfiguration {
             }
 
             override fun serviceName(): String {
-                return "NoLocal - Spring Boot Application"
+                return "NoLocalBoot"
             }
 
             override fun uri(): String {
