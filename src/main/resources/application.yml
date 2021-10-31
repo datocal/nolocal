@@ -4,7 +4,12 @@ spring:
 secrets:
   discord:
     token: ${DISCORD_TOKEN:dummy-token}
-  newrelic:
-    apikey: ${INSIGHTS_KEY:dummy-key}
 logging:
   path: /var/log
+
+management:
+  metrics:
+    export:
+      newrelic:
+        api-key: ${INSIGHTS_KEY:dummy-key}
+        account-id: 3326893
