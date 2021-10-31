@@ -6,6 +6,8 @@ secrets:
     token: ${DISCORD_TOKEN:dummy-token}
 logging:
   path: /var/log
+  level:
+    root: TRACE
 
 management:
   metrics:
@@ -13,3 +15,4 @@ management:
       newrelic:
         api-key: ${INSIGHTS_KEY:dummy-key}
         account-id: 3326893
+        uri: https://metric-api.eu.newrelic.com
