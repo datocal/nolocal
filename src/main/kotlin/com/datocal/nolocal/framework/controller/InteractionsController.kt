@@ -14,11 +14,9 @@ class InteractionsController(
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
 
     @PostMapping("/discord/interactions")
-    fun execute(@RequestBody interaction: String): Interaction {
-        val it = objectMapper.readValue(interaction, Interaction::class.java)
-        logger.info(interaction)
-        logger.info(it.toString())
-        return it
+    fun execute(@RequestBody interaction: Interaction): Interaction {
+        logger.info(interaction.toString())
+        return interaction
     }
 }
 
