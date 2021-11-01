@@ -7,7 +7,9 @@ secrets:
 logging:
   path: /var/log
   level:
-    root: TRACE
+    root: ERROR
+    org.springframework: WARN
+    com.datocal.nolocal: INFO
 
 management:
   metrics:
