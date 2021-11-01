@@ -1,6 +1,5 @@
 package com.datocal.nolocal.framework.controller
 
-import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
@@ -23,7 +22,7 @@ class InteractionsController(
     }
 }
 
-data class Interaction (
+data class Interaction(
     val application_id: String,
     val channel_id: String?,
     val data: Data?,
@@ -36,13 +35,13 @@ data class Interaction (
     val version: Long
 )
 
-data class Data (
+data class Data(
     val id: String,
     val name: String,
     val type: Long
 )
 
-data class Member (
+data class Member(
     val avatar: String?,
     val deaf: Boolean,
     val is_pending: Boolean?,
@@ -56,7 +55,7 @@ data class Member (
     val user: User?
 )
 
-data class User (
+data class User(
     val avatar: String?,
     val discriminator: String,
     val id: String,
