@@ -1,6 +1,5 @@
 package com.datocal.nolocal.framework.controller
 
-import feign.Param
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -22,7 +21,6 @@ interface DiscordInteractionResponseClient {
         @RequestParam("interaction_id") interactionId: String?,
         @RequestParam("interaction_token") interactionToken: String?,
     )
-
 }
 
 data class InteractionResponse(
@@ -37,7 +35,7 @@ data class InteractionResponseData(
     val allowed_mentions: AllowedMentions,
 )
 
-data class AllowedMentions (
+data class AllowedMentions(
     val parse: List<String>,
 )
 
@@ -45,4 +43,3 @@ data class Choice(
     val name: String,
     val value: String,
 )
-
