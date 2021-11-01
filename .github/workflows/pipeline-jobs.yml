@@ -152,9 +152,11 @@ jobs:
             sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
             curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/caddy-stable.asc
             curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-            sudo apt update
-            sudo apt install caddy
-
+            sudo apt update -y
+            sudo apt install caddy -y
+            sudo bash -c 'echo "nolocalbot.duckdns.org {
+                reverse_proxy localhost:8080
+            }"  > /etc/caddy/Caddyfile'
   Deploy:
     runs-on: ubuntu-latest
     needs: [ Check, Snyk, PrepareJar, BuildDocs, PrepareOracleCLoud]
@@ -195,3 +197,4 @@ jobs:
             export DISCORD_TOKEN="${{secrets.DISCORD_TOKEN}}"
             export INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"
             nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
+            sudo service caddy restart
