@@ -1,6 +1,5 @@
 package com.datocal.nolocal.framework.controller
 
-
 import com.fasterxml.jackson.annotation.JsonCreator
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
