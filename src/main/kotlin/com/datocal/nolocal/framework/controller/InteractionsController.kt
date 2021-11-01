@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class InteractionsController(
-    private val objectMapper: ObjectMapper,
+    private val apiClient: DiscordInteractionResponseClient,
 ) {
 
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
@@ -16,8 +16,21 @@ class InteractionsController(
     @PostMapping("/discord/interactions")
     fun execute(@RequestBody interaction: Interaction): Interaction {
         logger.info(interaction.toString())
+        apiClient.respond(defaultResponse(), interaction.id, interaction.token)
         return interaction
     }
+
+    private fun defaultResponse() = InteractionResponse(
+        type = 4,
+        data = InteractionResponseData(
+            tts = false,
+            content = "El culo tuyo",
+            embeds = emptyList(),
+            allowed_mentions = AllowedMentions(
+                parse = emptyList()
+            )
+        )
+    )
 }
 
 data class Interaction(
