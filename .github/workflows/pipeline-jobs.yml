@@ -198,3 +198,6 @@ jobs:
             export INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"
             nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
             sudo service caddy restart
+      - name: Update DuckDNS IP
+        run: |
+          curl https://www.duckdns.org/update?domains=nolocalbot.duckdns.org&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}
