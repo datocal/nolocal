@@ -108,6 +108,7 @@ jobs:
                 --raw-output \
             )" >> $GITHUB_ENV
       - name: Create Instance
+        id: create
         if: ${{!env.INSTANCE_OCID}}
         run: |
           echo "INSTANCE_OCID=$( \
@@ -124,6 +125,7 @@ jobs:
               --query "data.id" \
               --raw-output \
           )" >> $GITHUB_ENV
+          echo "::set-output name=created::true"
       - name: Get Instance IP
         id : getIP
         run: |
@@ -140,6 +142,7 @@ jobs:
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
       - name: Prepare machine
+        if: ${{ steps.create.outputs.created }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ steps.getIP.outputs.ip }}
@@ -152,11 +155,26 @@ jobs:
             sudo apt-get install -y debian-keyring debian-archive-keyring apt-transport-https
             curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/caddy-stable.asc
             curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/caddy-xcaddy.asc
+            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-xcaddy.list
             sudo apt-get update -y
             sudo apt-get install caddy -y
-            sudo bash -c 'echo "nolocalbot.duckdns.org {
+            sudo apt-get install xcaddy -y
+            wget https://golang.org/dl/go1.17.2.linux-amd64.tar.gz
+            sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.2.linux-amd64.tar.gz
+            export PATH=$PATH:/usr/local/go/bin
+            xcaddy build --with github.com/CarsonHoffman/caddy-discord-interactions-verifier
+            sudo mv caddy /usr/bin/caddy
+            sudo bash -c 'echo "
+              nolocalbot.duckdns.org {
+                route /discord/* {
+                  discord 1fb66649bf5709d063ba12e96ea9b9f00a59e9a8837f7d6dc43db4c3982fdf37
+                }
                 reverse_proxy localhost:8080
-            }"  > /etc/caddy/Caddyfile'
+              }
+            "  > /etc/caddy/Caddyfile'
+
+
   Deploy:
     runs-on: ubuntu-latest
     needs: [ Check, Snyk, PrepareJar, BuildDocs, PrepareOracleCLoud]
