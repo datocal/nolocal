@@ -18,10 +18,48 @@ class InteractionsController(
     fun execute(@RequestBody interaction: String): Interaction {
         val it = objectMapper.readValue(interaction, Interaction::class.java)
         logger.info(interaction)
+        logger.info(it.toString())
         return it
     }
 }
 
-data class Interaction @JsonCreator constructor(
-    val type: Int,
+data class Interaction (
+    val application_id: String,
+    val channel_id: String?,
+    val data: Data?,
+    val guild_id: String?,
+    val id: String,
+    val member: Member?,
+    val user: User?,
+    val token: String,
+    val type: Long,
+    val version: Long
+)
+
+data class Data (
+    val id: String,
+    val name: String,
+    val type: Long
+)
+
+data class Member (
+    val avatar: String?,
+    val deaf: Boolean,
+    val is_pending: Boolean?,
+    val joined_at: String,
+    val mute: Boolean,
+    val nick: String?,
+    val pending: Boolean?,
+    val permissions: String?,
+    val premium_since: String?,
+    val roles: List<String>,
+    val user: User?
+)
+
+data class User (
+    val avatar: String?,
+    val discriminator: String,
+    val id: String,
+    val public_flags: Long?,
+    val username: String
 )
