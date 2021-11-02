@@ -15,7 +15,7 @@ class InteractionsController(
     @PostMapping("/discord/interactions")
     fun execute(@RequestBody interaction: Interaction): InteractionResponse {
         logger.info(interaction.toString())
-        //apiClient.respond(defaultResponse(), interaction.id, interaction.token)
+        // apiClient.respond(defaultResponse(), interaction.id, interaction.token)
         if (interaction.type == 1L) {
             return defaultResponse(1)
         }
