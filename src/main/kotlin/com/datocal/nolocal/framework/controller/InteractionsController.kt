@@ -22,7 +22,7 @@ class InteractionsController(
     private fun defaultResponse() = InteractionResponse(
         type = 4,
         data = InteractionResponseData(
-            tts = true,
+            tts = false,
             content = "El culo tuyo",
             embeds = emptyList(),
             allowed_mentions = AllowedMentions(
