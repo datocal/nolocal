@@ -10,7 +10,7 @@ sidebar_position: 1
 |----------------|-----------------------|-----------------------------------------------------------------------------------|-----------|
 | Kotlin         | Language              | Modern JVM based language with full java compatibility                            |[Link](https://kotlinlang.org/)               |
 | Spring Boot    | Framework             | Robust and known framework to make the magic happens :)                           |[Link](https://spring.io/projects/spring-boot)|
-| Javacord       | Library               | Discord Library implementing the Discord API with friendly interfaces             |[Link](https://github.com/Javacord/Javacord)  |
+| Feign          | HTTP Client           | Simple HTTP Client to connect to the discord API                                  |[Link](https://github.com/OpenFeign/feign)                   |
 | Gradle         | Build Tool            | Tool to build the project, with all the tasks related to compile, test and more   |[Link](https://gradle.org/)                   |
 | Github Actions | CI/CD                 | Tool to orchestrate the checks, deploy and everything happening after a commit    |[Link](https://github.com/features/actions)   |
 | Sonarcloud     | Quality Analisis      | Tool to analyse the project to detect quality improvements (code smells, bugs...) |[Link](https://sonarcloud.io/)                |
