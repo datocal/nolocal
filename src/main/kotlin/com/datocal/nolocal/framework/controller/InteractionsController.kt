@@ -13,14 +13,17 @@ class InteractionsController(
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
 
     @PostMapping("/discord/interactions")
-    fun execute(@RequestBody interaction: Interaction): Interaction {
+    fun execute(@RequestBody interaction: Interaction): InteractionResponse {
         logger.info(interaction.toString())
-        apiClient.respond(defaultResponse(), interaction.id, interaction.token)
-        return interaction
+        //apiClient.respond(defaultResponse(), interaction.id, interaction.token)
+        if (interaction.type == 1L) {
+            return defaultResponse(1)
+        }
+        return defaultResponse()
     }
 
-    private fun defaultResponse() = InteractionResponse(
-        type = 4,
+    private fun defaultResponse(type: Int = 4) = InteractionResponse(
+        type = type,
         data = InteractionResponseData(
             tts = false,
             content = "El culo tuyo",
