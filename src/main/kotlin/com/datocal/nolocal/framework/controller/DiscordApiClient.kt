@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam
     url = "https://discord.com/api/v8",
     name = "discordInteractionResponseClient"
 )
-interface DiscordInteractionResponseClient {
+interface DiscordApiClient {
 
     @RequestMapping(
         method = [RequestMethod.POST],

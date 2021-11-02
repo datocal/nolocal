@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class InteractionsController(
-    private val apiClient: DiscordInteractionResponseClient,
+    private val apiClient: DiscordApiClient,
 ) {
 
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
@@ -22,7 +22,7 @@ class InteractionsController(
     private fun defaultResponse() = InteractionResponse(
         type = 4,
         data = InteractionResponseData(
-            tts = false,
+            tts = true,
             content = "El culo tuyo",
             embeds = emptyList(),
             allowed_mentions = AllowedMentions(
