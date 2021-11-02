@@ -7,7 +7,7 @@ data class Interaction(
 
 data class Data(
     val name: String,
-    val options: List<Option> = emptyList()
+    val options: List<Option>? = emptyList()
 )
 
 data class Option(
