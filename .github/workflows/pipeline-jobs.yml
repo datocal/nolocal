@@ -75,12 +75,35 @@ jobs:
           chmod +x ./gradlew
           ./gradlew --no-daemon bootJar
       - name: Rename Jar
-        run: mv ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal-new.jar
+        run: cp ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal.jar
       - name: Publish Jar
         uses: actions/upload-artifact@v2.2.4
         with: 
-          path: ./nolocal-new.jar
-
+          path: ./nolocal.jar
+      - name: Publish compose
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: ./docker-compose.yml
+          name: compose
+      - name: Publish caddyfile
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: ./Caddyfile
+          name: caddyfile
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Docker login
+        uses: docker/login-action@v1.10.0
+        with:
+          username: davidtca
+          password: ${{secrets.DOCKERHUB_TOKEN}}
+      - name: Docker build & push
+        uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: davidtca/nolocal:latest
   PrepareOracleCLoud:
     runs-on: ubuntu-latest
     outputs:
@@ -149,61 +172,37 @@ jobs:
           username: ubuntu
           key: ${{secrets.VM_SSH_PRIVATE_KEY}}
           script: |
-            sudo apt-get install openjdk-11-jre-headless -y
-            sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 443,8080 -j ACCEPT
+            sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 443 -j ACCEPT
             sudo netfilter-persistent save
-            sudo apt-get install -y debian-keyring debian-archive-keyring apt-transport-https
-            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/caddy-stable.asc
-            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
-            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/gpg.key' | sudo tee /etc/apt/trusted.gpg.d/caddy-xcaddy.asc
-            curl -1sLf 'https://dl.cloudsmith.io/public/caddy/xcaddy/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-xcaddy.list
-            sudo apt-get update -y
-            sudo apt-get install caddy -y
-            sudo apt-get install xcaddy -y
-            wget https://golang.org/dl/go1.17.2.linux-amd64.tar.gz
-            sudo rm -rf /usr/local/go && sudo tar -C /usr/local -xzf go1.17.2.linux-amd64.tar.gz
-            export PATH=$PATH:/usr/local/go/bin
-            xcaddy build --with github.com/CarsonHoffman/caddy-discord-interactions-verifier
-            sudo mv caddy /usr/bin/caddy
-            sudo bash -c 'echo "
-              nolocalbot.duckdns.org {
-                route /discord/* {
-                  discord 1fb66649bf5709d063ba12e96ea9b9f00a59e9a8837f7d6dc43db4c3982fdf37
-                }
-                reverse_proxy localhost:8080
-              }
-            "  > /etc/caddy/Caddyfile'
-
-
+            sudo apt-get install docker
   Deploy:
     runs-on: ubuntu-latest
     needs: [ Check, Snyk, PrepareJar, BuildDocs, PrepareOracleCLoud]
     steps:
-      - name: Download the nolocal jar artifact
+      - name: Download the docker-compose file
         uses: actions/download-artifact@v2.0.10
         with:
-          name: artifact
+          name: compose
           path: .
-      - name: Push JAR using tortilla
+      - name: Download the Caddyfile file
+        uses: actions/download-artifact@v2.0.10
+        with:
+          name: caddyfile
+          path: .
+      - name: Push compose using tortilla
         uses: betanzos/scp-upload@v1
         with:
           host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "./nolocal-new.jar"
-      - name: Stop App
-        uses: appleboy/ssh-action@master
+          source: "./docker-compose.yml"
+      - name: Push Caddyfile using tortilla
+        uses: betanzos/scp-upload@v1
         with:
           host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
-          key: ${{secrets.VM_SSH_PRIVATE_KEY}}
-          script: |
-            pid=`ps aux | grep "nolocal" | grep -v "grep" | awk '{print $2}'`
-            if [ "$pid" == "" ]; then
-              echo "Process not found"
-            else
-              kill -9 $pid
-            fi
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          source: "./Caddyfile"
       - name: Start App
         uses: appleboy/ssh-action@master
         with:
@@ -211,11 +210,10 @@ jobs:
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
-            mv nolocal-new.jar nolocal.jar -f
-            export DISCORD_TOKEN="${{secrets.DISCORD_TOKEN}}"
-            export INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"
-            nohup java -jar ~/nolocal.jar > output.$(date --iso).log 2>&1 &
-            sudo service caddy restart
+            echo 'DISCORD_TOKEN="${{secrets.DISCORD_TOKEN}}"' > .env
+            echo 'INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"' >> .env
+            docker-compose build --pull
+            docker-compose up -d
       - name: Update DuckDNS IP
         run: |
           curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'

@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  caddy:
+    image: davidtca/caddy-discord:latest
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+  nolocal:
+    image: davidtca/nolocal
