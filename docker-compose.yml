@@ -16,6 +16,8 @@ services:
       - DISCORD_TOKEN
       - INSIGHTS_KEY
   newrelic-infra:
+    profiles:
+      - metrics
     image: 'newrelic/infrastructure:latest'
     container_name: newrelic-infra
     cap_add:
