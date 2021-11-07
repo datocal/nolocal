@@ -63,7 +63,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(2))
+            .body("type", Matchers.equalTo(4))
             .body("data.content", Matchers.startsWith("Test"))
     }
 
@@ -76,7 +76,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(2))
+            .body("type", Matchers.equalTo(4))
             .body("data.content", Matchers.equalTo("No items found"))
     }
 
@@ -89,7 +89,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(2))
+            .body("type", Matchers.equalTo(4))
             .body("data.content", Matchers.equalTo("No items found"))
     }
 }
