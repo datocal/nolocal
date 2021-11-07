@@ -52,6 +52,22 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
                     "type" : 2
                 }
             """
+        private const val ROULETTE_WITH_EMPTY_MESSAGE_REQUEST =
+            """
+                {
+                    "data": {
+                        "name" : "roulette",
+                        "resolved": {
+                            "messages": {
+                                "867793854505943041": {
+                                    "content": ""
+                                }
+                            }
+                        }
+                    },
+                    "type" : 2
+                }
+            """
     }
 
     @Test
@@ -85,6 +101,19 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
         RestAssuredMockMvc.given()
             .contentType(ContentType.JSON)
             .body(ROULETTE_WITHOUT_MESSAGE_REQUEST)
+            .`when`()
+            .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
+            .then()
+            .assertThat(MockMvcResultMatchers.status().isOk)
+            .body("type", Matchers.equalTo(4))
+            .body("data.content", Matchers.equalTo("No items found"))
+    }
+
+    @Test
+    fun `should not find any message when the message is empty`() {
+        RestAssuredMockMvc.given()
+            .contentType(ContentType.JSON)
+            .body(ROULETTE_WITH_EMPTY_MESSAGE_REQUEST)
             .`when`()
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
