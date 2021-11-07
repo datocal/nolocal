@@ -22,6 +22,6 @@ internal class PingCommandRunnerTest {
         )
         val response = commandRunner.accept(interaction)
 
-        assertEquals("El culo ssuyo", response.data?.content)
+        assertEquals("El culo suyo", response.data?.content)
     }
 }
