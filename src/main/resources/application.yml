@@ -7,10 +7,7 @@ secrets:
 logging:
   path: /var/log
   level:
-    root: ERROR
-    org.springframework: WARN
-    com.datocal.nolocal: INFO
-    io.micrometer.newrelic: TRACE
+    root: TRACE
 management:
   metrics:
     export:
