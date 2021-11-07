@@ -10,3 +10,17 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile
   nolocal:
     image: davidtca/nolocal
+    environment:
+      - DISCORD_TOKEN
+      - INSIGHTS_KEY
+  newrelic-infra:
+    image: 'newrelic/infrastructure:latest'
+    container_name: newrelic-infra
+    network_mode: host
+    privileged: true
+    pid: host
+    volumes:
+      - '/:/host:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+    environment:
+      - NRIA_LICENSE_KEY

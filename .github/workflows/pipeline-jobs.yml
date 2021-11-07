@@ -224,5 +224,6 @@ jobs:
           script: |
             echo 'DISCORD_TOKEN="${{secrets.DISCORD_TOKEN}}"' > .env
             echo 'INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"' >> .env
+            echo 'NRIA_LICENSE_KEY="${{secrets.NRIA_LICENSE_KEY}}"' >> .env
             sudo docker-compose pull
             sudo docker-compose up -d
