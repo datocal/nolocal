@@ -14,6 +14,6 @@ class PingControllerIntegrationTest : IntegrationTest() {
             .get("/ping")
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
-            .body(Matchers.equalTo("El culo tuyo"))
+            .body(Matchers.equalTo("El culo suyo"))
     }
 }
