@@ -21,7 +21,7 @@ class RouletteCommandRunner(
     private fun buildResponse(response: GetRandomItemUseCaseResponse): InteractionResponse {
         return InteractionResponse(
             data = InteractionResponseData(
-                content = response.item ?: "No items found",
+                content = response.item.orEmpty().ifEmpty { "No items found" },
             )
         )
     }
