@@ -159,6 +159,9 @@ jobs:
             --query 'data [0]."public-ip"' \
             --raw-output \
           )"
+      - name: Update DuckDNS IP
+        run: |
+          curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ steps.getIP.outputs.ip }}'
       - name: SSH wait
         run: |
           while ! nc -w5 -z ${{ steps.getIP.outputs.ip }} 22; do
@@ -219,6 +222,3 @@ jobs:
             echo 'INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"' >> .env
             sudo docker-compose build --pull
             sudo docker-compose up -d
-      - name: Update DuckDNS IP
-        run: |
-          curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
