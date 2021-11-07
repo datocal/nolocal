@@ -217,8 +217,8 @@ jobs:
           script: |
             echo 'DISCORD_TOKEN="${{secrets.DISCORD_TOKEN}}"' > .env
             echo 'INSIGHTS_KEY="${{secrets.INSIGHTS_KEY}}"' >> .env
-            docker-compose build --pull
-            docker-compose up -d
+            sudo docker-compose build --pull
+            sudo docker-compose up -d
       - name: Update DuckDNS IP
         run: |
           curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
