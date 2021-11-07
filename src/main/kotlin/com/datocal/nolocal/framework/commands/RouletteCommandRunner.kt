@@ -28,7 +28,15 @@ class RouletteCommandRunner(
     }
 
     private fun buildRequest(interaction: Interaction): GetRandomItemUseCaseRequest {
-        val items = interaction.data?.options?.mapNotNull { it.value?.trim() } ?: emptyList()
+        val items = interaction.data
+            ?.resolved
+            ?.messages
+            ?.entries
+            ?.mapNotNull { it.value?.content }
+            ?.map { it.lines() }
+            ?.flatten()
+            ?.map { it.trim() }
+            ?: emptyList()
         return GetRandomItemUseCaseRequest(items)
     }
 }
