@@ -1,8 +1,13 @@
 ---
 sidebar_position: 1
+id: developer
 ---
 
 # Quickstart
+
+## The Big Picture 
+![NoLocal Diagram](/img/developer/diagram.png)
+
 
 ## Tech stack
 

@@ -1,17 +1,18 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
+id: adding
 ---
 
 # Adding commands
 
-# Registering commands
+## Registering commands
 To make a command available in the server it's needed to register it in the discord API.
 It can be registered as a global or a specific server command.
 
 This process is not automated, as the time of writing this, the process is as simple as to make a POST request with the 
 command specification. You can check the specific documentation [in the following link](https://discord.com/developers/docs/interactions/application-commands#slash-commands)
 
-# Programming slash commands
+## Programming slash commands
 
 Adding commands is pretty straightforward.
 
@@ -46,7 +47,7 @@ For example, this would be a ping command:
 The notation @Component("ping") will create the infrastructure necessary to create the bean and call this Runner when the 
 ping command is invoked. You just have to implement the method returning an InteractionResponse.
 
-## How the magic works
+### How the magic works
 
 The annotation **@Component** is a spring annotation. For those not familiarized with spring, this will initialize this class
 calling its constructor and put it in a magic box to take it any time it's needed in a program.
@@ -55,7 +56,7 @@ In the shadows, Spring will create a Map<String, DiscordCommandRunner> with all 
 in the application, using the bean name (the command string in this case) as the key. We will use this to map any 
 command received to this bean.
 
-To use the map, there is a controller who listens for upcoming commands
+To use the map, there is a controller who listens for upcoming commands, **the interactions endpoint**
 
 
     @RestController
