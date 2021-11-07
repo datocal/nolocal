@@ -7,7 +7,6 @@ data class Interaction(
 
 data class Data(
     val name: String,
-    val options: List<Option>? = emptyList(),
     val resolved: Resolved? = null,
 )
 
@@ -17,9 +16,4 @@ data class Resolved(
 
 data class PartialMessage(
     val content: String? = "",
-)
-
-data class Option(
-    val name: String,
-    val value: String?,
 )

@@ -15,17 +15,16 @@ class InteractionsController(
 ) {
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
 
-
     @PostMapping("/discord/interactions")
     fun execute(@RequestBody interaction: Interaction): InteractionResponse {
         logger.trace("Incoming request: $interaction")
-        val response =  commands[interaction.data?.name]?.accept(interaction) ?: defaultResponse()
+        val response = commands[interaction.data?.name]?.accept(interaction) ?: defaultResponse()
         logger.trace("Response: $response")
         return response
     }
 
     @ExceptionHandler(Exception::class)
-    fun handler(exception: Exception){
+    fun handler(exception: Exception) {
         logger.error("Error processing request: ${exception.message}", exception)
     }
 
