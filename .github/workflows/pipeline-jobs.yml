@@ -226,4 +226,4 @@ jobs:
             echo 'INSIGHTS_KEY=${{secrets.INSIGHTS_KEY}}' >> .env
             echo 'NRIA_LICENSE_KEY=${{secrets.NRIA_LICENSE_KEY}}' >> .env
             sudo docker-compose pull
-            sudo docker-compose up nolocal caddy -d
+            sudo docker-compose up -d nolocal caddy
