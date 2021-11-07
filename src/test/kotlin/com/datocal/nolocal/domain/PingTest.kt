@@ -7,6 +7,6 @@ import org.junit.jupiter.api.Test
 internal class PingTest {
     @Test
     fun pingTest() {
-        assertEquals("El culo suyo", Ping().ping())
+        assertEquals("El culo tuyo", Ping().ping())
     }
 }
