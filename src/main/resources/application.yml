@@ -10,11 +10,12 @@ logging:
     root: ERROR
     org.springframework: WARN
     com.datocal.nolocal: INFO
-
+    io.micrometer.newrelic: TRACE
 management:
   metrics:
     export:
       newrelic:
         api-key: ${INSIGHTS_KEY:dummy-key}
         account-id: 3326893
-        uri: https://metric-api.eu.newrelic.com
+        uri: https://insights-collector.eu01.nr-data.net
+        enabled: true
