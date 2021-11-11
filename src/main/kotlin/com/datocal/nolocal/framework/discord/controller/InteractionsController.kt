@@ -4,7 +4,6 @@ import com.datocal.nolocal.framework.commands.DiscordCommandRunner
 import com.datocal.nolocal.framework.discord.model.Interaction
 import com.datocal.nolocal.framework.discord.model.InteractionResponse
 import org.slf4j.LoggerFactory
-import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -21,11 +20,6 @@ class InteractionsController(
         val response = commands[interaction.data?.name]?.accept(interaction) ?: defaultResponse()
         logger.trace("Response: $response")
         return response
-    }
-
-    @ExceptionHandler(Exception::class)
-    fun handler(exception: Exception) {
-        logger.error("Error processing request: ${exception.message}", exception)
     }
 
     // ACK Discord PING checks

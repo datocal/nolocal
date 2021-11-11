@@ -35,7 +35,7 @@ internal class RouletteCommandRunnerTest {
             return Stream.of(
                 Arguments.of(nullDataInteraction(), emptyUseCaseRequest()),
                 Arguments.of(nullResolvesInteraction(), emptyUseCaseRequest()),
-                Arguments.of(nullMessagesInteraction(), emptyUseCaseRequest()),
+                Arguments.of(emptyMessagesInteraction(), emptyUseCaseRequest()),
                 Arguments.of(nullEntriesInteraction(), emptyUseCaseRequest()),
                 Arguments.of(goodInteraction(), actualUseCaseRequest()),
             )
@@ -57,7 +57,7 @@ internal class RouletteCommandRunnerTest {
             )
         }
 
-        private fun nullMessagesInteraction(): Interaction {
+        private fun emptyMessagesInteraction(): Interaction {
             return Interaction(
                 data = Data(
                     name = "roulette",
@@ -72,7 +72,10 @@ internal class RouletteCommandRunnerTest {
                 data = Data(
                     name = "roulette",
                     resolved = Resolved(
-                        messages = mapOf("" to null)
+                        messages = mapOf(
+                            "" to null,
+                            "a" to PartialMessage()
+                        )
                     )
                 ),
                 type = 1,
