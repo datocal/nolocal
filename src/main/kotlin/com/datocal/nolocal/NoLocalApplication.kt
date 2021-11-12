@@ -8,6 +8,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients
 @EnableFeignClients
 class NoLocalApplication
 
-fun main(args: Array<String>) { 
-    runApplication<NoLocalApplication>(*args)
+fun main(args: Array<String>) {
+    runApplication<NoLocalApplication>(*args) 
 }
