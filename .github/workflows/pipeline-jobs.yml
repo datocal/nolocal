@@ -169,7 +169,7 @@ jobs:
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
       - name: Prepare machine
-        #if: ${{ steps.create.outputs.created }}
+        if: ${{ steps.create.outputs.created }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ steps.getIP.outputs.ip }}
