@@ -77,7 +77,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
         assertEquals("No items found", content)
     }
 
-    private fun doRequestReturningContent(body : String) : String {
+    private fun doRequestReturningContent(body: String): String {
         val response = RestAssuredMockMvc.given()
             .contentType(ContentType.JSON)
             .body(body)
