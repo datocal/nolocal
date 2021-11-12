@@ -40,6 +40,8 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
                     "type" : 2
                 }
             """
+
+        private const val NO_ITEMS_FOUND_RESPONSE = "No items found"
     }
 
     @Test
@@ -57,7 +59,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
         val content = doRequestReturningContent(allStrikedRequest)
 
-        assertEquals("No items found", content)
+        assertEquals(NO_ITEMS_FOUND_RESPONSE, content)
     }
 
     @Test
@@ -65,7 +67,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
         val content = doRequestReturningContent(ROULETTE_WITHOUT_MESSAGE_REQUEST)
 
-        assertEquals("No items found", content)
+        assertEquals(NO_ITEMS_FOUND_RESPONSE, content)
     }
 
     @Test
@@ -74,7 +76,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
         val content = doRequestReturningContent(emptyMessageRequest)
 
-        assertEquals("No items found", content)
+        assertEquals(NO_ITEMS_FOUND_RESPONSE, content)
     }
 
     private fun doRequestReturningContent(body: String): String {
