@@ -4,7 +4,10 @@ import com.datocal.nolocal.NoLocalApplicationIntegrationTest
 import com.datocal.nolocal.framework.controller.IntegrationTest
 import io.restassured.http.ContentType
 import io.restassured.module.mockmvc.RestAssuredMockMvc
+import io.restassured.path.json.JsonPath
 import org.hamcrest.Matchers
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
@@ -41,53 +44,50 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
     @Test
     fun `should roulette a message`() {
-        RestAssuredMockMvc.given()
-            .contentType(ContentType.JSON)
-            .body(ROULETTE_REQUEST.format("Test \\n ~~Eliminated~~ \\n Test2"))
-            .`when`()
-            .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
-            .then()
-            .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(4))
-            .body("data.content", Matchers.startsWith("Test"))
+        val validRequest = ROULETTE_REQUEST.format("Test \\n ~~Eliminated~~ \\n Test2")
+
+        val content = doRequestReturningContent(validRequest)
+
+        assertTrue(content.startsWith("Test"))
     }
 
     @Test
     fun `should not find any message when all lines are striked`() {
-        RestAssuredMockMvc.given()
-            .contentType(ContentType.JSON)
-            .body(ROULETTE_REQUEST.format("~~Test~~ \\n ~~Eliminated~~ \\n ~~Test2~~"))
-            .`when`()
-            .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
-            .then()
-            .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(4))
-            .body("data.content", Matchers.equalTo("No items found"))
+        val allStrikedRequest = ROULETTE_REQUEST.format("~~Test~~ \\n ~~Eliminated~~ \\n ~~Test2~~")
+
+        val content = doRequestReturningContent(allStrikedRequest)
+
+        assertEquals("No items found", content)
     }
 
     @Test
     fun `should not find any message when there is no message`() {
-        RestAssuredMockMvc.given()
-            .contentType(ContentType.JSON)
-            .body(ROULETTE_WITHOUT_MESSAGE_REQUEST)
-            .`when`()
-            .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
-            .then()
-            .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(4))
-            .body("data.content", Matchers.equalTo("No items found"))
+
+        val content = doRequestReturningContent(ROULETTE_WITHOUT_MESSAGE_REQUEST)
+
+        assertEquals("No items found", content)
     }
 
     @Test
     fun `should not find any message when the message is empty`() {
-        RestAssuredMockMvc.given()
+        val emptyMessageRequest = ROULETTE_REQUEST.format("")
+
+        val content = doRequestReturningContent(emptyMessageRequest)
+
+        assertEquals("No items found", content)
+    }
+
+    private fun doRequestReturningContent(body : String) : String {
+        val response = RestAssuredMockMvc.given()
             .contentType(ContentType.JSON)
-            .body(ROULETTE_REQUEST.format(""))
+            .body(body)
             .`when`()
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
             .body("type", Matchers.equalTo(4))
-            .body("data.content", Matchers.equalTo("No items found"))
+            .extract()
+            .asString()
+        return JsonPath(response).get<String>("data.content").toString()
     }
 }
