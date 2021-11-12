@@ -1,5 +1,6 @@
 package com.datocal.nolocal.framework.commands
 
+import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.framework.discord.model.Interaction
 import com.datocal.nolocal.framework.discord.model.InteractionResponse
 import com.datocal.nolocal.framework.discord.model.InteractionResponseData
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component
 @Component("roulette")
 class RouletteCommandRunner(
     private val getRandomItemUseCase: GetRandomItemUseCase,
+    private val messageResolver: MessageResolver,
 ) : DiscordCommandRunner {
 
     override fun accept(interaction: Interaction): InteractionResponse {
@@ -21,7 +23,7 @@ class RouletteCommandRunner(
     private fun buildResponse(response: GetRandomItemUseCaseResponse): InteractionResponse {
         return InteractionResponse(
             data = InteractionResponseData(
-                content = response.item ?: "No items found",
+                content = response.item ?: messageResolver.get("roulette.not_found"),
             )
         )
     }

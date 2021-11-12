@@ -7,6 +7,12 @@ import org.junit.jupiter.api.Test
 internal class PingTest {
     @Test
     fun pingTest() {
-        assertEquals("El culo tuyo", Ping().ping())
+        assertEquals("El culo tuyo", Ping(MessageResolverMock).ping())
+    }
+}
+
+object MessageResolverMock : MessageResolver {
+    override fun get(key: String): String {
+        return "El culo tuyo"
     }
 }

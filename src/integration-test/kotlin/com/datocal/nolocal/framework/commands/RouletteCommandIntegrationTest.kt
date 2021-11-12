@@ -1,6 +1,7 @@
 package com.datocal.nolocal.framework.commands
 
 import com.datocal.nolocal.NoLocalApplicationIntegrationTest
+import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.framework.controller.IntegrationTest
 import io.restassured.http.ContentType
 import io.restassured.module.mockmvc.RestAssuredMockMvc
@@ -9,6 +10,7 @@ import org.hamcrest.Matchers
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class RouletteCommandIntegrationTest : IntegrationTest() {
@@ -40,9 +42,11 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
                     "type" : 2
                 }
             """
-
-        private const val NO_ITEMS_FOUND_RESPONSE = "No items found"
+        private const val NO_ITEMS_FOUND_RESPONSE = "roulette.not_found"
     }
+
+    @Autowired
+    lateinit var messages: MessageResolver
 
     @Test
     fun `should roulette a message`() {
@@ -59,7 +63,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
         val content = doRequestReturningContent(allStrikedRequest)
 
-        assertEquals(NO_ITEMS_FOUND_RESPONSE, content)
+        assertEquals(messages.get(NO_ITEMS_FOUND_RESPONSE), content)
     }
 
     @Test
@@ -67,7 +71,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
         val content = doRequestReturningContent(ROULETTE_WITHOUT_MESSAGE_REQUEST)
 
-        assertEquals(NO_ITEMS_FOUND_RESPONSE, content)
+        assertEquals(messages.get(NO_ITEMS_FOUND_RESPONSE), content)
     }
 
     @Test
@@ -76,7 +80,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
         val content = doRequestReturningContent(emptyMessageRequest)
 
-        assertEquals(NO_ITEMS_FOUND_RESPONSE, content)
+        assertEquals(messages.get(NO_ITEMS_FOUND_RESPONSE), content)
     }
 
     private fun doRequestReturningContent(body: String): String {

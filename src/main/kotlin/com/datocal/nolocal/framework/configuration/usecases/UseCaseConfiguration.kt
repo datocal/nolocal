@@ -1,5 +1,6 @@
 package com.datocal.nolocal.framework.configuration.usecases
 
+import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.domain.dummy.Ping
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCase
 import org.springframework.context.annotation.Bean
@@ -14,7 +15,7 @@ class UseCaseConfiguration {
     }
 
     @Bean
-    fun ping(): Ping {
-        return Ping()
+    fun ping(messages: MessageResolver): Ping {
+        return Ping(messages)
     }
 }

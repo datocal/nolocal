@@ -1,5 +1,6 @@
 package com.datocal.nolocal.framework.commands
 
+import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.framework.discord.model.Data
 import com.datocal.nolocal.framework.discord.model.Interaction
 import com.datocal.nolocal.framework.discord.model.PartialMessage
@@ -19,7 +20,7 @@ internal class RouletteCommandRunnerTest {
 
     private val useCase: GetRandomItemUseCase = mock(GetRandomItemUseCase::class.java)
 
-    private val runner = RouletteCommandRunner(useCase)
+    private val runner = RouletteCommandRunner(useCase, mock(MessageResolver::class.java))
 
     @ParameterizedTest
     @MethodSource("interactionShouldProvideRequest")

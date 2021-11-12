@@ -1,8 +1,12 @@
 package com.datocal.nolocal.domain.dummy
 
-class Ping {
+import com.datocal.nolocal.domain.MessageResolver
 
-    fun ping(request: String = "culo"): String {
-        return "El $request tuyo"
+class Ping(
+    private val messages: MessageResolver
+) {
+
+    fun ping(): String {
+        return messages.get("ping.message")
     }
 }
