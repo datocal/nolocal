@@ -45,8 +45,9 @@ The output of this Job is the IP Address, so it will connect to the instance by 
 instead of using anything related to the oracle console.
 
 This step will also update the DNS IP to the new one and install all prepare the machine by:
-    * Open the 443 port for HTTPS connections
-    * Install Docker
+
+* Open the 443 port for HTTPS connections
+* Install Docker
 
 
 ## Deploy 

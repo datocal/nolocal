@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class RouletteCommandIntegrationTest : IntegrationTest() {
-
     private companion object {
+
         private const val ROULETTE_REQUEST =
             """
                 {
@@ -19,7 +19,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
                         "resolved": {
                             "messages": {
                                 "867793854505943041": {
-                                    "content": "Test \n ~~Eliminated~~ \n Test2"
+                                    "content": "%s"
                                 }
                             }
                         }
@@ -27,43 +27,12 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
                     "type" : 2
                 }
             """
-        private const val ROULETTE_WITHOUT_ITEMS_REQUEST =
-            """
-                {
-                    "data": {
-                        "name" : "roulette",
-                        "resolved": {
-                            "messages": {
-                                "867793854505943041": {
-                                    "content": "~~Test~~ \n ~~Eliminated~~ \n ~~Test2~~"
-                                }
-                            }
-                        }
-                    },
-                    "type" : 2
-                }
-            """
+
         private const val ROULETTE_WITHOUT_MESSAGE_REQUEST =
             """
                 {
                     "data": {
                         "name" : "roulette"
-                    },
-                    "type" : 2
-                }
-            """
-        private const val ROULETTE_WITH_EMPTY_MESSAGE_REQUEST =
-            """
-                {
-                    "data": {
-                        "name" : "roulette",
-                        "resolved": {
-                            "messages": {
-                                "867793854505943041": {
-                                    "content": ""
-                                }
-                            }
-                        }
                     },
                     "type" : 2
                 }
@@ -74,7 +43,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
     fun `should roulette a message`() {
         RestAssuredMockMvc.given()
             .contentType(ContentType.JSON)
-            .body(ROULETTE_REQUEST)
+            .body(ROULETTE_REQUEST.format("Test \\n ~~Eliminated~~ \\n Test2"))
             .`when`()
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
@@ -87,7 +56,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
     fun `should not find any message when all lines are striked`() {
         RestAssuredMockMvc.given()
             .contentType(ContentType.JSON)
-            .body(ROULETTE_WITHOUT_ITEMS_REQUEST)
+            .body(ROULETTE_REQUEST.format("~~Test~~ \\n ~~Eliminated~~ \\n ~~Test2~~"))
             .`when`()
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
@@ -113,7 +82,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
     fun `should not find any message when the message is empty`() {
         RestAssuredMockMvc.given()
             .contentType(ContentType.JSON)
-            .body(ROULETTE_WITH_EMPTY_MESSAGE_REQUEST)
+            .body(ROULETTE_REQUEST.format(""))
             .`when`()
             .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
             .then()
