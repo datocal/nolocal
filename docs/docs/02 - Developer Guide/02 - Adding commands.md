@@ -19,12 +19,12 @@ Adding commands is pretty straightforward.
 You just have to create a Spring bean. The name of the bean must be the command to listen.
 This bean has to implement the following interface:
 
-    com.datocal.nolocal.framework.commands.DiscordCommandRunner
+    com.datocal.nolocal.framework.commands.DiscordCommand
 
 For example, this would be a ping command:
 
     @Component("culo")
-    class PingCommandRunner(private val ping: Ping) : DiscordCommandRunner {
+    class PingCommand(private val ping: Ping) : DiscordCommand {
 
         override fun accept(interaction: Interaction) : InteractionResponse {
             return buildResponse(ping.ping())
@@ -52,7 +52,7 @@ ping command is invoked. You just have to implement the method returning an Inte
 The annotation **@Component** is a spring annotation. For those not familiarized with spring, this will initialize this class
 calling its constructor and put it in a magic box to take it any time it's needed in a program.
 
-In the shadows, Spring will create a Map<String, DiscordCommandRunner> with all the beans of type DiscordCommandRunner 
+In the shadows, Spring will create a Map<String, DiscordCommand> with all the beans of type DiscordCommand 
 in the application, using the bean name (the command string in this case) as the key. We will use this to map any 
 command received to this bean.
 
@@ -61,7 +61,7 @@ To use the map, there is a controller who listens for upcoming commands, **the i
 
     @RestController
     class InteractionsController(
-        private val commands: Map<String, DiscordCommandRunner>
+        private val commands: Map<String, DiscordCommand>
     ) {
     
         @PostMapping("/discord/interactions")

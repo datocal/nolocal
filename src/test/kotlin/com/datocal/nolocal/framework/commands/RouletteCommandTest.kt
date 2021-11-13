@@ -16,11 +16,11 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import java.util.stream.Stream
 
-internal class RouletteCommandRunnerTest {
+internal class RouletteCommandTest {
 
     private val useCase: GetRandomItemUseCase = mock(GetRandomItemUseCase::class.java)
 
-    private val runner = RouletteCommandRunner(useCase, mock(MessageResolver::class.java))
+    private val runner = RouletteCommand(useCase, mock(MessageResolver::class.java))
 
     @ParameterizedTest
     @MethodSource("interactionShouldProvideRequest")

@@ -10,10 +10,10 @@ import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseResponse
 import org.springframework.stereotype.Component
 
 @Component("roulette")
-class RouletteCommandRunner(
+class RouletteCommand(
     private val getRandomItemUseCase: GetRandomItemUseCase,
     private val messageResolver: MessageResolver,
-) : DiscordCommandRunner {
+) : DiscordCommand {
 
     override fun accept(interaction: Interaction): InteractionResponse {
         val request = buildRequest(interaction)

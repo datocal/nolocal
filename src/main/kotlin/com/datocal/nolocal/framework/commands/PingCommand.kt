@@ -7,7 +7,7 @@ import com.datocal.nolocal.framework.discord.model.InteractionResponseData
 import org.springframework.stereotype.Component
 
 @Component("culo")
-class PingCommandRunner(private val ping: Ping) : DiscordCommandRunner {
+class PingCommand(private val ping: Ping) : DiscordCommand {
 
     override fun accept(interaction: Interaction): InteractionResponse {
         return buildResponse(ping.ping())
