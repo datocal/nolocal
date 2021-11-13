@@ -1,2 +1,0 @@
-ignore:
-  - "src/main/kotlin/com/datocal/nolocal/framework/configuration/discord/DiscordApiConfiguration.kt"
