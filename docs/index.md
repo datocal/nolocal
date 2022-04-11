@@ -3,8 +3,6 @@ sidebar_position: 1
 slug: /
 ---
 
-# This bot is a work in progress, and it's not ready to use
-
 ## What
 This is a work in progress bot for discord servers. In the time writing this, the bot is only capable of two silly commands.
 

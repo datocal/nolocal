@@ -28,23 +28,21 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2.4.1
+      - name: Setup Python
+        uses: actions/setup-python@v3.1.2
       - name: Build docs
         run: |
-          cd docs
-          npm install
-          npm run build
-          date >> build/runs.txt
+          pip install mkdocs
+          mkdocs build
       - name: Upload docs
         uses: actions/upload-artifact@v2.2.4
         with:
-          path: docs/build/
+          path: site/
           name: documentation
       - name: Github Pages Deploy
         uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
         with:
-          dir: ./docs/build/
+          dir: site/
           branch: docs
           token: ${{secrets.TOKEN_GITHUB}}
 
