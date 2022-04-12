@@ -6,7 +6,7 @@ id: developer
 # Quickstart
 
 ## The Big Picture 
-![NoLocal Diagram](/img/developer/diagram.png)
+![NoLocal Diagram](../img/developer/diagram.png)
 
 
 ## Tech stack

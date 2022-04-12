@@ -1,1 +1,8 @@
-site_name: My Docs
+site_name: NoLocal
+site_url: https://datocal.github.io/nolocal/
+nav:
+  - Home: index.md
+  - User Guide: User Guide/userguide.md
+  - Developer Guide: Developer Guide/01 - Developer Guide.md
+theme:
+  name: material
