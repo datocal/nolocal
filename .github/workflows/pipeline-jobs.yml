@@ -69,7 +69,7 @@ jobs:
         uses: actions/setup-java@v3.1.1
         with:
           java-version: '17'
-          distributiuon: 'adopt'
+          distribution: 'adopt'
       - name: Build Jar
         run: |
           chmod +x ./gradlew
