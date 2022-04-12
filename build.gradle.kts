@@ -21,15 +21,13 @@ repositories {
     mavenCentral()
 }
 
-extra["springCloudVersion"] = "2021.0.1"
-extra["testcontainersVersion"] = "1.16.3"
-
 testSets {
     "integrationTest" {
         dirName = "integration-test"
         systemProperty("spring.profiles.active", "test")
     }
 }
+
 tasks.check {
     dependsOn("integrationTest", "jacocoTestReport", "jacocoIntegrationTestReport")
 }
@@ -38,6 +36,7 @@ tasks.getByName("jacocoIntegrationTestReport") {
     this as JacocoReport
     reports.xml.required.set(true)
 }
+
 tasks.jacocoTestReport {
     reports.xml.required.set(true)
 }
@@ -51,19 +50,12 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.cloud:spring-cloud-starter-openfeign:3.1.1")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     runtimeOnly("io.micrometer:micrometer-registry-new-relic")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.16.3")
     testImplementation("io.rest-assured:spring-mock-mvc:5.0.1")
-}
-
-dependencyManagement {
-    imports {
-        mavenBom("org.testcontainers:testcontainers-bom:${property("testcontainersVersion")}")
-        mavenBom("org.springframework.cloud:spring-cloud-dependencies:${property("springCloudVersion")}")
-    }
+    testImplementation("org.testcontainers:testcontainers:1.16.3")
 }
 
 tasks.withType<KotlinCompile> {
