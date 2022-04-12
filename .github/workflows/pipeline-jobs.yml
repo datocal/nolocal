@@ -11,9 +11,10 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v2
       - name: Setup Kotlin
-        uses: fwilhe2/setup-kotlin@0.2.0
+        uses: actions/setup-java@v3.1.1
         with:
-          version: 1.5.31
+          java-version: '17'
+          distributiuon: 'adopt'
       - name: Gradlew Check
         run: | 
            chmod +x ./gradlew
@@ -68,6 +69,7 @@ jobs:
         uses: actions/setup-java@v3.1.1
         with:
           java-version: '17'
+          distributiuon: 'adopt'
       - name: Build Jar
         run: |
           chmod +x ./gradlew
