@@ -45,8 +45,8 @@ jobs:
         with:
           github_token: ${{secrets.TOKEN_GITHUB}}
           publish_dir: site/
-          publish_branch: docs
-
+          publish_branch: github-actions
+          force_orphan: true
   Snyk:
     runs-on: ubuntu-latest
     steps:
