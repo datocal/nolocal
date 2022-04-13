@@ -1,8 +1,17 @@
 site_name: NoLocal
 site_url: https://datocal.github.io/nolocal/
 nav:
-  - Home: index.md
-  - User Guide: User Guide/userguide.md
-  - Developer Guide: Developer Guide/01 - Developer Guide.md
+  - Home: README.md
+  - User Guide: userguide/intro.md
+  - Developer Guide:
+    - devguide/intro.md
+    - Adding Commands: devguide/addingCommands.md
+    - Security: devguide/security.md
+    - Continuous Integration:
+        - devguide/ci/intro.md
+        - Jobs: devguide/ci/jobs.md
+        - Secrets: devguide/ci/secrets.md
 theme:
   name: material
+  features:
+    - navigation.tabs

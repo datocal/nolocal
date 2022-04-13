@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Quick View
 
 This project contains a full pipeline from 0 to production using Github Actions.
@@ -15,7 +11,7 @@ There is a bunch of pipelines configured but the important one is the pipeline-j
 
 The following image shows the current jobs for the main pipeline:
 
-![Actions Pipeline](/img/developer/pipeline.png)
+![Actions Pipeline](../img/pipeline.png)
 
 ## Generated artifacts
 

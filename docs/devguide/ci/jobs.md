@@ -1,8 +1,3 @@
----
-sidebar_position: 2
-id: jobs
----
-
 # Jobs
 The pipeline execute multiple jobs in parallel. When every Job is finished, the deploy proceeds.
 
@@ -21,7 +16,7 @@ This branch will trigger a deployment of the site in the github pages under [thi
 Executes an Snyk analysis to generate a vulnerability report. 
 It will upload the report to [the official snyk site](https://app.snyk.io).
 
-![Snyk Analisis](/img/developer/snyk.png)
+![Snyk Analisis](../img/snyk.png)
 
 Snyk will show which dependencies included a vulnerability and a version which solve them, if exists.
 

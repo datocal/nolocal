@@ -1,8 +1,3 @@
----
-sidebar_position: 2
-id: adding
----
-
 # Adding commands
 
 ## Registering commands
