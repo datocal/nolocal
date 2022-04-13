@@ -3,15 +3,11 @@ Multiple secrets are used in the project. Most of them used during CI processes.
 
 The secrets are managed by Github Secrets.
 
-### DISCORD_TOKEN
-
 ### CODECOV_TOKEN
 
 ### DOCKERHUB_TOKEN
 
 ### DUCKDNS_TOKEN
-
-### INSIGHTS_KEY
 
 ### OCI_FINGERPRINT
 

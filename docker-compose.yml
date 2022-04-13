@@ -12,6 +12,3 @@ services:
   nolocal:
     image: davidtca/nolocal
     container_name: nolocal
-    environment:
-      - DISCORD_TOKEN
-      - INSIGHTS_KEY
