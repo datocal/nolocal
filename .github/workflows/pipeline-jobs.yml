@@ -1,4 +1,4 @@
-name: deprecated-ci
+name: CI
 on:
   workflow_dispatch:
 

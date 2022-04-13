@@ -1,5 +1,5 @@
 # NoLocal
-[![Status](https://img.shields.io/uptimerobot/status/m789511183-98ecb1f489b4fb9cbd9693ae)](https://nolocalbot.duckdns.org/ping)
+[![Status](https://github.com/datocal/nolocal/workflows/CI/badge.svg)](https://nolocalbot.duckdns.org/ping)
 [![CI](https://github.com/davidtourino/nolocal/actions/workflows/pipeline-jobs.yml/badge.svg)](https://github.com/davidtourino/nolocal/actions/workflows/pipeline-jobs.yml)
 [![Docs](https://img.shields.io/badge/docs-online-blue?logo=readthedocs)](https://datocal.github.io/nolocal/)
 [![codecov](https://codecov.io/gh/datocal/nolocal/branch/master/graph/badge.svg?token=B3LEHC6R56)](https://codecov.io/gh/datocal/nolocal)
