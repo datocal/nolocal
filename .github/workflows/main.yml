@@ -230,7 +230,7 @@ jobs:
           host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "./Caddyfile"
+          source: "./caddy/Caddyfile"
       - name: Start App
         uses: appleboy/ssh-action@master
         with:
