@@ -1,9 +1,6 @@
 spring:
   profiles:
     active: production
-secrets:
-  discord:
-    token: ${DISCORD_TOKEN:dummy-token}
 logging:
   path: /var/log
   level:
