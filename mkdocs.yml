@@ -2,16 +2,43 @@ site_name: NoLocal
 site_url: https://datocal.github.io/nolocal/
 nav:
   - Home: README.md
-  - User Guide: userguide/intro.md
+  - User Guide: userguide/index.md
   - Developer Guide:
-    - devguide/intro.md
+    - devguide/index.md
     - Adding Commands: devguide/addingCommands.md
     - Security: devguide/security.md
     - Continuous Integration:
-        - devguide/ci/intro.md
+        - devguide/ci/index.md
         - Jobs: devguide/ci/jobs.md
         - Secrets: devguide/ci/secrets.md
 theme:
   name: material
   features:
+    - navigation.indexes
     - navigation.tabs
+    - navigation.top
+    - navigation.expand
+    - navigation.instant
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      media: "(prefers-color-scheme: dark)"
+      toggle:
+        icon: material/lightbulb
+        name: Switch to dark mode
+      primary: light green
+      accent: deep orange
+    - scheme: slate
+      media: "(prefers-color-scheme: light)"
+      toggle:
+        icon: material/lightbulb-outline
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+repo_url: https://github.com/datocal/nolocal
+repo_name: datocal/nolocal
+edit_uri: edit/master/docs/
+plugins:
+  - git-revision-date-localized:
+      enable_creation_date: true
