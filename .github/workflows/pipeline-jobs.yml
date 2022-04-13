@@ -1,7 +1,5 @@
-name: CI
+name: deprecated-ci
 on:
-  push:
-    branches: [ master ]
   workflow_dispatch:
 
 jobs:
