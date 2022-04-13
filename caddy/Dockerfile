@@ -6,4 +6,4 @@ FROM caddy:latest
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
 
-COPY ./caddy/Caddyfile /etc/caddy/Caddyfile
+COPY caddy/Caddyfile /etc/caddy/
