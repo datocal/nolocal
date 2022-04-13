@@ -5,3 +5,5 @@ RUN xcaddy build --with github.com/CarsonHoffman/caddy-discord-interactions-veri
 FROM caddy:latest
 
 COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+
+COPY ./caddy/Caddyfile /etc/caddy/Caddyfile
