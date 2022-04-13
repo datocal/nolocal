@@ -1,6 +1,5 @@
 package com.datocal.nolocal.framework.commands
 
-import com.datocal.nolocal.NoLocalApplicationIntegrationTest
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.framework.controller.IntegrationTest
 import io.restassured.http.ContentType
@@ -88,7 +87,7 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
             .contentType(ContentType.JSON)
             .body(body)
             .`when`()
-            .post(NoLocalApplicationIntegrationTest.INTERACTIONS_ENDPOINT)
+            .post(INTERACTIONS_ENDPOINT)
             .then()
             .assertThat(MockMvcResultMatchers.status().isOk)
             .body("type", Matchers.equalTo(4))

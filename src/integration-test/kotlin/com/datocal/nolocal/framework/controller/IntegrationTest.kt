@@ -11,6 +11,10 @@ import org.springframework.test.web.servlet.MockMvc
 @AutoConfigureMockMvc
 class IntegrationTest {
 
+    companion object {
+        const val INTERACTIONS_ENDPOINT = "/discord/interactions"
+    }
+
     @Autowired
     private lateinit var mockMvc: MockMvc
 

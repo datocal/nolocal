@@ -1,6 +1,5 @@
 package com.datocal.nolocal.framework.commands
 
-import com.datocal.nolocal.NoLocalApplicationIntegrationTest.Companion.INTERACTIONS_ENDPOINT
 import com.datocal.nolocal.framework.controller.IntegrationTest
 import io.restassured.http.ContentType
 import io.restassured.module.mockmvc.RestAssuredMockMvc
