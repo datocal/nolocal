@@ -41,4 +41,3 @@ repo_name: datocal/nolocal
 edit_uri: edit/master/docs/
 plugins:
   - git-revision-date-localized:
-      enable_creation_date: true
