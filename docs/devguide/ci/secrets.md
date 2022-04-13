@@ -3,11 +3,14 @@ Multiple secrets are used in the project. Most of them used during CI processes.
 
 The secrets are managed by Github Secrets.
 
-### CODECOV_TOKEN
 
 ### DOCKERHUB_TOKEN
 
 ### DUCKDNS_TOKEN
+
+### SNYK_TOKEN
+
+### TOKEN_GITHUB
 
 ### OCI_FINGERPRINT
 
@@ -18,10 +21,6 @@ The secrets are managed by Github Secrets.
 ### OCI_TENANCY
 
 ### OCI_USER_OCID
-
-### SNYK_TOKEN
-
-### TOKEN_GITHUB
 
 ### VM_AVAILABILITY_DOMAIN
 
