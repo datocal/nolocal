@@ -7,6 +7,6 @@ services:
     ports:
       - "80:80"
     volumes:
-      - $PWD/Caddyfile-dev:/etc/caddy/Caddyfile
+      - $PWD/caddy/Caddyfile-dev:/etc/caddy/Caddyfile
   nolocal:
     build: .
