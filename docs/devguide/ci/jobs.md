@@ -20,6 +20,11 @@ It will upload the report to [the official snyk site](https://app.snyk.io).
 
 Snyk will show which dependencies included a vulnerability and a version which solve them, if exists.
 
+## SetUpCaddy
+This job will prepare [the modified version of caddy](../security.md) we are using and upload it to
+[the dockerhub](https://hub.docker.com/r/davidtca/caddy-discord). This image contains the corresponding header validator
+using [the configured file](https://github.com/datocal/nolocal/blob/master/caddy/Caddyfile).
+
 ## PrepareImage
 This Job will produce the necessary artifacts and images to pull and run the updated images.
 The main steps are:
