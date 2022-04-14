@@ -457,6 +457,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setupcaddy" class="md-nav__link">
+    SetUpCaddy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prepareimage" class="md-nav__link">
     PrepareImage
   </a>
@@ -561,6 +568,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setupcaddy" class="md-nav__link">
+    SetUpCaddy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prepareimage" class="md-nav__link">
     PrepareImage
   </a>
@@ -614,6 +628,10 @@ by documentation written in markdown. The generated static site will be uploaded
 It will upload the report to <a href="https://app.snyk.io">the official snyk site</a>.</p>
 <p><img alt="Snyk Analisis" src="../../img/snyk.png" /></p>
 <p>Snyk will show which dependencies included a vulnerability and a version which solve them, if exists.</p>
+<h2 id="setupcaddy">SetUpCaddy</h2>
+<p>This job will prepare <a href="../../security/">the modified version of caddy</a> we are using and upload it to
+<a href="https://hub.docker.com/r/davidtca/caddy-discord">the dockerhub</a>. This image contains the corresponding header validator
+using <a href="https://github.com/datocal/nolocal/blob/master/caddy/Caddyfile">the configured file</a>.</p>
 <h2 id="prepareimage">PrepareImage</h2>
 <p>This Job will produce the necessary artifacts and images to pull and run the updated images.
 The main steps are:
@@ -645,7 +663,7 @@ It will pull the docker images and will restart the containers with the new vers
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 13, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 14, 2022</span>
       
     
   </small>
