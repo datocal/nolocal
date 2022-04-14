@@ -48,6 +48,7 @@ jobs:
       - name: Github Pages Deploy
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
           publish_dir: site/
           publish_branch: github-actions
   Snyk:
