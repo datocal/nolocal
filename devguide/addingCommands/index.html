@@ -580,24 +580,12 @@ This bean has to implement the following interface:</p>
 <pre><code>com.datocal.nolocal.framework.commands.DiscordCommand
 </code></pre>
 <p>For example, this would be a ping command:</p>
-<pre><code>@Component("culo")
+<pre><code>@Component("ping")
 class PingCommand(private val ping: Ping) : DiscordCommand {
 
-    override fun accept(interaction: Interaction) : InteractionResponse {
-        return buildResponse(ping.ping())
+    override fun accept(interaction: Interaction): InteractionResponse {
+        return InteractionResponse(ping.ping())
     }
-
-    private fun buildResponse(message: String) = InteractionResponse(
-        type = 4,
-        data = InteractionResponseData(
-            tts = false,
-            content = message,
-            embeds = emptyList(),
-            allowed_mentions = AllowedMentions(
-                parse = emptyList()
-            )
-        )
-    )
 }
 </code></pre>
 <p>The notation @Component("ping") will create the infrastructure necessary to create the bean and call this Runner when the 
@@ -616,11 +604,11 @@ class InteractionsController(
 
     @PostMapping("/discord/interactions")
     fun execute(@RequestBody interaction: Interaction): InteractionResponse {
-        return commands[interaction.data?.name]?.accept(interaction) ?: defaultResponse()
+        return commands[interaction.command]?.accept(interaction) ?: defaultResponse()
     }
 
     //ACK Discord PING checks
-    private fun defaultResponse() = InteractionResponse(type = 1, data = null)
+    private fun defaultResponse() = InteractionResponse()
 }
 </code></pre>
 <p>Discord requires this endpoint to receive upcoming commands. In production, this endpoint is protected by a reverse proxy
