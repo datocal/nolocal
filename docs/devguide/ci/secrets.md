@@ -8,6 +8,7 @@ The secrets are managed by Github Secrets.
 ### DOCKERHUB_TOKEN
 
 Token used to upload to [the docker hub](https://hub.docker.com/u/davidtca) the produced artifacts. 
+
  * [The jar application](./jobs.md#PrepareImage) 
  * [The custom caddy build](./jobs.md#SetUpCaddy)
 
@@ -91,6 +92,9 @@ The tenancy OCID can be found in the AWS console: Profile > Tenancy
 
 ![Tenancy OCID](../img/ci/secrets/tenancy_ocid.png)
 
+And it will look something like this:
+    
+    ocid1.tenancy.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
 
 
 ### OCI_USER_OCID
@@ -102,7 +106,10 @@ Although the recommended way would be creating a user specific for integrations,
 
 ![OCI User ocid settings](../img/ci/secrets/oci_user_ocid.png)
 
-Further information can be found [in the official documentation](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#three)
+And it will look something like this:
+
+    ocid1.user.oc1.aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
+
 
 ## VM Infrastructure settings
 The following secrets will be related to the deployment and the infrastructure where the application is deployed. 
@@ -125,7 +132,9 @@ It's needed to enter on the _Read more_ section to see the OCIDs for each region
 This is the shape of the compute instance created. It's a template that will determine the number of CPUs, amount of memory
 and other resources allocated. 
 
-While creating an instance on the web console, it's the name displayed for the selected shape, like the **VM.Standard.E2.1.Micro**
+While creating an instance on the web console, it's the name displayed for the selected shape, for example:
+    
+    VM.Standard.E2.1.Micro
 
 ![OCI Shape](../img/ci/secrets/oci_shape.png)
 
@@ -139,11 +148,59 @@ pair and this one is the pair used for the machine being deployed. That's why we
 key for the CLI is stored at the cloud and not in this pipeline.
 
 
-### VM_SUBNET_OCID
-
-
 ### VM_AVAILABILITY_DOMAIN
+The Availability Domain in which the instance will reside. 
 
+The Availability domain is randomized by tenancy and data center. So to list the list of availability domains the 
+console or the SDK must be used, for example: 
+
+    datocal@cloudshell:~ (<region>)$ oci iam availability-domain list
+    {
+        "data": [
+            {
+                "compartment-id": <compartment-ocid>,
+                "id": <availability-domain-ocid>,
+                "name": <availability-domain-name>
+            },
+            {
+                "compartment-id": <compartment-ocid>,
+                "id": <availability-domain-ocid>,
+                "name": <availability-domain-name>
+            },
+            {
+                "compartment-id": <compartment-ocid>,
+                "id": <availability-domain-ocid>,
+                "name": <availability-domain-name>
+            }
+        ]
+    }
+
+This secret will be the name of the availability domain, for example:
+
+    UOCM:PHX-AD-1
+
+More information about this can be found 
+[in the official documentation.](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm)
 
 ### VM_COMPARTMENT_OCID
+The compartment in which to create the instance. The organization in the cloud infrastructure is divided into 
+compartments to organize resources. Since this is a small project we can keep everything in the tenancy (the root compartment)
+
+The same operation above give us the compartment ocid used for this secret. We can also use the following command to list evert compartment:
+    
+    oci iam compartment list 
+
+The compartment ocid will look something like this:
+
+    ocid1.tenancy.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
+
+
+### VM_SUBNET_OCID
+
+Identifier of a subnet previously created after setting up a VCN and with a security list attached.
+The attached security list must allow 443 and 80 TCP traffic to allow access the service.
+
+An example OCID would be like follows: 
+
+    ocid1.subnet.oc1.uk-london-1.aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
 
