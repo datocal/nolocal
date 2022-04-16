@@ -20,13 +20,18 @@ internal class RouletteCommandTest {
 
     private val useCase: GetRandomItemUseCase = mock(GetRandomItemUseCase::class.java)
 
-    private val runner = RouletteCommand(useCase, mock(MessageResolver::class.java))
+    private val messageResolver: MessageResolver = mock(MessageResolver::class.java)
+
+    private val runner = RouletteCommand(useCase, messageResolver)
 
     @ParameterizedTest
     @MethodSource("interactionShouldProvideRequest")
     fun shouldBuildRequest(interaction: Interaction, request: GetRandomItemUseCaseRequest) {
         `when`(useCase.execute(request)).thenReturn(GetRandomItemUseCaseResponse(null))
+        `when`(messageResolver.get("roulette.not_found")).thenReturn("Not found")
+
         runner.accept(interaction = interaction)
+
         verify(useCase).execute(request = request)
     }
 

@@ -3,7 +3,6 @@ package com.datocal.nolocal.framework.commands
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.framework.discord.model.Interaction
 import com.datocal.nolocal.framework.discord.model.InteractionResponse
-import com.datocal.nolocal.framework.discord.model.InteractionResponseData
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCase
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseRequest
 import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseResponse
@@ -17,15 +16,12 @@ class RouletteCommand(
 
     override fun accept(interaction: Interaction): InteractionResponse {
         val request = buildRequest(interaction)
-        return buildResponse(getRandomItemUseCase.execute(request))
+        val response = getRandomItemUseCase.execute(request)
+        return simpleMessage(getMessage(response))
     }
 
-    private fun buildResponse(response: GetRandomItemUseCaseResponse): InteractionResponse {
-        return InteractionResponse(
-            data = InteractionResponseData(
-                content = response.item ?: messageResolver.get("roulette.not_found"),
-            )
-        )
+    private fun getMessage(response: GetRandomItemUseCaseResponse): String {
+        return response.item ?: messageResolver.get("roulette.not_found")
     }
 
     private fun buildRequest(interaction: Interaction): GetRandomItemUseCaseRequest {
@@ -35,11 +31,13 @@ class RouletteCommand(
                 ?.messages
                 ?: emptyMap()
             ).entries
+            .asSequence()
             .mapNotNull { it.value?.content }
             .map { it.lines() }
             .flatten()
             .map { it.trim() }
             .filter { it.isNotEmpty() }
+            .toList()
         return GetRandomItemUseCaseRequest(items)
     }
 }
