@@ -17,7 +17,7 @@ class RouletteCommand(
     override fun accept(interaction: Interaction): InteractionResponse {
         val request = buildRequest(interaction)
         val response = getRandomItemUseCase.execute(request)
-        return simpleMessage(getMessage(response))
+        return InteractionResponse(getMessage(response))
     }
 
     private fun getMessage(response: GetRandomItemUseCaseResponse): String {

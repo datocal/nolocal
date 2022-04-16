@@ -9,6 +9,6 @@ import org.springframework.stereotype.Component
 class PingCommand(private val ping: Ping) : DiscordCommand {
 
     override fun accept(interaction: Interaction): InteractionResponse {
-        return simpleMessage(ping.ping())
+        return InteractionResponse(ping.ping())
     }
 }

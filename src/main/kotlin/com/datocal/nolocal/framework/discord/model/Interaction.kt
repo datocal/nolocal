@@ -3,7 +3,10 @@ package com.datocal.nolocal.framework.discord.model
 data class Interaction(
     val data: Data?,
     val type: Long,
-)
+) {
+    val command: String?
+        get() = data?.name
+}
 
 data class Data(
     val name: String,

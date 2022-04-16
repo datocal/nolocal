@@ -18,25 +18,14 @@ This bean has to implement the following interface:
 
 For example, this would be a ping command:
 
-    @Component("culo")
+    @Component("ping")
     class PingCommand(private val ping: Ping) : DiscordCommand {
-
-        override fun accept(interaction: Interaction) : InteractionResponse {
-            return buildResponse(ping.ping())
-        }
     
-        private fun buildResponse(message: String) = InteractionResponse(
-            type = 4,
-            data = InteractionResponseData(
-                tts = false,
-                content = message,
-                embeds = emptyList(),
-                allowed_mentions = AllowedMentions(
-                    parse = emptyList()
-                )
-            )
-        )
+        override fun accept(interaction: Interaction): InteractionResponse {
+            return InteractionResponse(ping.ping())
+        }
     }
+
 
     
 The notation @Component("ping") will create the infrastructure necessary to create the bean and call this Runner when the 
@@ -61,11 +50,11 @@ To use the map, there is a controller who listens for upcoming commands, **the i
     
         @PostMapping("/discord/interactions")
         fun execute(@RequestBody interaction: Interaction): InteractionResponse {
-            return commands[interaction.data?.name]?.accept(interaction) ?: defaultResponse()
+            return commands[interaction.command]?.accept(interaction) ?: defaultResponse()
         }
     
         //ACK Discord PING checks
-        private fun defaultResponse() = InteractionResponse(type = 1, data = null)
+        private fun defaultResponse() = InteractionResponse()
     }
 
 Discord requires this endpoint to receive upcoming commands. In production, this endpoint is protected by a reverse proxy
