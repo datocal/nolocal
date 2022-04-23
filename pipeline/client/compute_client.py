@@ -28,7 +28,8 @@ class NoLocalComputeOciClient:
     def get_instance(self, name=config.INSTANCE_NAME):
         instance = self.client.list_instances(
             self.compartment_id,
-            display_name=name
+            display_name=name,
+            lifecycle_state='RUNNING',
         )
         if not instance.data:
             return None

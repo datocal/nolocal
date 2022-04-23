@@ -9,6 +9,7 @@ from oci.core.models import \
 from config import get_config
 import config
 import oci
+import time
 
 
 def to_oci_rule(rule):
@@ -41,6 +42,7 @@ class NoLocalNetworkOciClient:
         vcn = self.client.list_vcns(
             compartment_id=self.compartment_id,
             limit=1,
+            lifecycle_state='AVAILABLE'
         )
         if not vcn.data:
             return None
@@ -61,6 +63,7 @@ class NoLocalNetworkOciClient:
         subnet = self.client.list_subnets(
             compartment_id=self.compartment_id,
             vcn_id=vcn_id,
+            lifecycle_state='AVAILABLE'
         )
         if not subnet.data:
             return None
@@ -96,5 +99,14 @@ class NoLocalNetworkOciClient:
 
     def delete_vcn(self, vcn_id):
         self.client.delete_vcn(vcn_id)
-        vcn = self.client.get_vcn(vcn_id)
-        oci.wait_until(self.client, vcn, 'lifecycle_state', 'TERMINATED')
+        # Another bug: the subnet gets deleted completely, without changing state, so this will fail
+        time.sleep(5)
+        # vcn = self.client.get_vcn(vcn_id)
+        # oci.wait_until(self.client, vcn, 'lifecycle_state', 'TERMINATED')
+
+    def delete_subnet(self, subnet_id):
+        self.client.delete_subnet(subnet_id)
+        # Another bug: the subnet gets deleted completely, without changing state, so this will fail
+        time.sleep(5)
+        # subnet = self.client.get_subnet(subnet_id)
+        # oci.wait_until(self.client, subnet, 'lifecycle_state', 'TERMINATED')
