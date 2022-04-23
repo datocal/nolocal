@@ -190,9 +190,13 @@ The same operation above give us the compartment ocid used for this secret. We c
     
     oci iam compartment list 
 
-The compartment ocid will look something like this:
+The compartment ocid will look something like this, if it was the root compartment (the tenancy):
 
     ocid1.tenancy.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
+
+Or if it's a child compartment, it will look something like this
+    
+    ocid1.compartment.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
 
 
 ### VM_SUBNET_OCID
