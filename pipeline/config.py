@@ -16,6 +16,8 @@ SECURITY_LIST_RULES = [
         "description": "HTTPs traffic for discord and monitoring connection to the bot"
     }
 ]
+VCN_IP_RANGE = '10.0.0.0/16'
+SUBNET_IP_RANGE = '10.0.0.0/24'
 
 INSTANCE_NAME = "nolocal-instance"
 INSTANCE_AVAILABILITY_DOMAIN = os.environ.get("AVAILABILITY_DOMAIN")

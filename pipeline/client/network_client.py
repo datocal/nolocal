@@ -48,7 +48,7 @@ class NoLocalNetworkOciClient:
 
     def create_vcn(self, name=config.VCN_NAME):
         request = CreateVcnDetails(
-            cidr_block='10.0.0.0/16',
+            cidr_block=config.VCN_IP_RANGE,
             display_name=name,
             compartment_id=self.compartment_id
         )
@@ -71,7 +71,7 @@ class NoLocalNetworkOciClient:
             compartment_id=self.compartment_id,
             vcn_id=vcn_id,
             display_name=name,
-            cidr_block='10.0.0.0/24'
+            cidr_block=config.SUBNET_IP_RANGE
         )
         subnet = self.client.create_subnet(request)
         subnet = self.client.get_subnet(subnet.data.id)
