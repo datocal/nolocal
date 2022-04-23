@@ -17,6 +17,13 @@ SECURITY_LIST_RULES = [
     }
 ]
 
+INSTANCE_NAME = "nolocal-instance"
+INSTANCE_AVAILABILITY_DOMAIN = os.environ.get("AVAILABILITY_DOMAIN")
+INSTANCE_OPERATING_SYSTEM = "Canonical Ubuntu"
+INSTANCE_OPERATING_SYSTEM_VERSION = "20.04"
+INSTANCE_SHAPE = "VM.Standard.E2.1.Micro"
+INSTANCE_AUTHORIZED_KEYS = os.environ.get("AUTHORIZED_KEYS")
+
 
 def from_base64(s):
     return base64.b64decode(s).decode()
