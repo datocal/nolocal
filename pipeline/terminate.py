@@ -35,12 +35,6 @@ def terminate_vcn(compartment):
     return vcn
 
 
-def terminate_compartment(compartment):
-    # self.i_client.delete_compartment(self.compartment)
-    logging.info("Compartment not deleted.")
-    pass
-
-
 def terminator():
     logging.info("Starting cleanup of nolocal environment")
     i_client, compartment = init_client()
@@ -63,7 +57,7 @@ def terminator():
         logging.info("VCN deleted")
 
     logging.info("Deleting compartment....")
-    terminate_compartment(compartment)
+    logging.info("Compartment not deleted.")
 
 
 if __name__ == "__main__":

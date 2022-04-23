@@ -100,13 +100,11 @@ class NoLocalNetworkOciClient:
     def delete_vcn(self, vcn_id):
         self.client.delete_vcn(vcn_id)
         # Another bug: the subnet gets deleted completely, without changing state, so this will fail
+        # sleep of 5 seconds instead of get_vcn and wait_until lifecycle_state TERMINATED
         time.sleep(5)
-        # vcn = self.client.get_vcn(vcn_id)
-        # oci.wait_until(self.client, vcn, 'lifecycle_state', 'TERMINATED')
 
     def delete_subnet(self, subnet_id):
         self.client.delete_subnet(subnet_id)
         # Another bug: the subnet gets deleted completely, without changing state, so this will fail
+        # sleep of 5 seconds instead of get_subnet and wait_until lifecycle_state TERMINATED
         time.sleep(5)
-        # subnet = self.client.get_subnet(subnet_id)
-        # oci.wait_until(self.client, subnet, 'lifecycle_state', 'TERMINATED')
