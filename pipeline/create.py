@@ -38,6 +38,8 @@ def create_network(compartment):
         logging.info("VCN created")
     logging.info("Creating subnet.....")
     subnet = create_subnet(client, vcn)
+    security_list = client.get_security_list(vcn)
+    client.add_rules(security_list)
     return subnet
 
 
