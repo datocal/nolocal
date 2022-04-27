@@ -133,9 +133,7 @@ jobs:
           pip install oci
           
           echo "::set-output name=ip::$( \
-           python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} \ 
-            ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} \ 
-            ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}  \
+           python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}  \
           )"
       - name: Update DuckDNS IP
         run: |
