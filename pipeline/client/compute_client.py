@@ -10,10 +10,10 @@ def create_request(compartment_id, subnet_id, image_id):
     request.compartment_id = compartment_id
     request.image_id = image_id
     request.subnet_id = subnet_id
-    request.availability_domain = config.INSTANCE_AVAILABILITY_DOMAIN
+    request.availability_domain = config.CONFIG["availability_domain"]
     request.shape = config.INSTANCE_SHAPE
     request.display_name = config.INSTANCE_NAME
-    request.metadata = {"ssh_authorized_keys": config.INSTANCE_AUTHORIZED_KEYS}
+    request.metadata = {"ssh_authorized_keys": config.CONFIG["authorized_keys"]}
     return request
 
 
@@ -34,6 +34,15 @@ class NoLocalComputeOciClient:
         if not instance.data:
             return None
         return instance.data[0].id
+
+    def get_vnic_id(self, instance_id):
+        vnics = self.client.list_vnic_attachments(
+            self.compartment_id,
+            instance_id=instance_id,
+        )
+        if not vnics:
+            return None
+        return vnics.data[0].vnic_id
 
     def create_instance(self, subnet_id):
         image_id = self.get_image()

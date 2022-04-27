@@ -90,6 +90,13 @@ class NoLocalNetworkOciClient:
             return None
         return security_list.data[0].id
 
+    def get_ip(self, vnic_id):
+        ip = self.client.get_vnic(vnic_id)
+        if not ip.data:
+            return None
+        else:
+            return ip.data.public_ip
+
     def add_rules(self, security_list_id, additional_rules=config.SECURITY_LIST_RULES):
         current = self.client.get_security_list(security_list_id)
         request = UpdateSecurityListDetails()
