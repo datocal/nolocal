@@ -150,9 +150,9 @@ jobs:
           host: ${{ steps.getIP.outputs.ip  }}
           username: ubuntu
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
-          source: "./init.sh"
+          source: "./pipeline/init.sh"
       - name: Prepare machine
-        if: ${{ steps.create.outputs.created }}
+        if: ${{ steps.getIP.outputs.created }}
         uses: appleboy/ssh-action@master
         with:
           host: ${{ steps.getIP.outputs.ip }}

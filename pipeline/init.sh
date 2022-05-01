@@ -10,5 +10,4 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
 sudo apt-get update -y
-sudo apt-get upgrade -y
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
