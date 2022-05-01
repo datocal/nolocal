@@ -71,12 +71,14 @@ def create_network(compartment):
 def create_instance(compartment, subnet):
     client = NoLocalComputeOciClient(compartment)
     instance = client.get_instance()
+    created = False
     if instance:
         logging.info("Instance found.... skipping creation")
     else:
         instance = client.create_instance(subnet)
+        created = True
         logging.info("Instance created")
-    return instance
+    return instance, created
 
 
 def get_ip(compartment, instance):
@@ -92,10 +94,11 @@ def creator():
     logging.info("Creating VCN....")
     subnet = create_network(compartment)
     logging.info("Creating instance.....")
-    instance = create_instance(compartment, subnet)
+    instance, created = create_instance(compartment, subnet)
     logging.info("Getting IP.....")
     ip = get_ip(compartment, instance)
     print(ip)
+    print(created)
 
 
 if __name__ == "__main__":
