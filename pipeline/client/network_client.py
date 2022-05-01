@@ -132,7 +132,8 @@ class NoLocalNetworkOciClient:
         current = self.client.get_route_table(route_table_id)
         request = UpdateRouteTableDetails()
         request.display_name = config.VCN_ROUTE_TABLE_NAME
-        request.route_rules = current.data.route_rules + [new_rule]
+        if not current.data.route_rules:
+            request.route_rules = [new_rule]
         self.client.update_route_table(route_table_id, request)
 
     def delete_vcn(self, vcn_id):
