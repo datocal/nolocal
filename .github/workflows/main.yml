@@ -1,6 +1,9 @@
-name: CI
+name: CI-beta
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - master
 concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
@@ -17,9 +20,9 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
       - name: Gradlew Check
-        run: | 
-           chmod +x ./gradlew
-           ./gradlew --no-daemon check
+        run: |
+          chmod +x ./gradlew
+          ./gradlew --no-daemon check
       - name: Codecov coverage report upload
         uses: codecov/codecov-action@v3.0.0
         with:
@@ -55,11 +58,11 @@ jobs:
         uses: actions/checkout@v3.0.0
       - name: Snyk
         run: |
-            chmod +x ./gradlew
-            brew tap snyk/tap
-            brew install snyk
-            snyk auth ${{secrets.SNYK_TOKEN}}
-            snyk monitor
+          chmod +x ./gradlew
+          brew tap snyk/tap
+          brew install snyk
+          snyk auth ${{secrets.SNYK_TOKEN}}
+          snyk monitor
   SetUpCaddy:
     runs-on: ubuntu-latest
     steps:
@@ -94,7 +97,7 @@ jobs:
         run: cp ./build/libs/$(ls ./build/libs/ | grep nolocal) nolocal.jar
       - name: Publish Jar
         uses: actions/upload-artifact@v3.0.0
-        with: 
+        with:
           path: ./nolocal.jar
       - name: Publish compose
         uses: actions/upload-artifact@v3.0.0
@@ -115,85 +118,50 @@ jobs:
   PrepareOracleCLoud:
     runs-on: ubuntu-latest
     outputs:
-      ip: ${{ steps.getIP.outputs.ip }}
+      ip: ${{ steps.oci.outputs.ip }}
+      created: ${{ steps.oci.outputs.created }}
     steps:
-      - name: Install Oracle Cloud Infrastructure CLI
-        uses: bytesbay/oci-cli-action@v1.0.2
+      - name: Checkout project
+        uses: actions/checkout@v3.0.0
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
         with:
-          user: ${{secrets.OCI_USER_OCID}}
-          fingerprint: ${{secrets.OCI_FINGERPRINT}}
-          tenancy: ${{secrets.OCI_TENANCY}}
-          region: ${{secrets.OCI_REGION}}
-          api_key: ${{secrets.OCI_KEY_FILE}}
-      - name: Set up ssh keys
+          python-version: "3.10"
+      - name: Create Infrastructure
+        id : oci
         run: |
-          echo "${{secrets.VM_SSH_PUB_KEY}}" >> /home/runner/.oci/id_vm.pub
-      - name: Check existing instance
-        run: |
-            echo "INSTANCE_OCID=$( \
-                oci compute instance list \
-                --lifecycle-state RUNNING \
-                --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
-                --display-name nolocal \
-                --query "data [0].id" \
-                --raw-output \
-            )" >> $GITHUB_ENV
-      - name: Create Instance
-        id: create
-        if: ${{!env.INSTANCE_OCID}}
-        run: |
-          echo "INSTANCE_OCID=$( \
-            oci compute instance launch \
-              --compartment-id ${{secrets.VM_COMPARTMENT_OCID}} \
-              --availability-domain ${{secrets.VM_AVAILABILITY_DOMAIN}} \
-              --shape ${{secrets.VM_SHAPE}} \
-              --assign-public-ip true \
-              --display-name nolocal \
-              --image-id ${{secrets.VM_CUSTOM_IMAGE_OCID}} \
-              --ssh-authorized-keys-file /home/runner/.oci/id_vm.pub \
-              --subnet-id ${{secrets.VM_SUBNET_OCID}} \
-              --wait-for-state RUNNING \
-              --query "data.id" \
-              --raw-output \
-          )" >> $GITHUB_ENV
-          echo "::set-output name=created::true"
-      - name: Get Instance IP
-        id : getIP
-        run: |
-          echo "::set-output name=ip::$( \
-            oci compute instance list-vnics \
-            --instance-id ${{env.INSTANCE_OCID}} \
-            --query 'data [0]."public-ip"' \
-            --raw-output \
-          )"
-      - name: Update DuckDNS IP
-        run: |
-          curl 'https://www.duckdns.org/update?domains=botnolocal&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ steps.getIP.outputs.ip }}'
+          cd pipeline
+          pip install oci
+          array=()
+          while read line ; do
+            array+=($line)
+          done < <( python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}})
+          
+          echo "::set-output name=ip::${array[0]}"
+          echo "::set-output name=created::${array[1]}"
       - name: SSH wait
         run: |
-          while ! nc -w5 -z ${{ steps.getIP.outputs.ip }} 22; do
+          while ! nc -w5 -z ${{ steps.oci.outputs.ip }} 22; do
                   sleep 5
                   echo "SSH not available, retrying..."
           done; echo "SSH ready!"
+      - name: Upload initialization script
+        uses: betanzos/scp-upload@v1
+        with:
+          host: ${{ steps.oci.outputs.ip  }}
+          username: ubuntu
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          source: "./pipeline/init.sh"
       - name: Prepare machine
-        if: ${{ steps.create.outputs.created }}
+        if: ${{ steps.oci.outputs.created }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ steps.getIP.outputs.ip }}
+          host: ${{ steps.oci.outputs.ip }}
           username: ubuntu
           key: ${{secrets.VM_SSH_PRIVATE_KEY}}
           script: |
-            sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 443 -j ACCEPT
-            sudo netfilter-persistent save
-            sudo apt-get install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release -y
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
-            echo \
-              "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
-              $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
-            sudo apt-get update -y
-            sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose -y
+            chmod +x init.sh
+            ./init.sh
   Deploy:
     runs-on: ubuntu-latest
     needs: [ Check, Snyk, PrepareImage, BuildDocs, PrepareOracleCLoud, SetUpCaddy]
@@ -218,4 +186,15 @@ jobs:
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
             sudo docker-compose pull
-            sudo docker-compose up -d nolocal caddy
+            sudo docker-compose up -d nolocal
+      - name: Update DuckDNS IP
+        run: |
+          curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
+      - name: Start Caddy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
+          username: ubuntu
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker-compose up -d caddy
