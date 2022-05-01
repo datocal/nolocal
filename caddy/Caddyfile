@@ -1,4 +1,4 @@
-botnolocal.duckdns.org {
+botnolocalbeta.duckdns.org {
     route /discord/* {
       discord 1fb66649bf5709d063ba12e96ea9b9f00a59e9a8837f7d6dc43db4c3982fdf37
     }

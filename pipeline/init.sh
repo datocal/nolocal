@@ -1,6 +1,6 @@
 #! /bin/bash
 
-sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 443 80 -j ACCEPT
+sudo iptables -I INPUT 6 -m state --state NEW -p tcp --match multiport --dports 443, 80 -j ACCEPT
 sudo netfilter-persistent save
 sudo apt-get install apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release -y
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
