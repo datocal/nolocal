@@ -1,4 +1,4 @@
-name: CI-beta
+name: CI
 on:
   workflow_dispatch:
   push:
