@@ -135,9 +135,6 @@ jobs:
           echo "::set-output name=ip::$( \
            python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}  \
           )"
-      - name: Update DuckDNS IP
-        run: |
-          curl 'https://www.duckdns.org/update?domains=botnolocal&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ steps.getIP.outputs.ip }}'
       - name: SSH wait
         run: |
           while ! nc -w5 -z ${{ steps.getIP.outputs.ip }} 22; do
@@ -187,4 +184,15 @@ jobs:
           key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
           script: |
             sudo docker-compose pull
-            sudo docker-compose up -d nolocal caddy
+            sudo docker-compose up -d nolocal
+      - name: Update DuckDNS IP
+        run: |
+          curl 'https://www.duckdns.org/update?domains=botnolocalbeta&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
+      - name: Start Caddy
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
+          username: ubuntu
+          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker-compose up -d caddy

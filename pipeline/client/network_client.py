@@ -4,7 +4,7 @@ from oci.core.models import \
     PortRange, \
     CreateVcnDetails, \
     CreateSubnetDetails, \
-    UpdateSecurityListDetails
+    UpdateSecurityListDetails, CreateInternetGatewayDetails, UpdateRouteTableDetails, RouteRule
 
 from config import get_config
 import config
@@ -45,8 +45,8 @@ class NoLocalNetworkOciClient:
             lifecycle_state='AVAILABLE'
         )
         if not vcn.data:
-            return None
-        return vcn.data[0].id
+            return None, None
+        return vcn.data[0].id, vcn.data[0].default_route_table_id
 
     def create_vcn(self, name=config.VCN_NAME):
         request = CreateVcnDetails(
@@ -57,7 +57,7 @@ class NoLocalNetworkOciClient:
         created = self.client.create_vcn(request)
         vcn = self.client.get_vcn(created.data.id)
         vcn = oci.wait_until(self.client, vcn, 'lifecycle_state', 'AVAILABLE')
-        return vcn.data.id
+        return vcn.data.id, vcn.data.default_route_table_id
 
     def get_subnet(self, vcn_id):
         subnet = self.client.list_subnets(
@@ -104,6 +104,37 @@ class NoLocalNetworkOciClient:
         request.ingress_security_rules = current.data.ingress_security_rules + to_rules(additional_rules)
         self.client.update_security_list(security_list_id, request)
 
+    def get_internet_gateway(self, vcn_id):
+        internet_gateway = self.client.list_internet_gateways(
+            self.compartment_id,
+            vcn_id=vcn_id,
+            display_name=config.VCN_INTERNET_GATEWAY_NAME
+        )
+        if not internet_gateway.data:
+            return None
+        else:
+            return internet_gateway.data[0].id
+
+    def create_internet_gateway(self, vcn_id):
+        request = CreateInternetGatewayDetails()
+        request.compartment_id = self.compartment_id
+        request.vcn_id = vcn_id
+        request.is_enabled = True
+        request.display_name = config.VCN_INTERNET_GATEWAY_NAME
+        response = self.client.create_internet_gateway(request)
+        return response.data.id
+
+    def add_internet_gateway_to_router(self, route_table_id, internet_gateway_id):
+        new_rule = RouteRule(
+            network_entity_id=internet_gateway_id,
+            destination='0.0.0.0/0'
+        )
+        current = self.client.get_route_table(route_table_id)
+        request = UpdateRouteTableDetails()
+        request.display_name = config.VCN_ROUTE_TABLE_NAME
+        request.route_rules = current.data.route_rules + [new_rule]
+        self.client.update_route_table(route_table_id, request)
+
     def delete_vcn(self, vcn_id):
         self.client.delete_vcn(vcn_id)
         # Another bug: the subnet gets deleted completely, without changing state, so this will fail
@@ -115,3 +146,14 @@ class NoLocalNetworkOciClient:
         # Another bug: the subnet gets deleted completely, without changing state, so this will fail
         # sleep of 5 seconds instead of get_subnet and wait_until lifecycle_state TERMINATED
         time.sleep(5)
+
+    def delete_internet_gateway(self, internet_gateway_id):
+        self.client.delete_internet_gateway(internet_gateway_id)
+        # Another bug: the subnet gets deleted completely, without changing state, so this will fail
+        # sleep of 5 seconds instead of get_subnet and wait_until lifecycle_state TERMINATED
+        time.sleep(5)
+
+    def delete_route_table_rules(self, route_table_id):
+        request = UpdateRouteTableDetails()
+        request.route_rules = []
+        self.client.update_route_table(route_table_id, request)

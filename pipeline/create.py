@@ -19,6 +19,7 @@ def create_compartment():
 
 
 def create_subnet(client, vcn):
+    logging.info("Creating subnet.....")
     subnet = client.get_subnet(vcn)
     if subnet:
         logging.info("Subnet found..... skipping creation")
@@ -28,18 +29,42 @@ def create_subnet(client, vcn):
     return subnet
 
 
+def add_rules(client, vcn):
+    logging.info("Adding rules to security list.....")
+    security_list = client.get_security_list(vcn)
+    client.add_rules(security_list)
+    logging.info("Rules added.....")
+
+
+def create_internet_gateway(client, vcn):
+    logging.info("Creating Internet Gateway.....")
+    internet_gateway = client.get_internet_gateway(vcn)
+    if internet_gateway:
+        logging.info("Internet Gateway found.... skipping creation")
+    else:
+        internet_gateway = client.create_internet_gateway(vcn)
+        logging.info("Internet Gateway created")
+    return internet_gateway
+
+
+def add_route_rule(client, route_table, internet_gateway):
+    logging.info("Adding route rules.....")
+    client.add_internet_gateway_to_router(route_table, internet_gateway)
+    logging.info("Route rules added")
+
+
 def create_network(compartment):
     client = NoLocalNetworkOciClient(compartment)
-    vcn = client.get_vcn()
+    vcn, route_table = client.get_vcn()
     if vcn:
         logging.info("VCN found.... skipping creation")
     else:
-        vcn = client.create_vcn()
+        vcn, route_table = client.create_vcn()
         logging.info("VCN created")
-    logging.info("Creating subnet.....")
     subnet = create_subnet(client, vcn)
-    security_list = client.get_security_list(vcn)
-    client.add_rules(security_list)
+    add_rules(client, vcn)
+    internet_gateway = create_internet_gateway(client, vcn)
+    add_route_rule(client, route_table, internet_gateway)
     return subnet
 
 

@@ -18,6 +18,8 @@ SECURITY_LIST_RULES = [
 ]
 VCN_IP_RANGE = '10.0.0.0/16'
 SUBNET_IP_RANGE = '10.0.0.0/24'
+VCN_INTERNET_GATEWAY_NAME = 'nolocal-internet-gateway'
+VCN_ROUTE_TABLE_NAME = "nolocal-routetable"
 
 INSTANCE_NAME = "nolocal-instance"
 INSTANCE_OPERATING_SYSTEM = "Canonical Ubuntu"

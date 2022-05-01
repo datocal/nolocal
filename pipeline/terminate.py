@@ -26,11 +26,21 @@ def terminate_subnet(n_client, vcn):
         logging.info("Subnet deleted")
 
 
+def terminate_internet_gateway(n_client, vcn, route_table):
+    n_client.delete_route_table_rules(route_table)
+    internet_gateway = n_client.get_internet_gateway(vcn)
+    if internet_gateway:
+        logging.info("Deleting internet gateway......")
+        n_client.delete_internet_gateway(internet_gateway)
+        logging.info("Internet Gateway deleted")
+
+
 def terminate_vcn(compartment):
     n_client = NoLocalNetworkOciClient(compartment)
-    vcn = n_client.get_vcn()
+    vcn, route_table = n_client.get_vcn()
     if vcn:
         terminate_subnet(n_client, vcn)
+        terminate_internet_gateway(n_client, vcn, route_table)
         n_client.delete_vcn(vcn)
     return vcn
 
