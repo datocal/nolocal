@@ -98,7 +98,8 @@ def creator():
     logging.info("Getting IP.....")
     ip = get_ip(compartment, instance)
     print(ip)
-    print(created)
+    if created:
+        print(created)
 
 
 if __name__ == "__main__":

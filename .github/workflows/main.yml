@@ -132,13 +132,13 @@ jobs:
         run: |
           cd pipeline
           pip install oci
-          array=()
-          while read line ; do
-            array+=($line)
-          done < <( python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}})
+          result=( `python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}`)
           
-          echo "::set-output name=ip::${array[0]}"
-          echo "::set-output name=created::${array[1]}"
+          echo "::set-output name=ip::${result[0]}"
+          if ((${#result[@]} > 1));
+          then
+            echo "::set-output name=created::true"
+          fi
       - name: SSH wait
         run: |
           while ! nc -w5 -z ${{ steps.oci.outputs.ip }} 22; do
