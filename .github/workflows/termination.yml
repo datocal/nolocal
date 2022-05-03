@@ -1,0 +1,26 @@
+name: CI
+on:
+  workflow_dispatch:
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  TerminateOracleCLoud:
+    runs-on: ubuntu-latest
+    outputs:
+      ip: ${{ steps.oci.outputs.ip }}
+      created: ${{ steps.oci.outputs.created }}
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v3.0.0
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Terminate Infrastructure
+        id : oci
+        run: |
+          cd pipeline
+          pip install oci
+          python terminate.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}
