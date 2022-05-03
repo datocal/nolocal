@@ -1,4 +1,4 @@
-name: CI
+name: Termination
 on:
   workflow_dispatch:
 concurrency:

@@ -1,3 +1,6 @@
+import sys
+
+import config
 from client.identity_client import NoLocalIdentityOciClient
 from client.network_client import NoLocalNetworkOciClient
 from client.compute_client import NoLocalComputeOciClient
@@ -71,5 +74,6 @@ def terminator():
 
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
+    logging.basicConfig(level='INFO')
+    config.set_config(sys.argv)
     terminator()
