@@ -7,21 +7,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3.0.0
       - name: Setup Python
         uses: actions/setup-python@v3.1.2
       - name: Build docs
         run: |
           pip install mkdocs
+          pip install mkdocs-material
+          pip install mkdocs-git-revision-date-localized-plugin
           mkdocs build
       - name: Upload docs
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v3.0.0
         with:
           path: site/
           name: documentation
       - name: Github Pages Deploy
-        uses: tsunematsu21/actions-publish-gh-pages@v1.0.2
+        uses: peaceiris/actions-gh-pages@v3.7.3
         with:
-          dir: site/
-          branch: docs
-          token: ${{secrets.TOKEN_GITHUB}}
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          publish_dir: site/
+          publish_branch: github-actions
