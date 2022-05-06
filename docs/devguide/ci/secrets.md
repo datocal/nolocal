@@ -51,14 +51,14 @@ It's used to publish the documentation in the docs branch.
 
 No need to generate a personal access token manually.
 
-## Oracle Cloud CLI secrets
+## Oracle Cloud secrets
 
 To connect to the Oracle cloud service some secrets and infrastructure details must be configured.
 
 Most of the information here can be found at [in the official documentation](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm)
 as the original source of true.
 
-### OCI_FINGERPRINT and OCI_KEY_FILE
+### INFRA_FINGERPRINT and INFRA_KEY_CONTENT
 
 To access the console it's needed to create a RSA pair of public/private in PEM format. It can be generated with your 
 tool of choice or directly by the oracle cloud web interface.
@@ -74,7 +74,7 @@ Adding a new API Key this way will provide the configuration file with some of t
 ![API Key Generated](../img/ci/secrets/oci_key_generated.png)
 
 
-### OCI_REGION
+### INFRA_REGION
 
 Region of the Oracle cloud to be deployed into. The region is linked to the account the moment of registration.
 
@@ -82,7 +82,7 @@ List of regions can be found at [the official site](https://docs.oracle.com/en-u
 
 
 
-### OCI_TENANCY
+### INFRA_TENANCY
 Identifier of the tenancy for this account. The tenancy is the partition in the Oracle cloud where the account can create resources.
 It's created on sing up.
 
@@ -97,7 +97,7 @@ And it will look something like this:
     ocid1.tenancy.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
 
 
-### OCI_USER_OCID
+### INFRA_USER_OCID
 
 User identifier accessing through the oracle cloud command line interface. In the web console, the OCID can be
 obtained in the user settings.
@@ -116,39 +116,14 @@ The following secrets will be related to the deployment and the infrastructure w
 It's not related to the console configuration like the previous ones.
 
 
-### VM_CUSTOM_IMAGE_OCID
-
-This is the identifier of the image used to instantiate the computer instance, for example an Ubuntu 20.
-The identifier of the image depends on the image, build and region.
-
-The full list of OCIDs for images [are listed here](https://docs.oracle.com/en-us/iaas/images/)
-It's needed to enter on the _Read more_ section to see the OCIDs for each region
-
-![List of image OCIDs](../img/ci/secrets/image_ocids.png)
-
-
-### VM_SHAPE
-
-This is the shape of the compute instance created. It's a template that will determine the number of CPUs, amount of memory
-and other resources allocated. 
-
-While creating an instance on the web console, it's the name displayed for the selected shape, for example:
-    
-    VM.Standard.E2.1.Micro
-
-![OCI Shape](../img/ci/secrets/oci_shape.png)
-
-
-
-### VM_SSH_PRIVATE_KEY and VM_SSH_PUB_KEY
-These are another pair of RSA public key / private key generated for the instance being deployed. 
+### INFRA_AUTHORIZED_KEYS
+This is the authorized keys to allow connections to the instance deployed.
 
 It's important not to confuse it with the [OCI_KEY_FILE](.#oci_fingerprint-and-oci_key_file), since that's the CLI key 
-pair and this one is the pair used for the machine being deployed. That's why we need the two keys too, while the public
-key for the CLI is stored at the cloud and not in this pipeline.
+to access the console and this one is the authorized keys used for the machine being deployed. 
 
 
-### VM_AVAILABILITY_DOMAIN
+### INFRA_AVAILABILITY_DOMAIN
 The Availability Domain in which the instance will reside. 
 
 The Availability domain is randomized by tenancy and data center. So to list the list of availability domains the 
@@ -179,32 +154,8 @@ This secret will be the name of the availability domain, for example:
 
     UOCM:PHX-AD-1
 
+In the Free Tier, the availability domain is restricted to a specific one.
+
 More information about this can be found 
 [in the official documentation.](https://docs.oracle.com/en-us/iaas/Content/General/Concepts/regions.htm)
-
-### VM_COMPARTMENT_OCID
-The compartment in which to create the instance. The organization in the cloud infrastructure is divided into 
-compartments to organize resources. Since this is a small project we can keep everything in the tenancy (the root compartment)
-
-The same operation above give us the compartment ocid used for this secret. We can also use the following command to list evert compartment:
-    
-    oci iam compartment list 
-
-The compartment ocid will look something like this, if it was the root compartment (the tenancy):
-
-    ocid1.tenancy.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
-
-Or if it's a child compartment, it will look something like this
-    
-    ocid1.compartment.oc1..aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
-
-
-### VM_SUBNET_OCID
-
-Identifier of a subnet previously created after setting up a VCN and with a security list attached.
-The attached security list must allow 443 and 80 TCP traffic to allow access the service.
-
-An example OCID would be like follows: 
-
-    ocid1.subnet.oc1.uk-london-1.aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
 

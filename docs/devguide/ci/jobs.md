@@ -28,13 +28,14 @@ using [the configured file](https://github.com/datocal/nolocal/blob/master/caddy
 ## PrepareImage
 This Job will produce the necessary artifacts and images to pull and run the updated images.
 The main steps are:
-* Run the bootJar gradle task to create the jar
-* Publish the following artifacts:
-  * Caddyfile with the reverse-proxy configuration to route to the spring boot app
-  * Docker-compose file to run the needed docker-images
-  * The Jar with the latest spring boot app version.
-* Build docker image with the corresponding jar
-* Publish the docker image to the [Docker Hub](https://hub.docker.com/r/davidtca/nolocal)
+
+ * Run the bootJar gradle task to create the jar
+ * Publish the following artifacts:
+ * Caddyfile with the reverse-proxy configuration to route to the spring boot app
+ * Docker-compose file to run the needed docker-images
+ * The Jar with the latest spring boot app version.
+ * Build docker image with the corresponding jar
+ * Publish the docker image to the [Docker Hub](https://hub.docker.com/r/davidtca/nolocal)
 
 ## PrepareOracleCLoud
 This Job will create all the necessary resources to deploy the application in the Oracle Cloud. 
@@ -46,9 +47,9 @@ The output of this Job is the IP Address, so it will connect to the instance by 
 instead of using anything related to the oracle console.
 
 Summary of tasks:
-* Create infrastructure resources if they don't exist (nets and subnets, firewall rules, machines, compartment...) 
-* Obtain machine IP
-* Install all necessary dependencies on a new created instances (like docker)
+ * Create infrastructure resources if they don't exist (nets and subnets, firewall rules, machines, compartment...) 
+ * Obtain machine IP
+ * Install all necessary dependencies on a new created instances (like docker)
 
 
 ## Deploy 
