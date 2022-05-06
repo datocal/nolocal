@@ -643,15 +643,15 @@ The main steps are:
 * Build docker image with the corresponding jar
 * Publish the docker image to the <a href="https://hub.docker.com/r/davidtca/nolocal">Docker Hub</a></p>
 <h2 id="prepareoraclecloud">PrepareOracleCLoud</h2>
-<p>This Job will create the necessary instance in the Oracle Cloud.</p>
-<p>If the instance already exists, it will just get the IP.</p>
+<p>This Job will create all the necessary resources to deploy the application in the Oracle Cloud. 
+It will use the python scripts on the pipeline folder of the project.</p>
+<p>If the resources already exists, it will reuse them.</p>
 <p>The output of this Job is the IP Address, so it will connect to the instance by ssh using that IP in the following Jobs, 
 instead of using anything related to the oracle console.</p>
-<p>This step will also update the DNS IP to the new one and install all prepare the machine by:</p>
-<ul>
-<li>Open the 443 port for HTTPS connections</li>
-<li>Install Docker</li>
-</ul>
+<p>Summary of tasks:
+* Create infrastructure resources if they don't exist (nets and subnets, firewall rules, machines, compartment...) 
+* Obtain machine IP
+* Install all necessary dependencies on a new created instances (like docker)</p>
 <h2 id="deploy">Deploy</h2>
 <p>The deployment will need all the other Jobs to be done before proceeding. It will download the artifacts generated in 
 the PrepareImage Job and push them to the deployment machine.
