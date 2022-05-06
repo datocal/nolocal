@@ -116,11 +116,14 @@ The following secrets will be related to the deployment and the infrastructure w
 It's not related to the console configuration like the previous ones.
 
 
-### INFRA_AUTHORIZED_KEYS
-This is the authorized keys to allow connections to the instance deployed.
+### INFRA_AUTHORIZED_KEYS, INFRA_SSH_PRIVATE_KEY
+This is the authorized keys, private key pair to allow connections to the instance deployed.
 
 It's important not to confuse it with the [OCI_KEY_FILE](.#oci_fingerprint-and-oci_key_file), since that's the CLI key 
 to access the console and this one is the authorized keys used for the machine being deployed. 
+
+The authorized keys is needed to create the instance, while the private key is used in the Deploy step to connect to 
+the instance and deploy it.
 
 
 ### INFRA_AVAILABILITY_DOMAIN

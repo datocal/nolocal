@@ -176,14 +176,14 @@ jobs:
         with:
           host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           source: "./docker-compose.yml"
       - name: Start App
         uses: appleboy/ssh-action@master
         with:
           host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
             sudo docker-compose pull
             sudo docker-compose up -d nolocal
@@ -195,6 +195,6 @@ jobs:
         with:
           host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
           username: ubuntu
-          key: ${{ secrets.VM_SSH_PRIVATE_KEY }}
+          key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
             sudo docker-compose up -d caddy
