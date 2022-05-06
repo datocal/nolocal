@@ -374,6 +374,8 @@
         
           
         
+          
+        
       
       
         
@@ -507,6 +509,20 @@
 
             
           
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../configuration/" class="md-nav__link">
+        Configuration
+      </a>
+    </li>
+  
+
+            
+          
         </ul>
       </nav>
     </li>
@@ -634,14 +650,16 @@ It will upload the report to <a href="https://app.snyk.io">the official snyk sit
 using <a href="https://github.com/datocal/nolocal/blob/master/caddy/Caddyfile">the configured file</a>.</p>
 <h2 id="prepareimage">PrepareImage</h2>
 <p>This Job will produce the necessary artifacts and images to pull and run the updated images.
-The main steps are:
-* Run the bootJar gradle task to create the jar
-* Publish the following artifacts:
-  * Caddyfile with the reverse-proxy configuration to route to the spring boot app
-  * Docker-compose file to run the needed docker-images
-  * The Jar with the latest spring boot app version.
-* Build docker image with the corresponding jar
-* Publish the docker image to the <a href="https://hub.docker.com/r/davidtca/nolocal">Docker Hub</a></p>
+The main steps are:</p>
+<ul>
+<li>Run the bootJar gradle task to create the jar</li>
+<li>Publish the following artifacts:</li>
+<li>Caddyfile with the reverse-proxy configuration to route to the spring boot app</li>
+<li>Docker-compose file to run the needed docker-images</li>
+<li>The Jar with the latest spring boot app version.</li>
+<li>Build docker image with the corresponding jar</li>
+<li>Publish the docker image to the <a href="https://hub.docker.com/r/davidtca/nolocal">Docker Hub</a></li>
+</ul>
 <h2 id="prepareoraclecloud">PrepareOracleCLoud</h2>
 <p>This Job will create all the necessary resources to deploy the application in the Oracle Cloud. 
 It will use the python scripts on the pipeline folder of the project.</p>
@@ -649,9 +667,9 @@ It will use the python scripts on the pipeline folder of the project.</p>
 <p>The output of this Job is the IP Address, so it will connect to the instance by ssh using that IP in the following Jobs, 
 instead of using anything related to the oracle console.</p>
 <p>Summary of tasks:
-* Create infrastructure resources if they don't exist (nets and subnets, firewall rules, machines, compartment...) 
-* Obtain machine IP
-* Install all necessary dependencies on a new created instances (like docker)</p>
+ * Create infrastructure resources if they don't exist (nets and subnets, firewall rules, machines, compartment...) 
+ * Obtain machine IP
+ * Install all necessary dependencies on a new created instances (like docker)</p>
 <h2 id="deploy">Deploy</h2>
 <p>The deployment will need all the other Jobs to be done before proceeding. It will download the artifacts generated in 
 the PrepareImage Job and push them to the deployment machine.

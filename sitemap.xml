@@ -26,6 +26,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://datocal.github.io/nolocal/devguide/ci/configuration/</loc>
+         <lastmod>2022-05-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://datocal.github.io/nolocal/devguide/ci/jobs/</loc>
          <lastmod>2022-05-06</lastmod>
          <changefreq>daily</changefreq>
