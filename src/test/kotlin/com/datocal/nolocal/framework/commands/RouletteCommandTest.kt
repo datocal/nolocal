@@ -26,7 +26,7 @@ internal class RouletteCommandTest {
 
     @ParameterizedTest
     @MethodSource("interactionShouldProvideRequest")
-    fun shouldBuildRequest(interaction: Interaction, request: GetRandomItemUseCaseRequest) {
+    fun `should build request`(interaction: Interaction, request: GetRandomItemUseCaseRequest) {
         `when`(useCase.execute(request)).thenReturn(GetRandomItemUseCaseResponse(null))
         `when`(messageResolver.get("roulette.not_found")).thenReturn("Not found")
 
