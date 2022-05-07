@@ -1,5 +1,6 @@
 package com.datocal.nolocal.framework.configuration
 
+import com.datocal.nolocal.framework.discord.client.DiscordApiClient
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.LocaleResolver
@@ -14,5 +15,10 @@ class AppConfiguration {
         val sessionLocaleResolver = SessionLocaleResolver()
         sessionLocaleResolver.setDefaultLocale(Locale("es"))
         return sessionLocaleResolver
+    }
+
+    @Bean
+    fun apiClient(): DiscordApiClient {
+        return object : DiscordApiClient {}
     }
 }
