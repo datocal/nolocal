@@ -1,5 +1,6 @@
 package com.datocal.nolocal.framework.controller
 
+import com.datocal.nolocal.framework.IntegrationTest
 import io.restassured.module.mockmvc.RestAssuredMockMvc
 import org.hamcrest.Matchers
 import org.junit.jupiter.api.Test

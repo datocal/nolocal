@@ -1,13 +1,15 @@
-package com.datocal.nolocal.framework.discord.registrator
+package com.datocal.nolocal.framework.discord
 
 import com.datocal.nolocal.framework.commands.DiscordCommand
 import com.datocal.nolocal.framework.discord.client.DiscordApiClient
 import com.datocal.nolocal.framework.discord.model.ApplicationCommand
 import com.datocal.nolocal.framework.discord.model.Command
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
 
 @Component
+@Profile("production")
 class CommandRegistrator(
     private val commandExecutors: List<DiscordCommand>,
     private val client: DiscordApiClient,

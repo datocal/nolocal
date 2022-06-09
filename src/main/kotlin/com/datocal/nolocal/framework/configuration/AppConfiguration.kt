@@ -1,6 +1,7 @@
 package com.datocal.nolocal.framework.configuration
 
-import com.datocal.nolocal.framework.discord.client.DiscordApiClient
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.LocaleResolver
@@ -18,7 +19,7 @@ class AppConfiguration {
     }
 
     @Bean
-    fun apiClient(): DiscordApiClient {
-        return object : DiscordApiClient {}
+    fun objectMapper(): ObjectMapper {
+        return jacksonObjectMapper()
     }
 }

@@ -1,6 +1,6 @@
 package com.datocal.nolocal.framework.commands
 
-import com.datocal.nolocal.framework.controller.IntegrationTest
+import com.datocal.nolocal.framework.IntegrationTest
 import io.restassured.http.ContentType
 import io.restassured.module.mockmvc.RestAssuredMockMvc
 import org.hamcrest.Matchers
