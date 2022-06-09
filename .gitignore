@@ -38,3 +38,7 @@ out/
 
 ## Mkdocs build site
 site/
+
+## Python build files
+pipeline/__pycache__/
+pipeline/client/__pycache__/

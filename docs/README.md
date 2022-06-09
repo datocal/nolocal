@@ -10,10 +10,10 @@
 [![Uptime](https://img.shields.io/uptimerobot/ratio/7/m789511183-98ecb1f489b4fb9cbd9693ae)](https://botnolocal.duckdns.org/ping)
 
 
-# This bot is a work in progress, and it's not ready to use
-
 ## What
 This is a work in progress bot for discord servers. In the time writing this, the bot is only capable of two silly commands.
+
+But it has a great infrastructure to create and deploy a bot in few steps! you can see de details in the full documentation.
 
 The intention of this project is to create a layer of abstraction between multiple cloud providers to create game servers like minecraft by discord commands.
 

@@ -14,7 +14,7 @@ Adding commands is pretty straightforward.
 You just have to create a Spring bean. The name of the bean must be the command to listen.
 This bean has to implement the following interface:
 
-    com.datocal.nolocal.framework.commands.DiscordCommand
+    com.datocal.nolocal.infrastructure.commands.DiscordCommand
 
 For example, this would be a ping command:
 
@@ -63,4 +63,4 @@ key owned by discord.
 
 This class is located at the following package:
     
-    com.datocal.nolocal.framework.discord.controller.InteractionsController
+    com.datocal.nolocal.infrastructure.discord.controller.InteractionsController
