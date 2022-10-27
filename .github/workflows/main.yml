@@ -22,7 +22,7 @@ jobs:
       - name: Gradlew Check
         run: |
           chmod +x ./gradlew
-          ./gradlew --no-daemon --stacktrace --info check
+          ./gradlew --no-daemon --stacktrace check
       - name: Codecov coverage report upload
         uses: codecov/codecov-action@v3.0.0
         with:

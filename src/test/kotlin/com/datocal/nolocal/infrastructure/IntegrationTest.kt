@@ -46,7 +46,7 @@ class IntegrationTest {
 class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     private val container: MockServerContainer =
-        MockServerContainer(DockerImageName.parse("mockserver/mockserver"))
+        MockServerContainer(DockerImageName.parse("mockserver/mockserver:5.14.0"))
 
     private val logger = LoggerFactory.getLogger(MockServerInitializer::class.java)
     private var logConsumer = Slf4jLogConsumer(logger)
