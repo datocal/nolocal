@@ -10,6 +10,8 @@ logging:
     reactor.netty.http.client: DEBUG
 discord:
   api:
-    url: https://discord.com/api/v8/applications
+    host: https://discord.com
+    base-endpoint: /api/v8/applications
     secret: ${DISCORD_TOKEN:dummy-token}
     client-id: 899356200745984010
+    guild-id: 508685261190987776

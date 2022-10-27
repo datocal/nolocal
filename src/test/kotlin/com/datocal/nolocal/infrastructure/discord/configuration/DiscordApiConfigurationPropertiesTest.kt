@@ -1,0 +1,3 @@
+package com.datocal.nolocal.infrastructure.discord.configuration
+
+internal class DiscordApiConfigurationPropertiesTest

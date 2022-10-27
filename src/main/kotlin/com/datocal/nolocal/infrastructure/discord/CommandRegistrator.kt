@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 import javax.annotation.PostConstruct
 
 @Component
-@Profile("production")
+@Profile(value = ["production", "dev"])
 class CommandRegistrator(
     private val commandExecutors: List<DiscordCommand>,
     private val client: DiscordApiClient,

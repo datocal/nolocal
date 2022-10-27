@@ -4,7 +4,6 @@ import com.datocal.nolocal.infrastructure.discord.model.ApplicationCommand
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.reactive.function.client.WebClient
-import reactor.core.publisher.Mono
 
 class DiscordApiClient(
     private val client: WebClient
@@ -17,18 +16,20 @@ class DiscordApiClient(
             .get()
             .uri("/commands")
             .retrieve()
-            .bodyToFlux(ApplicationCommand::class.java)
-            .collectList()
-            .block() ?: emptyList()
+            .toEntityList(ApplicationCommand::class.java)
+            .block()
+            ?.body
+            ?.toList() ?: emptyList()
     }
 
     fun register(applicationCommand: ApplicationCommand) {
-        client
+        val registeredCommand = client
             .post()
             .uri("/commands")
-            .body(Mono.just(applicationCommand), ApplicationCommand::class.java)
+            .bodyValue(applicationCommand)
             .retrieve()
-            .bodyToMono(ApplicationCommand::class.java)
-            .subscribe { logger.info("Command registered:  $it") }
+            .toEntity(ApplicationCommand::class.java)
+            .block()
+        logger.info("Command registered:  $registeredCommand")
     }
 }

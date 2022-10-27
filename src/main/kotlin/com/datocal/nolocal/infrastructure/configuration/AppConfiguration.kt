@@ -1,5 +1,6 @@
 package com.datocal.nolocal.infrastructure.configuration
 
+import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.context.annotation.Bean
@@ -20,6 +21,8 @@ class AppConfiguration {
 
     @Bean
     fun objectMapper(): ObjectMapper {
-        return jacksonObjectMapper()
+        val objectMapper = jacksonObjectMapper()
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        return objectMapper
     }
 }

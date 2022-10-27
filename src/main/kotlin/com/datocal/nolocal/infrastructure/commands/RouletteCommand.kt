@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component
 @Component("roulette")
 @Command(
     command = "roulette",
-    description = "Retuns a random line of the message targeted by this command. It will skip ~~striked~~ lines.",
     type = Command.TYPE_MESSAGE,
 )
 class RouletteCommand(
