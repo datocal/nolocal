@@ -22,7 +22,7 @@ jobs:
       - name: Gradlew Check
         run: |
           chmod +x ./gradlew
-          ./gradlew --no-daemon --stacktrace --debug check
+          ./gradlew --no-daemon --stacktrace --info check
       - name: Codecov coverage report upload
         uses: codecov/codecov-action@v3.0.0
         with:
@@ -54,6 +54,8 @@ jobs:
   Snyk:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout project
+        uses: actions/checkout@v3.0.0
       - name: Snyk Auth
         uses: snyk/actions@0.3.0
         with:
