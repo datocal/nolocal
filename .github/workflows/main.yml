@@ -68,10 +68,10 @@ jobs:
         with:
           command: auth
           args: ${{secrets.SNYK_TOKEN}}
-      - name: Snyk monitor
-        uses: snyk/actions@0.3.0
-        with:
-          command: monitor
+      - name: Snyk monmitor
+        run: |
+          chmod +x ./gradlew
+          snyk monitor
   SetUpCaddy:
     runs-on: ubuntu-latest
     steps:
