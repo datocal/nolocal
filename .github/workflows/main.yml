@@ -68,11 +68,8 @@ jobs:
         with:
           command: auth
           args: ${{secrets.SNYK_TOKEN}}
-      - name: chmod gradlew
-        run: |
-          chmod +x ./gradlew
       - name: Snyk monitor
-        uses: snyk/actions@0.3.0
+        uses: snyk/actions/gradle-jdk17@master
         with:
           command: monitor
   SetUpCaddy:
