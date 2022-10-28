@@ -15,6 +15,9 @@ class DiscordApiConfigurationProperties {
     lateinit var clientId: String
     lateinit var guildId: String
 
+    @Value("\${spring.profiles.active}")
+    lateinit var activeProfile: String
+
     val fullBaseUrlWithPlaceholders: String
         get() = "$host${customPort()}$endpointWithPlaceholders"
     val endpointWithPlaceholders: String
@@ -23,9 +26,6 @@ class DiscordApiConfigurationProperties {
         get() = endpointWithPlaceholders
             .replace("{client-id}", clientId)
             .replace("{guild-id}", guildId)
-
-    @Value("\${spring.profiles.active}")
-    private lateinit var activeProfile: String
 
     private fun extendWithPath(): String {
         if (activeProfile == "dev") {
