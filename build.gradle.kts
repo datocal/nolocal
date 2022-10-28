@@ -25,15 +25,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.17.1")
-    testImplementation("io.rest-assured:spring-mock-mvc:5.0.1")
-    testImplementation("org.testcontainers:testcontainers:1.17.1")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.4")
+    testImplementation("io.rest-assured:spring-mock-mvc:5.2.0")
+    testImplementation("org.testcontainers:testcontainers:1.17.4")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-    testImplementation("org.mockito:mockito-inline:4.5.1")
-    testImplementation("org.testcontainers:mockserver:1.17.2")
+    testImplementation("org.mockito:mockito-inline:4.8.0")
+    testImplementation("org.testcontainers:mockserver:1.17.4")
     testImplementation("org.mock-server:mockserver-client-java:5.14.0")
+    testImplementation("org.apache.commons:commons-text:1.10.0")
 }
 
 tasks.withType<KotlinCompile> {
