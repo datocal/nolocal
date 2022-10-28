@@ -57,12 +57,6 @@ jobs:
     steps:
       - name: Checkout project
         uses: actions/checkout@v3.0.0
-      - name: Setup Kotlin
-        uses: actions/setup-java@v3.6.0
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: 'gradle'
       - name: Snyk Auth
         uses: snyk/actions@0.3.0
         with:
