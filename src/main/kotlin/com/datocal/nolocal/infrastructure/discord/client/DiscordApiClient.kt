@@ -17,8 +17,8 @@ class DiscordApiClient(
             .uri("/commands")
             .retrieve()
             .toEntityList(ApplicationCommand::class.java)
-            .block()
-            ?.body
+            .block()!!
+            .body
             ?.toList() ?: emptyList()
     }
 
