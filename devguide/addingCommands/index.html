@@ -609,8 +609,17 @@ class PingCommand(private val ping: Ping) : DiscordCommand {
     }
 }
 </code></pre>
+<p>And, for the discord registration to work, it must be documented with the @Command annotation. Description cannot be 
+informed for message commands.</p>
+<pre><code>@Command(
+    command = "ping",
+    description = "Just a ping command",
+    type = Command.TYPE_CHAT_INPUT,
+)
+</code></pre>
 <p>The notation @Component("ping") will create the infrastructure necessary to create the bean and call this Runner when the 
 ping command is invoked. You just have to implement the method returning an InteractionResponse.</p>
+<p>The notation @Command will add the command to discord at startup if it's not already in the discord configuration.</p>
 <h3 id="how-the-magic-works">How the magic works</h3>
 <p>The annotation <strong>@Component</strong> is a spring annotation. For those not familiarized with spring, this will initialize this class
 calling its constructor and put it in a magic box to take it any time it's needed in a program.</p>
@@ -638,13 +647,17 @@ key owned by discord.</p>
 <p>This class is located at the following package:</p>
 <pre><code>com.datocal.nolocal.infrastructure.discord.controller.InteractionsController
 </code></pre>
+<p>The registration on commands via discord works by a bean with a @PostConstruct annotation that register the command via
+api, using the class in:</p>
+<pre><code>com.datocal.nolocal.infrastructure.discord.CommandRegistrator
+</code></pre>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 28, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 29, 2022</span>
       
     
   </small>

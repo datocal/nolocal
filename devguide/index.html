@@ -642,20 +642,23 @@
 <pre><code>./gradlew check
 </code></pre>
 <h3 id="integration-testing">Integration testing</h3>
-<p>There is a specific module for integration testing on <a href="https://github.com/datocal/nolocal/tree/master/src/integration-test">integration-test</a>
-The tests are included inside the gradle <em>check</em> task, using the <a href="https://plugins.gradle.org/plugin/org.unbroken-dome.test-sets">test-sets library</a></p>
+<p>Integration tests are mixed with the unit tests, but on the infrastructure package.
+Originally, there was a split creating a separate module for the integration tests, but maintaining the gradle file was
+more difficult than the actual benefits of having it separated.</p>
 <h3 id="mutation-testing">Mutation testing</h3>
 <p>You can run the mutation testing too! to do that, simply run</p>
 <pre><code>./gradlew pitest
 </code></pre>
 <p>This will generate a report under build/reports/pitest/</p>
+<p>In addition to this, the project has a job to generate the pitest report from 
+<a href="https://github.com/datocal/nolocal/actions/workflows/mutation.yml">GitHub</a></p>
 
   <hr>
 <div class="md-source-file">
   <small>
     
       Last update:
-      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 28, 2022</span>
+      <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 29, 2022</span>
       
     
   </small>
