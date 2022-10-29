@@ -19,7 +19,7 @@ For now there are only two silly commands. The commands are fully integrated wit
     El culo tuyo
 
 ## Message commands 
-[Official reference guide to slash commands](https://discord.com/developers/docs/interactions/application-commands#message-commands)
+[Official reference guide to message commands](https://discord.com/developers/docs/interactions/application-commands#message-commands)
 
 ### The roulette command
 

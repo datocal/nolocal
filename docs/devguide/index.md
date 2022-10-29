@@ -42,8 +42,10 @@ All the tests are under the check task in gradle, so to run all the suite run:
     ./gradlew check
 
 ### Integration testing
-There is a specific module for integration testing on [integration-test](https://github.com/datocal/nolocal/tree/master/src/integration-test)
-The tests are included inside the gradle _check_ task, using the [test-sets library](https://plugins.gradle.org/plugin/org.unbroken-dome.test-sets)
+Integration tests are mixed with the unit tests, but on the infrastructure package.
+Originally, there was a split creating a separate module for the integration tests, but maintaining the gradle file was
+more difficult than the actual benefits of having it separated.
+
 
 ### Mutation testing
 You can run the mutation testing too! to do that, simply run
@@ -51,4 +53,6 @@ You can run the mutation testing too! to do that, simply run
     ./gradlew pitest
 
 This will generate a report under build/reports/pitest/
-    
+
+In addition to this, the project has a job to generate the pitest report from 
+[GitHub](https://github.com/datocal/nolocal/actions/workflows/mutation.yml )

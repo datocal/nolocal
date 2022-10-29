@@ -26,10 +26,20 @@ For example, this would be a ping command:
         }
     }
 
+And, for the discord registration to work, it must be documented with the @Command annotation. Description cannot be 
+informed for message commands.
+
+    @Command(
+        command = "ping",
+        description = "Just a ping command",
+        type = Command.TYPE_CHAT_INPUT,
+    )
 
     
 The notation @Component("ping") will create the infrastructure necessary to create the bean and call this Runner when the 
 ping command is invoked. You just have to implement the method returning an InteractionResponse.
+
+The notation @Command will add the command to discord at startup if it's not already in the discord configuration.
 
 ### How the magic works
 
@@ -64,3 +74,8 @@ key owned by discord.
 This class is located at the following package:
     
     com.datocal.nolocal.infrastructure.discord.controller.InteractionsController
+
+The registration on commands via discord works by a bean with a @PostConstruct annotation that register the command via
+api, using the class in:
+
+    com.datocal.nolocal.infrastructure.discord.CommandRegistrator
