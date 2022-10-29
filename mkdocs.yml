@@ -41,4 +41,5 @@ repo_url: https://github.com/datocal/nolocal
 repo_name: datocal/nolocal
 edit_uri: edit/master/docs/
 plugins:
-  - git-revision-date-localized:
+  - search
+  - git-revision-date-localized

@@ -9,7 +9,7 @@ The secrets are managed by Github Secrets.
 
 Token used to upload to [the docker hub](https://hub.docker.com/u/davidtca) the produced artifacts. 
 
- * [The jar application](./jobs.md#PrepareImage) 
+ * [The docker image with the jar application](./jobs.md#PrepareImage) 
  * [The custom caddy build](./jobs.md#SetUpCaddy)
 
 It looks like an uuid
