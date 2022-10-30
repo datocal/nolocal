@@ -18,4 +18,3 @@ services:
       - DISCORD_TOKEN
 volumes:
   caddy_data:
-    external: true
