@@ -16,3 +16,6 @@ services:
     container_name: nolocal
     environment:
       - DISCORD_TOKEN
+volumes:
+  caddy_data:
+    external: true
