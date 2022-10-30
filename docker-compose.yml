@@ -18,3 +18,4 @@ services:
       - DISCORD_TOKEN
 volumes:
   caddy_data:
+  caddy_config:

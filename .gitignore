@@ -42,3 +42,6 @@ site/
 ## Python build files
 pipeline/__pycache__/
 pipeline/client/__pycache__/
+
+## Environment passwords
+.env
