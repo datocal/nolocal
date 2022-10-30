@@ -45,3 +45,6 @@ pipeline/client/__pycache__/
 
 ## Environment passwords
 .env
+
+## Database volume data
+database-volume/

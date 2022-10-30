@@ -16,6 +16,16 @@ services:
     container_name: nolocal
     environment:
       - DISCORD_TOKEN
+  database:
+    image: gvenzl/oracle-xe:latest
+    container_name: oracle_database
+    ports:
+      - "1521:1521"
+    volumes:
+      - database-volume:/opt/oracle/oradata
+    environment:
+      - ORACLE_PASSWORD
 volumes:
   caddy_data:
   caddy_config:
+  database-volume:
