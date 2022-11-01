@@ -22,7 +22,7 @@ import org.testcontainers.utility.DockerImageName
 @AutoConfigureMockMvc
 @ContextConfiguration(
     initializers = [
-        MockServerInitializer::class
+        MockServerInitializer::class,
     ]
 )
 class IntegrationTest {
@@ -34,9 +34,6 @@ class IntegrationTest {
     @Autowired
     private lateinit var mockMvc: MockMvc
 
-    @Autowired
-    lateinit var mockServerClient: MockServerClient
-
     @BeforeEach
     fun setUp() {
         RestAssuredMockMvc.mockMvc(mockMvc)
@@ -46,7 +43,10 @@ class IntegrationTest {
 class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
 
     private val container: MockServerContainer =
-        MockServerContainer(DockerImageName.parse("mockserver/mockserver:5.14.0"))
+        MockServerContainer(
+            DockerImageName.parse("mockserver/mockserver")
+                .withTag("mockserver-" + MockServerClient::class.java.getPackage().implementationVersion)
+        )
 
     private val logger = LoggerFactory.getLogger(MockServerInitializer::class.java)
     private var logConsumer = Slf4jLogConsumer(logger)
