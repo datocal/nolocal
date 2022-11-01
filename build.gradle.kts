@@ -38,6 +38,7 @@ dependencies {
     testImplementation("org.testcontainers:mockserver:1.17.4")
     testImplementation("org.mock-server:mockserver-client-java:5.14.0")
     testImplementation("org.apache.commons:commons-text:1.10.0")
+    testImplementation("org.testcontainers:mongodb:1.17.5")
 }
 
 tasks.withType<KotlinCompile> {
