@@ -16,16 +16,36 @@ services:
     container_name: nolocal
     environment:
       - DISCORD_TOKEN
-  database:
-    image: gvenzl/oracle-xe:latest
-    container_name: oracle_database
-    ports:
-      - "1521:1521"
-    volumes:
-      - database-volume:/opt/oracle/oradata
+  redis:
+    image: redis:6.2.7-bullseye
+    command: redis-server --requirepass root
+    working_dir: /rdb
     environment:
-      - ORACLE_PASSWORD
+      - REDIS_REPLICATION_MODE=master
+    volumes:
+      - ./teststorage:/rdb
+  s3fs:
+    image: 'efrecon/s3fs:1.91'
+    container_name: s3fs
+    devices:
+      - /dev/fuse
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - 'apparmor:unconfined'
+    stop_signal: SIGINT
+    volumes:
+      - '/home/ubuntu/teststorage:/opt/s3fs/bucket:rshared'
+    environment:
+      - AWS_S3_BUCKET
+      - AWS_S3_MOUNT
+      - AWS_S3_ACCESS_KEY_ID
+      - AWS_S3_SECRET_ACCESS_KEY
+      - AWS_S3_URL
+      - S3FS_ARGS
+      - S3FS_DEBUG
+      - UID
+      - GID
 volumes:
   caddy_data:
   caddy_config:
-  database-volume:
