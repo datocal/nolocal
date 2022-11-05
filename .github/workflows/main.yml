@@ -188,7 +188,15 @@ jobs:
           username: ubuntu
           key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
-            echo 'DISCORD_TOKEN=${{secrets.DISCORD_TOKEN}}' >> .env
+            echo 'DISCORD_TOKEN=${{secrets.DISCORD_TOKEN}}' > .env
+            echo 'AWS_S3_BUCKET=${{secrets.S3_BUCKET_NAME}}' >> .env
+            echo 'AWS_S3_ACCESS_KEY_ID=${{secrets.S3_ACCESS_KEY_ID}}' >> .env
+            echo 'AWS_S3_SECRET_ACCESS_KEY=${{secrets.S3_ACCESS_SECRET}}' >> .env
+            echo 'AWS_S3_URL=${{secrets.S3_URL}}' >> .env
+            echo 'S3FS_DEBUG=0' >> .env
+            echo 'S3FS_ARGS=use_path_request_style,allow_other' >> .env
+            echo 'UID=999' >> .env
+            echo 'GID=999' >> .env
             sudo docker-compose pull -q
             sudo docker-compose up -d nolocal
       - name: Update DuckDNS IP
