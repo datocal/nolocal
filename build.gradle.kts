@@ -25,9 +25,6 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("org.springframework.boot:spring-boot-starter-jdbc")
-    implementation("com.oracle.database.jdbc:ojdbc11:21.7.0.0")
-    implementation("com.h2database:h2:2.1.214")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.17.4")
@@ -38,7 +35,6 @@ dependencies {
     testImplementation("org.testcontainers:mockserver:1.17.4")
     testImplementation("org.mock-server:mockserver-client-java:5.14.0")
     testImplementation("org.apache.commons:commons-text:1.10.0")
-    testImplementation("org.testcontainers:mongodb:1.17.5")
 }
 
 tasks.withType<KotlinCompile> {

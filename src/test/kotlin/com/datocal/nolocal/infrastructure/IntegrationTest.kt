@@ -14,7 +14,6 @@ import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
 import org.testcontainers.containers.MockServerContainer
-import org.testcontainers.containers.MongoDBContainer
 import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.utility.DockerImageName
 
@@ -23,8 +22,7 @@ import org.testcontainers.utility.DockerImageName
 @AutoConfigureMockMvc
 @ContextConfiguration(
     initializers = [
-        MockServerInitializer::class,
-        MongoDbInitializer::class,
+        MockServerInitializer::class
     ]
 )
 class IntegrationTest {
@@ -44,12 +42,12 @@ class IntegrationTest {
 
 class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private val container: MockServerContainer =
+    private val container: MockServerContainer by lazy {
         MockServerContainer(
             DockerImageName.parse("mockserver/mockserver")
                 .withTag("mockserver-" + MockServerClient::class.java.getPackage().implementationVersion)
         )
-
+    }
     private val logger = LoggerFactory.getLogger(MockServerInitializer::class.java)
     private var logConsumer = Slf4jLogConsumer(logger)
 
@@ -66,26 +64,6 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
                     "discord.api.host" to "http://" + container.host,
                     "discord.api.port" to container.serverPort,
                 )
-            )
-        )
-    }
-}
-
-class MongoDbInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
-
-    private val container: MongoDBContainer =
-        MongoDBContainer(DockerImageName.parse("mongo:4.0.10"))
-
-    private val logger = LoggerFactory.getLogger(MockServerInitializer::class.java)
-    private var logConsumer = Slf4jLogConsumer(logger)
-
-    override fun initialize(context: ConfigurableApplicationContext) {
-        container.start()
-        container.followOutput(logConsumer)
-        context.environment.propertySources.addFirst(
-            MapPropertySource(
-                "mongoDbProperties",
-                mapOf()
             )
         )
     }
