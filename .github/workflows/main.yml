@@ -210,3 +210,12 @@ jobs:
           key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
             sudo docker-compose up -d caddy
+      - name: Start Redis
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ needs.PrepareOracleCLoud.outputs.ip }}
+          username: ubuntu
+          key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
+          script: |
+            sudo docker-compose up -d s3fs
+            sudo docker-compose up -d redis

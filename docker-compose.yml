@@ -17,13 +17,14 @@ services:
     environment:
       - DISCORD_TOKEN
   redis:
-    image: redis:6.2.7-bullseye
+    image: redis:latest
+    container_name: redis
     command: redis-server --requirepass root
     working_dir: /rdb
     environment:
       - REDIS_REPLICATION_MODE=master
     volumes:
-      - ./teststorage:/rdb
+      - /mnt/nolocal:/rdb
   s3fs:
     image: 'efrecon/s3fs:1.91'
     container_name: s3fs
@@ -35,7 +36,7 @@ services:
       - 'apparmor:unconfined'
     stop_signal: SIGINT
     volumes:
-      - '/home/ubuntu/teststorage:/opt/s3fs/bucket:rshared'
+      - '/mnt/nolocal:/opt/s3fs/bucket:rshared'
     environment:
       - AWS_S3_BUCKET
       - AWS_S3_MOUNT
