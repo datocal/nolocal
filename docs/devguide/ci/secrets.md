@@ -110,6 +110,30 @@ And it will look something like this:
 
     ocid1.user.oc1.aaaaaaaapmqwjhsyggcyrvqxytrpgsfsqsvsrnnrmpnxmhjukpykajvnjdjj
 
+## S3 Secrets
+Some secrets are needed to create an S3-compatible bucket in the oracle cloud. Details of this implementation can be 
+found at [the persistence section](../persistence.md)
+
+### S3_BUCKET_NAME
+This is the name of the bucket created in the oracle cloud
+
+### S3_ACCESS_KEY_ID & S3_ACCESS_SECRET 
+This pair is generated through the user settings in the oracle cloud. Is used as a user/password to access the S3 bucket 
+from the container.
+
+To create it, go to the oracle cloud > User Settings > Customer secret keys > Generate Secret Key
+
+![OCI User secret keys](../img/ci/secrets/secretkey.png)
+
+
+### S3_URL
+This is the url of the bucket in where the dump will be stored. It follows the structure of an oracle cloud bucket with
+a compatible S3 api, so it looks like:
+
+    https://<namespace>.compat.objectstorage.<region>.oraclecloud.com/
+
+[Cloud Object Storage URI Formats](https://docs.oracle.com/en-us/iaas/autonomous-database/doc/cloud-storage-uris.html)
+[Understanding Object Storage Namespaces](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/understandingnamespaces.htm)
 
 ## VM Infrastructure settings
 The following secrets will be related to the deployment and the infrastructure where the application is deployed. 
