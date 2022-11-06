@@ -19,7 +19,7 @@ services:
   redis:
     image: redis:latest
     container_name: redis
-    command: redis-server --requirepass root
+    command: redis-server
     working_dir: /rdb
     environment:
       - REDIS_REPLICATION_MODE=master
