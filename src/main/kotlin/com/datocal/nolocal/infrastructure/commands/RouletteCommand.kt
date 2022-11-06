@@ -1,12 +1,12 @@
 package com.datocal.nolocal.infrastructure.commands
 
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCase
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCaseRequest
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCaseResponse
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.infrastructure.discord.model.Command
 import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCase
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseRequest
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseResponse
 import org.springframework.stereotype.Component
 
 @Component("roulette")

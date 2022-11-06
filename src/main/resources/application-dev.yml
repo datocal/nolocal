@@ -1,6 +1,3 @@
-spring:
-  datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
-    driver-class-name: oracle.jdbc.OracleDriver
-    password: cP9p78Tz4Z7CYcMu
-    username: system
+redis:
+  host: localhost
+  port: 6379

@@ -13,6 +13,7 @@ import org.springframework.core.env.MapPropertySource
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.web.servlet.MockMvc
+import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.MockServerContainer
 import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.utility.DockerImageName
@@ -22,7 +23,8 @@ import org.testcontainers.utility.DockerImageName
 @AutoConfigureMockMvc
 @ContextConfiguration(
     initializers = [
-        MockServerInitializer::class
+        MockServerInitializer::class,
+        RedisInitializer::class
     ]
 )
 class IntegrationTest {
@@ -66,5 +68,36 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
                 )
             )
         )
+    }
+}
+
+class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
+
+    private val container = GenericContainer<Nothing>(
+        DockerImageName
+            .parse("redis")
+            .withTag("latest")
+    ).apply { withExposedPorts(REDIS_PORT) }
+
+    private val logger = LoggerFactory.getLogger(RedisInitializer::class.java)
+    private var logConsumer = Slf4jLogConsumer(logger)
+
+    override fun initialize(context: ConfigurableApplicationContext) {
+        container.start()
+        container.followOutput(logConsumer)
+
+        context.environment.propertySources.addFirst(
+            MapPropertySource(
+                "redisProperties",
+                mapOf(
+                    "redis.host" to container.host,
+                    "redis.port" to container.getMappedPort(REDIS_PORT),
+                )
+            )
+        )
+    }
+
+    private companion object {
+        private const val REDIS_PORT = 6379
     }
 }

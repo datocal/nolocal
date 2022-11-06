@@ -18,10 +18,10 @@ point to be able to destroy the machine and create another. That's where several
 
 
 Related info:
- * [Overview of Object Storage](https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm)
- * [Mounting Object Storage buckets using s3fs](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm#Supported_Amazon_S3_Clients)
- * [Official s3fs-fuse repository](https://github.com/s3fs-fuse/s3fs-fuse)
- * [Dockerized s3fs-fuse implementation](https://github.com/efrecon/docker-s3fs-client)
+ * **Overview of Object Storage**: https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm
+ * **Mounting Object Storage buckets using s3fs**: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm#Supported_Amazon_S3_Clients
+ * **Official s3fs-fuse repository**: https://github.com/s3fs-fuse/s3fs-fuse
+ * **Dockerized s3fs-fuse implementation**: https://github.com/efrecon/docker-s3fs-client
 
 
 ## Compose explanation

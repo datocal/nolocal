@@ -1,13 +1,13 @@
 package com.datocal.nolocal.infrastructure.commands
 
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCase
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCaseRequest
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCaseResponse
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.infrastructure.discord.model.Data
 import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.PartialMessage
 import com.datocal.nolocal.infrastructure.discord.model.Resolved
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCase
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseRequest
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCaseResponse
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource

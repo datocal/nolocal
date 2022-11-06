@@ -1,8 +1,9 @@
 package com.datocal.nolocal.infrastructure.configuration.usecases
 
+import com.datocal.nolocal.application.roulette.GetRandomItemUseCase
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.domain.dummy.Ping
-import com.datocal.nolocal.usecases.roulette.GetRandomItemUseCase
+import com.datocal.nolocal.domain.roulette.RandomItemRepository
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -10,8 +11,8 @@ import org.springframework.context.annotation.Configuration
 class UseCaseConfiguration {
 
     @Bean
-    fun getRandomItemUseCase(): GetRandomItemUseCase {
-        return GetRandomItemUseCase()
+    fun getRandomItemUseCase(repository: RandomItemRepository): GetRandomItemUseCase {
+        return GetRandomItemUseCase(repository)
     }
 
     @Bean
