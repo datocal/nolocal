@@ -221,13 +221,15 @@
         
   
   
+    
+  
 
 
   
   
   
     <li class="md-tabs__item">
-      <a href="../" class="md-tabs__link">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
         Developer Guide
       </a>
     </li>
@@ -314,18 +316,22 @@
 
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
       
       
       
         
           
             
+          
+        
           
         
           
@@ -388,12 +394,67 @@
               
   
   
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Persistence
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Persistence
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compose-explanation" class="md-nav__link">
+    Compose explanation
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
   
     
     <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" checked>
       
       
       
@@ -415,14 +476,14 @@
         <div class="md-nav__link md-nav__link--index ">
           <a href="../ci/">Continuous Integration</a>
           
-            <label for="__nav_3_4">
+            <label for="__nav_3_5">
               <span class="md-nav__icon md-icon"></span>
             </label>
           
         </div>
       
       <nav class="md-nav" aria-label="Continuous Integration" data-md-level="2">
-        <label class="md-nav__title" for="__nav_3_4">
+        <label class="md-nav__title" for="__nav_3_5">
           <span class="md-nav__icon md-icon"></span>
           Continuous Integration
         </label>
@@ -554,10 +615,10 @@ point to be able to destroy the machine and create another. That's where several
 </ul>
 <p><img alt="S3fs" src="../img/s3fs.png" /></p>
 <p>Related info:
- * <a href="https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm">Overview of Object Storage</a>
- * <a href="https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm#Supported_Amazon_S3_Clients">Mounting Object Storage buckets using s3fs</a>
- * <a href="https://github.com/s3fs-fuse/s3fs-fuse">Official s3fs-fuse repository</a>
- * <a href="https://github.com/efrecon/docker-s3fs-client">Dockerized s3fs-fuse implementation</a></p>
+ * <strong>Overview of Object Storage</strong>: https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm
+ * <strong>Mounting Object Storage buckets using s3fs</strong>: https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/s3compatibleapi.htm#Supported_Amazon_S3_Clients
+ * <strong>Official s3fs-fuse repository</strong>: https://github.com/s3fs-fuse/s3fs-fuse
+ * <strong>Dockerized s3fs-fuse implementation</strong>: https://github.com/efrecon/docker-s3fs-client</p>
 <h2 id="compose-explanation">Compose explanation</h2>
 <p>The following code is a valid configuration to use the bucket as a volume: </p>
 <pre><code>  s3fs:
@@ -633,6 +694,42 @@ rshared makes the volume available to the host and other containers.</li>
       </main>
       
         <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../security/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Security" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Security
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../ci/" class="md-footer__link md-footer__link--next" aria-label="Next: Quick View" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Quick View
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
