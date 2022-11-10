@@ -15,6 +15,7 @@ jobs:
           pip install mkdocs
           pip install mkdocs-material
           pip install mkdocs-git-revision-date-localized-plugin
+          cp docs/architecture/c4model.html docs/devguide/c4model.md
           mkdocs build
       - name: Upload docs
         uses: actions/upload-artifact@v3.0.0

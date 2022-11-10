@@ -5,6 +5,7 @@ nav:
   - User Guide: userguide/index.md
   - Developer Guide:
     - devguide/index.md
+    - C4 model: devguide/c4model.md
     - Adding Commands: devguide/addingCommands.md
     - Security: devguide/security.md
     - Persistence: devguide/persistence.md

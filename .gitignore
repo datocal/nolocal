@@ -48,3 +48,6 @@ pipeline/client/__pycache__/
 
 ## Database volume data
 database-volume/
+
+# Structurizr
+docs/architecture/.structurizr
