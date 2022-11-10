@@ -1,0 +1,808 @@
+{
+  "id" : 1,
+  "name" : "Name",
+  "description" : "Description",
+  "revision" : 0,
+  "lastModifiedDate" : "2022-11-10T20:41:20Z",
+  "lastModifiedAgent" : "structurizr-web/2862/diagram",
+  "properties" : {
+    "structurizr.dsl" : "d29ya3NwYWNlIHsKCiAgICBtb2RlbCB7CiAgICAgICAgdXNlciA9IHBlcnNvbiAiVXNlciIgIkEgZGlzY29yZCB1c2VyIgogICAgICAgIGRpc2NvcmQgPSBzb2Z0d2FyZVN5c3RlbSAiRGlzY29yZCIgIkRpc2NvcmQgb2ZmaWNpYWwgc3lzdGVtIiAiRGlzY29yZCIKCiAgICAgICAgbm9sb2NhbCA9IHNvZnR3YXJlU3lzdGVtICJOb0xvY2FsIiAiRGlzY29yZCBib3Qgc3lzdGVtInsKICAgICAgICAgICAgY2FkZHkgPSBjb250YWluZXIgIkNhZGR5IiAiUmV2ZXJzZSBwcm94eSB3aXRoIFNTTCIgIk9wZW4gc291cmNlIHdlYnNlcnZlciB3cml0dGVuIGluIEdvLCB2ZXJpZmllcyBFZDI1NTE5IHNpZ25hdHVyZSIgIkNhZGR5IgogICAgICAgICAgICByZWRpcyA9IGNvbnRhaW5lciAiUmVkaXMiICJEYXRhIFN0b3JlIiAiT3BlbiBzb3VyY2UgaW4gbWVtb3J5IGRhdGEgc3RvcmUiICJSZWRpcyIKICAgICAgICAgICAgczNmcyA9IGNvbnRhaW5lciAiUzNGUyIgIkVuZ2luZSB0byBtb3VudCBTMyBsaWtlIGJ1Y2tldHMiICJGVVNFLWJhc2VkIGZpbGUgc3lzdGVtIGJhY2tlZCBieSBBbWF6b24gUzMiCiAgICAgICAgICAgIHZvbHVtZSA9IGNvbnRhaW5lciAiRmlsZSBzeXN0ZW0iICJNb3VudGVkIHN0b3JhZ2UgdG8gc2F2ZSBzbmFwc2hvdHMgaW4iICIiICJWb2x1bWUiCiAgICAgICAgICAgIGJ1Y2tldCA9IGNvbnRhaW5lciAiQnVja2V0IiAiUzMtbGlrZSBidWNrZXQgdXNpbmcgT3JhY2xlIE9iamVjdCBTdG9yYWdlIiAiIiAiQnVja2V0IgoKICAgICAgICAgICAgbm9sb2NhbGFwcCA9IGNvbnRhaW5lciAiTm9Mb2NhbEFwcCIgIlByb3ZpZGVzIGNvbW1hbmRzIHRvIGV4ZWN1dGUiICJLb3RsaW4gJiBTcHJpbmcgYm9vdCBib3QgYXBwbGljYXRpb24iICJOb0xvY2FsQXBwInsKICAgICAgICAgICAgICAgIG1vZGVsID0gY29tcG9uZW50ICJtb2RlbCIKICAgICAgICAgICAgICAgIGFwcGxpY2F0aW9uID0gY29tcG9uZW50ICJhcHBsaWNhdGlvbiIKICAgICAgICAgICAgICAgIGluZnJhc3RydWN0dXJlID0gY29tcG9uZW50ICJpbmZyYXN0cnVjdHVyZSIKICAgICAgICAgICAgICAgIGRpc2NvcmRwb25lbnQgPSBjb21wb25lbnQgImRpc2NvcmQiCgogICAgICAgICAgICAgICAgYXBwbGljYXRpb24gLT4gbW9kZWwgIk1hbmFnZSB1c2UgY2FzZXMgdXNpbmciCiAgICAgICAgICAgICAgICBhcHBsaWNhdGlvbiAtPiBpbmZyYXN0cnVjdHVyZSAiU3RvcmVzIGRhdGEgJiBjb21tdW5pY2F0ZXMgd2l0aCBkaXNjb3JkIHVzaW5nIgogICAgICAgICAgICAgICAgaW5mcmFzdHJ1Y3R1cmUgLT4gZGlzY29yZHBvbmVudCAiQ29tbXVuaWNhdGVzIHdpdGggZGlzY29yZCB1c2luZyIKICAgICAgICAgICAgICAgIGRpc2NvcmRwb25lbnQgLT4gZGlzY29yZCAiUmVnaXN0ZXIgY29tbWFuZHMgdXNpbmciCiAgICAgICAgICAgICAgICBjYWRkeSAtPiBkaXNjb3JkcG9uZW50ICJTZW5kcyBjb21tYW5kcyB1c2luZyIKICAgICAgICAgICAgICAgIGRpc2NvcmRwb25lbnQgLT4gaW5mcmFzdHJ1Y3R1cmUgIlNlbmQgY29tbWFuZHMgdXNpbmciCiAgICAgICAgICAgICAgICBpbmZyYXN0cnVjdHVyZSAtPiBhcHBsaWNhdGlvbiAiUmVzcG9uZCBjb21tYW5kcyB1c2luZyIKICAgICAgICAgICAgICAgIGluZnJhc3RydWN0dXJlIC0+IHJlZGlzICJTdG9yZXMgZGF0YSB1c2luZyIKICAgICAgICAgICAgfQogICAgICAgIH0KCiAgICAgICAgdXNlciAtPiBkaXNjb3JkICJTZW5kIGNvbW1hbmQgdXNpbmciCiAgICAgICAgZGlzY29yZCAtPiBjYWRkeSAiUmVzcG9uZCBjb21tYW5kcyB1c2luZyIKICAgICAgICBjYWRkeSAtPiBub2xvY2FsYXBwICJSZWRpcmVjdHMgdHJhZmZpYyB1c2luZyIKICAgICAgICBub2xvY2FsYXBwIC0+IGRpc2NvcmQgIlJlZ2lzdGVyIGNvbW1hbmRzIHVzaW5nIgogICAgICAgIG5vbG9jYWxhcHAgLT4gcmVkaXMgIlN0b3JlcyBkYXRhIHVzaW5nIgogICAgICAgIHJlZGlzIC0+IHZvbHVtZSAiUGVyc2lzdHMgc25hcHNob3RzIHVzaW5nIgogICAgICAgIHZvbHVtZSAtPiBzM2ZzICJTeW5jaHJvbml6ZXMgaXRzIGRhdGEgdXNpbmciCiAgICAgICAgczNmcyAtPiBidWNrZXQgIlN5bmNyb25pemVzIHZvbHVtZSB1c2luZyIKCgogICAgICAgIGRlcGxveW1lbnRFbnZpcm9ubWVudCAiTGl2ZSIgewogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiT3JhY2xlIENsb3VkInsKICAgICAgICAgICAgICAgIGRlcGxveW1lbnROb2RlICJub2xvY2FsLWluc3RhbmNlIiAiIiAiVWJ1bnR1IDIwLjA0IExUUyJ7CiAgICAgICAgICAgICAgICAgICAgY29udGFpbmVyaW5zdGFuY2UgY2FkZHkKICAgICAgICAgICAgICAgICAgICBjb250YWluZXJpbnN0YW5jZSBub2xvY2FsYXBwCiAgICAgICAgICAgICAgICAgICAgY29udGFpbmVyaW5zdGFuY2UgcmVkaXMKICAgICAgICAgICAgICAgICAgICBjb250YWluZXJpbnN0YW5jZSB2b2x1bWUKICAgICAgICAgICAgICAgICAgICBjb250YWluZXJpbnN0YW5jZSBzM2ZzCiAgICAgICAgICAgICAgICB9CiAgICAgICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiT3JhY2xlIE9iamVjdCBTdG9yYWdlInsKICAgICAgICAgICAgICAgICAgICBjb250YWluZXJpbnN0YW5jZSBidWNrZXQKICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgfQogICAgICAgICAgICBkZXBsb3ltZW50Tm9kZSAiRGlzY29yZCBTeXN0ZW0iewogICAgICAgICAgICAgICAgc29mdHdhcmVzeXN0ZW1pbnN0YW5jZSBkaXNjb3JkCiAgICAgICAgICAgIH0KICAgICAgICB9CgoKCiAgICAgICAgZGVwbG95bWVudEVudmlyb25tZW50ICJEZXZlbG9wbWVudCIgewoKICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkRldmVsb3BlcidzIENvbXB1dGVyIiAiIiAiV2luZG93cy9VYnVudHUvTWFjT1MuLi4uInsKICAgICAgICAgICAgICAgIGNvbnRhaW5lcmluc3RhbmNlIG5vbG9jYWxhcHAKICAgICAgICAgICAgICAgIGNvbnRhaW5lcmluc3RhbmNlIHJlZGlzCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZGVwbG95bWVudE5vZGUgIkRpc2NvcmQgU3lzdGVtInsKICAgICAgICAgICAgICAgIHNvZnR3YXJlc3lzdGVtaW5zdGFuY2UgZGlzY29yZAogICAgICAgICAgICB9CiAgICAgICAgfQoKCiAgICB9CgogICAgdmlld3MgewogICAgICAgIHN5c3RlbUxhbmRzY2FwZSBub2xvY2FsICJTeXN0ZW1MYW5kc2NhcGUiIHsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgogICAgICAgIGNvbnRhaW5lciBub2xvY2FsICJDb250YWluZXJzIiB7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQogICAgICAgIGNvbXBvbmVudCBub2xvY2FsYXBwICJDb21wb25lbnRzInsKICAgICAgICAgICAgaW5jbHVkZSAqCiAgICAgICAgICAgIGF1dG9MYXlvdXQKICAgICAgICB9CgogICAgICAgIGRlcGxveW1lbnQgbm9sb2NhbCAiTGl2ZSJ7CiAgICAgICAgICAgIGluY2x1ZGUgKgogICAgICAgICAgICBhdXRvTGF5b3V0CiAgICAgICAgfQogICAgICAgIGRlcGxveW1lbnQgbm9sb2NhbCAiRGV2ZWxvcG1lbnQiewogICAgICAgICAgICBpbmNsdWRlICoKICAgICAgICAgICAgYXV0b0xheW91dAogICAgICAgIH0KCiAgICAgICAgc3R5bGVzIHsKICAgICAgICAgICAgZWxlbWVudCAiU29mdHdhcmUgU3lzdGVtIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJEaXNjb3JkIiB7CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICM3Mjg5ZGEKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJQZXJzb24iIHsKICAgICAgICAgICAgICAgIHNoYXBlIHBlcnNvbgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMDg0MjdiCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiQ2FkZHkiewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMEE3OTA2CiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiUmVkaXMiewogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjQTQxRTExCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiVm9sdW1lIiB7CiAgICAgICAgICAgICAgICBzaGFwZSBDeWxpbmRlcgogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjOTk5OTk5CiAgICAgICAgICAgIH0KICAgICAgICAgICAgZWxlbWVudCAiTm9Mb2NhbEFwcCJ7CiAgICAgICAgICAgICAgICBzaGFwZSBSb3VuZGVkQm94CiAgICAgICAgICAgICAgICBiYWNrZ3JvdW5kICMxMTY4YmQKICAgICAgICAgICAgICAgIGNvbG9yICNmZmZmZmYKICAgICAgICAgICAgfQogICAgICAgICAgICBlbGVtZW50ICJCdWNrZXQiewogICAgICAgICAgICAgICAgc2hhcGUgUGlwZQogICAgICAgICAgICAgICAgYmFja2dyb3VuZCAjMTE2OGJkCiAgICAgICAgICAgICAgICBjb2xvciAjZmZmZmZmCiAgICAgICAgICAgIH0KICAgICAgICB9CiAgICB9Cgp9Cg=="
+  },
+  "configuration" : { },
+  "model" : {
+    "people" : [ {
+      "id" : "1",
+      "tags" : "Element,Person",
+      "name" : "User",
+      "description" : "A discord user",
+      "relationships" : [ {
+        "id" : "26",
+        "tags" : "Relationship",
+        "sourceId" : "1",
+        "destinationId" : "2",
+        "description" : "Send command using"
+      } ],
+      "location" : "Unspecified"
+    } ],
+    "softwareSystems" : [ {
+      "id" : "3",
+      "tags" : "Element,Software System",
+      "name" : "NoLocal",
+      "description" : "Discord bot system",
+      "relationships" : [ {
+        "id" : "19",
+        "sourceId" : "3",
+        "destinationId" : "2",
+        "description" : "Register commands using",
+        "linkedRelationshipId" : "17"
+      } ],
+      "location" : "Unspecified",
+      "containers" : [ {
+        "id" : "5",
+        "tags" : "Element,Container,Redis",
+        "name" : "Redis",
+        "description" : "Data Store",
+        "relationships" : [ {
+          "id" : "30",
+          "tags" : "Relationship",
+          "sourceId" : "5",
+          "destinationId" : "7",
+          "description" : "Persists snapshots using"
+        } ],
+        "technology" : "Open source in memory data store"
+      }, {
+        "id" : "8",
+        "tags" : "Element,Container,Bucket",
+        "name" : "Bucket",
+        "description" : "S3-like bucket using Oracle Object Storage"
+      }, {
+        "id" : "6",
+        "tags" : "Element,Container",
+        "name" : "S3FS",
+        "description" : "Engine to mount S3 like buckets",
+        "relationships" : [ {
+          "id" : "32",
+          "tags" : "Relationship",
+          "sourceId" : "6",
+          "destinationId" : "8",
+          "description" : "Syncronizes volume using"
+        } ],
+        "technology" : "FUSE-based file system backed by Amazon S3"
+      }, {
+        "id" : "4",
+        "tags" : "Element,Container,Caddy",
+        "name" : "Caddy",
+        "description" : "Reverse proxy with SSL",
+        "relationships" : [ {
+          "id" : "21",
+          "sourceId" : "4",
+          "destinationId" : "9",
+          "description" : "Sends commands using",
+          "linkedRelationshipId" : "20"
+        }, {
+          "id" : "29",
+          "tags" : "Relationship",
+          "sourceId" : "4",
+          "destinationId" : "9",
+          "description" : "Redirects traffic using"
+        }, {
+          "id" : "20",
+          "tags" : "Relationship",
+          "sourceId" : "4",
+          "destinationId" : "13",
+          "description" : "Sends commands using"
+        } ],
+        "technology" : "Open source webserver written in Go, verifies Ed25519 signature"
+      }, {
+        "id" : "7",
+        "tags" : "Element,Container,Volume",
+        "name" : "File system",
+        "description" : "Mounted storage to save snapshots in",
+        "relationships" : [ {
+          "id" : "31",
+          "tags" : "Relationship",
+          "sourceId" : "7",
+          "destinationId" : "6",
+          "description" : "Synchronizes its data using"
+        } ]
+      }, {
+        "id" : "9",
+        "tags" : "Element,Container,NoLocalApp",
+        "name" : "NoLocalApp",
+        "description" : "Provides commands to execute",
+        "relationships" : [ {
+          "id" : "25",
+          "sourceId" : "9",
+          "destinationId" : "5",
+          "description" : "Stores data using",
+          "linkedRelationshipId" : "24"
+        }, {
+          "id" : "18",
+          "sourceId" : "9",
+          "destinationId" : "2",
+          "description" : "Register commands using",
+          "linkedRelationshipId" : "17"
+        } ],
+        "technology" : "Kotlin & Spring boot bot application",
+        "components" : [ {
+          "id" : "11",
+          "tags" : "Element,Component",
+          "name" : "application",
+          "relationships" : [ {
+            "id" : "14",
+            "tags" : "Relationship",
+            "sourceId" : "11",
+            "destinationId" : "10",
+            "description" : "Manage use cases using"
+          }, {
+            "id" : "15",
+            "tags" : "Relationship",
+            "sourceId" : "11",
+            "destinationId" : "12",
+            "description" : "Stores data & communicates with discord using"
+          } ],
+          "size" : 0
+        }, {
+          "id" : "10",
+          "tags" : "Element,Component",
+          "name" : "model",
+          "size" : 0
+        }, {
+          "id" : "13",
+          "tags" : "Element,Component",
+          "name" : "discord",
+          "relationships" : [ {
+            "id" : "22",
+            "tags" : "Relationship",
+            "sourceId" : "13",
+            "destinationId" : "12",
+            "description" : "Send commands using"
+          }, {
+            "id" : "17",
+            "tags" : "Relationship",
+            "sourceId" : "13",
+            "destinationId" : "2",
+            "description" : "Register commands using"
+          } ],
+          "size" : 0
+        }, {
+          "id" : "12",
+          "tags" : "Element,Component",
+          "name" : "infrastructure",
+          "relationships" : [ {
+            "id" : "23",
+            "tags" : "Relationship",
+            "sourceId" : "12",
+            "destinationId" : "11",
+            "description" : "Respond commands using"
+          }, {
+            "id" : "16",
+            "tags" : "Relationship",
+            "sourceId" : "12",
+            "destinationId" : "13",
+            "description" : "Communicates with discord using"
+          }, {
+            "id" : "24",
+            "tags" : "Relationship",
+            "sourceId" : "12",
+            "destinationId" : "5",
+            "description" : "Stores data using"
+          } ],
+          "size" : 0
+        } ]
+      } ],
+      "documentation" : { }
+    }, {
+      "id" : "2",
+      "tags" : "Element,Software System,Discord",
+      "name" : "Discord",
+      "description" : "Discord official system",
+      "relationships" : [ {
+        "id" : "27",
+        "tags" : "Relationship",
+        "sourceId" : "2",
+        "destinationId" : "4",
+        "description" : "Respond commands using"
+      }, {
+        "id" : "28",
+        "sourceId" : "2",
+        "destinationId" : "3",
+        "description" : "Respond commands using",
+        "linkedRelationshipId" : "27"
+      } ],
+      "location" : "Unspecified",
+      "documentation" : { }
+    } ],
+    "deploymentNodes" : [ {
+      "id" : "33",
+      "tags" : "Element,Deployment Node",
+      "name" : "Oracle Cloud",
+      "environment" : "Live",
+      "instances" : 1,
+      "children" : [ {
+        "id" : "34",
+        "tags" : "Element,Deployment Node",
+        "name" : "nolocal-instance",
+        "environment" : "Live",
+        "technology" : "Ubuntu 20.04 LTS",
+        "instances" : 1,
+        "containerInstances" : [ {
+          "id" : "41",
+          "tags" : "Container Instance",
+          "relationships" : [ {
+            "id" : "44",
+            "sourceId" : "41",
+            "destinationId" : "43",
+            "description" : "Synchronizes its data using",
+            "linkedRelationshipId" : "31"
+          } ],
+          "environment" : "Live",
+          "deploymentGroups" : [ "Default" ],
+          "instanceId" : 1,
+          "containerId" : "7"
+        }, {
+          "id" : "39",
+          "tags" : "Container Instance",
+          "relationships" : [ {
+            "id" : "42",
+            "sourceId" : "39",
+            "destinationId" : "41",
+            "description" : "Persists snapshots using",
+            "linkedRelationshipId" : "30"
+          } ],
+          "environment" : "Live",
+          "deploymentGroups" : [ "Default" ],
+          "instanceId" : 1,
+          "containerId" : "5"
+        }, {
+          "id" : "35",
+          "tags" : "Container Instance",
+          "relationships" : [ {
+            "id" : "38",
+            "sourceId" : "35",
+            "destinationId" : "36",
+            "description" : "Redirects traffic using",
+            "linkedRelationshipId" : "29"
+          }, {
+            "id" : "37",
+            "sourceId" : "35",
+            "destinationId" : "36",
+            "description" : "Sends commands using",
+            "linkedRelationshipId" : "21"
+          } ],
+          "environment" : "Live",
+          "deploymentGroups" : [ "Default" ],
+          "instanceId" : 1,
+          "containerId" : "4"
+        }, {
+          "id" : "36",
+          "tags" : "Container Instance",
+          "relationships" : [ {
+            "id" : "50",
+            "sourceId" : "36",
+            "destinationId" : "49",
+            "description" : "Register commands using",
+            "linkedRelationshipId" : "18"
+          }, {
+            "id" : "40",
+            "sourceId" : "36",
+            "destinationId" : "39",
+            "description" : "Stores data using",
+            "linkedRelationshipId" : "25"
+          } ],
+          "environment" : "Live",
+          "deploymentGroups" : [ "Default" ],
+          "instanceId" : 1,
+          "containerId" : "9"
+        }, {
+          "id" : "43",
+          "tags" : "Container Instance",
+          "relationships" : [ {
+            "id" : "47",
+            "sourceId" : "43",
+            "destinationId" : "46",
+            "description" : "Syncronizes volume using",
+            "linkedRelationshipId" : "32"
+          } ],
+          "environment" : "Live",
+          "deploymentGroups" : [ "Default" ],
+          "instanceId" : 1,
+          "containerId" : "6"
+        } ]
+      }, {
+        "id" : "45",
+        "tags" : "Element,Deployment Node",
+        "name" : "Oracle Object Storage",
+        "environment" : "Live",
+        "instances" : 1,
+        "containerInstances" : [ {
+          "id" : "46",
+          "tags" : "Container Instance",
+          "environment" : "Live",
+          "deploymentGroups" : [ "Default" ],
+          "instanceId" : 1,
+          "containerId" : "8"
+        } ]
+      } ]
+    }, {
+      "id" : "56",
+      "tags" : "Element,Deployment Node",
+      "name" : "Discord System",
+      "environment" : "Development",
+      "instances" : 1,
+      "softwareSystemInstances" : [ {
+        "id" : "57",
+        "tags" : "Software System Instance",
+        "environment" : "Development",
+        "deploymentGroups" : [ "Default" ],
+        "instanceId" : 1,
+        "softwareSystemId" : "2"
+      } ]
+    }, {
+      "id" : "48",
+      "tags" : "Element,Deployment Node",
+      "name" : "Discord System",
+      "environment" : "Live",
+      "instances" : 1,
+      "softwareSystemInstances" : [ {
+        "id" : "49",
+        "tags" : "Software System Instance",
+        "relationships" : [ {
+          "id" : "51",
+          "sourceId" : "49",
+          "destinationId" : "35",
+          "description" : "Respond commands using",
+          "linkedRelationshipId" : "27"
+        } ],
+        "environment" : "Live",
+        "deploymentGroups" : [ "Default" ],
+        "instanceId" : 1,
+        "softwareSystemId" : "2"
+      } ]
+    }, {
+      "id" : "52",
+      "tags" : "Element,Deployment Node",
+      "name" : "Developer's Computer",
+      "environment" : "Development",
+      "technology" : "Windows/Ubuntu/MacOS....",
+      "instances" : 1,
+      "containerInstances" : [ {
+        "id" : "53",
+        "tags" : "Container Instance",
+        "relationships" : [ {
+          "id" : "58",
+          "sourceId" : "53",
+          "destinationId" : "57",
+          "description" : "Register commands using",
+          "linkedRelationshipId" : "18"
+        }, {
+          "id" : "55",
+          "sourceId" : "53",
+          "destinationId" : "54",
+          "description" : "Stores data using",
+          "linkedRelationshipId" : "25"
+        } ],
+        "environment" : "Development",
+        "deploymentGroups" : [ "Default" ],
+        "instanceId" : 1,
+        "containerId" : "9"
+      }, {
+        "id" : "54",
+        "tags" : "Container Instance",
+        "environment" : "Development",
+        "deploymentGroups" : [ "Default" ],
+        "instanceId" : 1,
+        "containerId" : "5"
+      } ]
+    } ]
+  },
+  "documentation" : { },
+  "views" : {
+    "systemLandscapeViews" : [ {
+      "description" : "SystemLandscape",
+      "key" : "nolocal",
+      "order" : 1,
+      "paperSize" : "A5_Portrait",
+      "dimensions" : {
+        "width" : 866,
+        "height" : 2016
+      },
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "enterpriseBoundaryVisible" : true,
+      "relationships" : [ {
+        "id" : "28",
+        "vertices" : [ {
+          "x" : 282,
+          "y" : 1357
+        } ]
+      }, {
+        "id" : "26"
+      }, {
+        "id" : "19",
+        "vertices" : [ {
+          "x" : 582,
+          "y" : 1357
+        } ]
+      } ],
+      "elements" : [ {
+        "id" : "1",
+        "x" : 232,
+        "y" : 207
+      }, {
+        "id" : "2",
+        "x" : 207,
+        "y" : 907
+      }, {
+        "id" : "3",
+        "x" : 207,
+        "y" : 1507
+      } ]
+    } ],
+    "containerViews" : [ {
+      "softwareSystemId" : "3",
+      "key" : "Containers",
+      "order" : 2,
+      "paperSize" : "A3_Portrait",
+      "dimensions" : {
+        "width" : 1754,
+        "height" : 3958
+      },
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "externalSoftwareSystemBoundariesVisible" : true,
+      "relationships" : [ {
+        "id" : "18"
+      }, {
+        "id" : "29",
+        "vertices" : [ {
+          "x" : 404,
+          "y" : 779
+        } ]
+      }, {
+        "id" : "27",
+        "vertices" : [ {
+          "x" : 929,
+          "y" : 929
+        } ]
+      }, {
+        "id" : "25"
+      }, {
+        "id" : "21",
+        "vertices" : [ {
+          "x" : 704,
+          "y" : 779
+        } ]
+      }, {
+        "id" : "32"
+      }, {
+        "id" : "31"
+      }, {
+        "id" : "30"
+      } ],
+      "elements" : [ {
+        "id" : "2",
+        "x" : 1079,
+        "y" : 1529
+      }, {
+        "id" : "4",
+        "x" : 329,
+        "y" : 329
+      }, {
+        "id" : "5",
+        "x" : 329,
+        "y" : 1529
+      }, {
+        "id" : "6",
+        "x" : 329,
+        "y" : 2729
+      }, {
+        "id" : "7",
+        "x" : 329,
+        "y" : 2129
+      }, {
+        "id" : "8",
+        "x" : 329,
+        "y" : 3329
+      }, {
+        "id" : "9",
+        "x" : 329,
+        "y" : 929
+      } ]
+    } ],
+    "componentViews" : [ {
+      "key" : "Components",
+      "order" : 3,
+      "paperSize" : "A3_Portrait",
+      "dimensions" : {
+        "width" : 2616,
+        "height" : 3254
+      },
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "containerId" : "9",
+      "externalContainerBoundariesVisible" : true,
+      "relationships" : [ {
+        "id" : "17"
+      }, {
+        "id" : "27"
+      }, {
+        "id" : "16",
+        "vertices" : [ {
+          "x" : 625,
+          "y" : 1379
+        } ]
+      }, {
+        "id" : "15",
+        "vertices" : [ {
+          "x" : 625,
+          "y" : 779
+        } ]
+      }, {
+        "id" : "14"
+      }, {
+        "id" : "24",
+        "vertices" : [ {
+          "x" : 1150,
+          "y" : 1229
+        } ]
+      }, {
+        "id" : "23",
+        "vertices" : [ {
+          "x" : 925,
+          "y" : 779
+        } ]
+      }, {
+        "id" : "22",
+        "vertices" : [ {
+          "x" : 925,
+          "y" : 1379
+        } ]
+      }, {
+        "id" : "20",
+        "vertices" : [ {
+          "x" : 808,
+          "y" : 2429
+        }, {
+          "x" : 808,
+          "y" : 2129
+        } ]
+      } ],
+      "elements" : [ {
+        "id" : "11",
+        "x" : 550,
+        "y" : 329
+      }, {
+        "id" : "12",
+        "x" : 550,
+        "y" : 929
+      }, {
+        "id" : "13",
+        "x" : 550,
+        "y" : 1529
+      }, {
+        "id" : "2",
+        "x" : 208,
+        "y" : 2129
+      }, {
+        "id" : "4",
+        "x" : 546,
+        "y" : 2729
+      }, {
+        "id" : "5",
+        "x" : 1958,
+        "y" : 1529
+      }, {
+        "id" : "10",
+        "x" : 1300,
+        "y" : 929
+      } ]
+    } ],
+    "deploymentViews" : [ {
+      "softwareSystemId" : "3",
+      "key" : "NoLocal-Live-Deployment",
+      "order" : 4,
+      "paperSize" : "A3_Portrait",
+      "dimensions" : {
+        "width" : 2008,
+        "height" : 4283
+      },
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "environment" : "Live",
+      "relationships" : [ {
+        "id" : "37",
+        "vertices" : [ {
+          "x" : 508,
+          "y" : 1000
+        } ]
+      }, {
+        "id" : "50",
+        "vertices" : [ {
+          "x" : 1062,
+          "y" : 1587
+        } ]
+      }, {
+        "id" : "40"
+      }, {
+        "id" : "51",
+        "vertices" : [ {
+          "x" : 1033,
+          "y" : 1150
+        } ]
+      }, {
+        "id" : "42"
+      }, {
+        "id" : "44"
+      }, {
+        "id" : "47"
+      }, {
+        "id" : "38",
+        "vertices" : [ {
+          "x" : 808,
+          "y" : 1000
+        } ]
+      } ],
+      "elements" : [ {
+        "id" : "33",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "45",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "34",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "46",
+        "x" : 433,
+        "y" : 3550
+      }, {
+        "id" : "35",
+        "x" : 433,
+        "y" : 550
+      }, {
+        "id" : "36",
+        "x" : 433,
+        "y" : 1150
+      }, {
+        "id" : "48",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "49",
+        "x" : 1229,
+        "y" : 1750
+      }, {
+        "id" : "39",
+        "x" : 433,
+        "y" : 1750
+      }, {
+        "id" : "41",
+        "x" : 433,
+        "y" : 2350
+      }, {
+        "id" : "43",
+        "x" : 433,
+        "y" : 2950
+      } ]
+    }, {
+      "softwareSystemId" : "3",
+      "key" : "NoLocal-Development-Deployment",
+      "order" : 5,
+      "paperSize" : "A5_Landscape",
+      "dimensions" : {
+        "width" : 1858,
+        "height" : 1616
+      },
+      "automaticLayout" : {
+        "implementation" : "Graphviz",
+        "rankDirection" : "TopBottom",
+        "rankSeparation" : 300,
+        "nodeSeparation" : 300,
+        "edgeSeparation" : 0,
+        "vertices" : false
+      },
+      "environment" : "Development",
+      "relationships" : [ {
+        "id" : "55"
+      }, {
+        "id" : "58",
+        "vertices" : [ {
+          "x" : 958,
+          "y" : 825
+        } ]
+      } ],
+      "elements" : [ {
+        "id" : "56",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "57",
+        "x" : 1079,
+        "y" : 987
+      }, {
+        "id" : "52",
+        "x" : 175,
+        "y" : 175
+      }, {
+        "id" : "53",
+        "x" : 329,
+        "y" : 387
+      }, {
+        "id" : "54",
+        "x" : 329,
+        "y" : 987
+      } ]
+    } ],
+    "configuration" : {
+      "branding" : { },
+      "styles" : {
+        "elements" : [ {
+          "tag" : "Software System",
+          "background" : "#1168bd",
+          "color" : "#ffffff"
+        }, {
+          "tag" : "Discord",
+          "background" : "#7289da",
+          "color" : "#ffffff"
+        }, {
+          "tag" : "Person",
+          "background" : "#08427b",
+          "color" : "#ffffff",
+          "shape" : "Person"
+        }, {
+          "tag" : "Caddy",
+          "background" : "#0a7906",
+          "color" : "#ffffff"
+        }, {
+          "tag" : "Redis",
+          "background" : "#a41e11",
+          "color" : "#ffffff"
+        }, {
+          "tag" : "Volume",
+          "background" : "#999999",
+          "shape" : "Cylinder"
+        }, {
+          "tag" : "NoLocalApp",
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "shape" : "RoundedBox"
+        }, {
+          "tag" : "Bucket",
+          "background" : "#1168bd",
+          "color" : "#ffffff",
+          "shape" : "Pipe"
+        } ]
+      },
+      "terminology" : { },
+      "lastSavedView" : "NoLocal-Live-Deployment"
+    }
+  }
+}

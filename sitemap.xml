@@ -16,6 +16,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://datocal.github.io/nolocal/devguide/c4model/</loc>
+         <lastmod>2022-11-10</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://datocal.github.io/nolocal/devguide/persistence/</loc>
          <lastmod>2022-11-10</lastmod>
          <changefreq>daily</changefreq>
