@@ -21,12 +21,12 @@ class DetoCommand() : DiscordCommand {
 
     private fun replaceByD(request: String): String {
         val size = request.length
-        val lettersToReplace = (Random.nextInt(size - 1) * 0.2).toInt()
+        val lettersToReplace = (Random.nextInt(size - 1) * 0.1).toInt()
         var newString = request
         for (i in 0..lettersToReplace) {
             val letterToReplace = request[Random.nextInt(size - 1)]
-            if(letterToReplace!=' '){
-                newString = newString.replaceFirst(letterToReplace, 'd')
+            if(!listOf('a', 'e', 'i', 'o', 'u', ' ').contains(letterToReplace)){
+                newString = newString.replace(letterToReplace, 'd')
             }
         }
         return newString
