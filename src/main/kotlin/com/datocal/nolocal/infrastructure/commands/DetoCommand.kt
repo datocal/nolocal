@@ -21,7 +21,7 @@ class DetoCommand() : DiscordCommand {
 
     private fun replaceByD(request: String): String {
         val size = request.length
-        val lettersToReplace = Random.nextInt(size - 1)
+        val lettersToReplace = (Random.nextInt(size - 1) * 0.2).toInt()
         var newString = request
         for (i in 0..lettersToReplace) {
             val letterToReplace = request[Random.nextInt(size - 1)]
