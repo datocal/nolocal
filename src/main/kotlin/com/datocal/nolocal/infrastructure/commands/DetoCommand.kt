@@ -25,7 +25,9 @@ class DetoCommand() : DiscordCommand {
         var newString = request
         for (i in 0..lettersToReplace) {
             val letterToReplace = request[Random.nextInt(size - 1)]
-            newString = newString.replace(letterToReplace, 'd')
+            if(letterToReplace!=' '){
+                newString = newString.replaceFirst(letterToReplace, 'd')
+            }
         }
         return newString
     }
