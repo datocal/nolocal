@@ -6,22 +6,31 @@ import org.junit.jupiter.api.Test
 internal class DiscordApiConfigurationPropertiesTest {
 
     private companion object {
-        private const val EXPECTED_DISCORD_DEV_URL =
-            "https://discord.com/api/v8/applications/{client-id}/guilds/{guild-id}"
+        private const val HOST = "https://discord.com"
+        private const val BASE_ENDPOINT = "/api/v8/applications"
+        private const val EXPECTED_DISCORD_URL = "$HOST$BASE_ENDPOINT/{client-id}"
+        private const val EXPECTED_DISCORD_GUILD_URL = "$EXPECTED_DISCORD_URL/guilds/{guild-id}"
     }
 
     @Test
-    fun `should create url for dev environment`() {
-        val configurationProperties = `given a configuration properties of the dev environment`()
+    fun `should create url with guild mode`() {
+        val configurationProperties = `given a configuration properties with guild mode by`()
 
-        assertEquals(EXPECTED_DISCORD_DEV_URL, configurationProperties.fullBaseUrlWithPlaceholders)
+        assertEquals(EXPECTED_DISCORD_GUILD_URL, configurationProperties.fullBaseUrlWithPlaceholders)
     }
 
-    private fun `given a configuration properties of the dev environment`(): DiscordApiConfigurationProperties {
+    @Test
+    fun `should create url without guild mode`() {
+        val configurationProperties = `given a configuration properties with guild mode by`(guildMode = false)
+
+        assertEquals(EXPECTED_DISCORD_URL, configurationProperties.fullBaseUrlWithPlaceholders)
+    }
+
+    private fun `given a configuration properties with guild mode by`(guildMode: Boolean = true): DiscordApiConfigurationProperties {
         val configurationProperties = DiscordApiConfigurationProperties()
-        configurationProperties.activeProfile = "dev"
-        configurationProperties.host = "https://discord.com"
-        configurationProperties.baseEndpoint = "/api/v8/applications"
+        configurationProperties.guildMode = guildMode
+        configurationProperties.host = HOST
+        configurationProperties.baseEndpoint = BASE_ENDPOINT
         return configurationProperties
     }
 }

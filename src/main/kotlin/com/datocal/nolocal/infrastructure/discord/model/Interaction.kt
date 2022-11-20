@@ -6,6 +6,20 @@ data class Interaction(
 ) {
     val command: String?
         get() = data?.name
+
+    val textMessages: List<String>
+        get() {
+            return (
+                data
+                    ?.resolved
+                    ?.messages
+                )?.entries
+                ?.mapNotNull { it.value?.content }
+                ?.toList() ?: emptyList()
+        }
+
+    val firstMessage: String
+        get() = textMessages.firstOrNull() ?: ""
 }
 
 data class Data(

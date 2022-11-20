@@ -1,5 +1,7 @@
 package com.datocal.nolocal.infrastructure.configuration.usecases
 
+import com.datocal.nolocal.application.RandomProvider
+import com.datocal.nolocal.application.SubstituteRandomCharactersByDsUseCase
 import com.datocal.nolocal.application.roulette.GetRandomItemUseCase
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.domain.dummy.Ping
@@ -18,5 +20,15 @@ class UseCaseConfiguration {
     @Bean
     fun ping(messages: MessageResolver): Ping {
         return Ping(messages)
+    }
+
+    @Bean
+    fun substituteRandomLettersByDsUseCase(): SubstituteRandomCharactersByDsUseCase {
+        return SubstituteRandomCharactersByDsUseCase(randomProvider())
+    }
+
+    @Bean
+    fun randomProvider(): RandomProvider {
+        return RandomProvider()
     }
 }
