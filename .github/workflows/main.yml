@@ -202,7 +202,7 @@ jobs:
             sudo docker-compose up -d nolocal
       - name: Update DuckDNS IP
         run: |
-          curl 'https://www.duckdns.org/update?domains=nolocalb&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
+          curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
       - name: Start Caddy
         uses: appleboy/ssh-action@master
         with:
