@@ -11,22 +11,13 @@
 
 
 ## What
-This is a work in progress bot for discord servers. In the time writing this, the bot is only capable of two silly commands.
+This is a work in progress bot for discord. In the time writing this, the bot is only capable of some silly commands.
 
 But it has a great infrastructure to create and deploy a bot in few steps! you can see de details in the full documentation.
 
-The intention of this project is to create a layer of abstraction between multiple cloud providers to create game servers like minecraft by discord commands.
-
 ## Why
-There are lots of users that don't know how to create game servers, and the ones who knows how it works will have to go through a complex process to create instances, open them to public, open ports and more.
-
-With this solution, once it's configured on your favourite server, you can create instances and start/stop it as you use it, paying the server the time is being used.
+The intention of this project is being a sandbox to experiment technologies, features, and more on a fully productive environment.
 
 ## How
-The users of this bot will have to configure their clouds accounts through the bot.
 
-The bot will create, start and stop instances based on the commands. 
-
-You can check out the full documentation in this site:
-
-[<center><big><span style="color:green">>Documentation<</span></big></center>](https://datocal.github.io/nolocal/)
+You can check out the full documentation [in this site](https://datocal.github.io/nolocal/)
