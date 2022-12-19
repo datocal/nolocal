@@ -7,7 +7,8 @@ class SubstituteRandomCharactersByDsUseCase(
         private const val PROBABILITY_OUT_OF_TEN = 1
         private val LIST_OF_UNCHANGEABLE_CHARACTERS = listOf(
             '¿', '?', '!', '¡', 'a', 'e', 'i', 'o', 'u', ' ',
-            'y', 'A', 'E', 'I', 'O', 'U'
+            'y', 'A', 'E', 'I', 'O', 'U', '.', ',', '-', '*', '(', ')',
+            '/', '&', '%', '#', '$', '€', '"', '\'', 'º', 'ª', ':', ';'
         )
     }
 
