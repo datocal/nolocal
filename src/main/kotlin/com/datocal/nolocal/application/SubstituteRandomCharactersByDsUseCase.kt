@@ -9,6 +9,7 @@ class SubstituteRandomCharactersByDsUseCase(
         private const val ASCII_CODE_END_UPPER = 90
         private const val ASCII_CODE_START_LOWER = 97
         private const val ASCII_CODE_END_LOWER = 122
+        private val LIST_OF_VOWELS = listOf('a', 'e', 'i', 'o', 'u')
     }
 
     fun execute(request: String): String {
@@ -23,8 +24,7 @@ class SubstituteRandomCharactersByDsUseCase(
     }
 
     private fun isChangeableCharacter(character: Char): Boolean {
-        return character.code in ASCII_CODE_START_UPPER..ASCII_CODE_END_UPPER ||
-            character.code in ASCII_CODE_START_LOWER..ASCII_CODE_END_LOWER
+        return character.isBasicAsciiCharacter() && !character.isVowel()
     }
 
     private fun replaceCharByD(character: Char): Char {
@@ -36,5 +36,14 @@ class SubstituteRandomCharactersByDsUseCase(
 
     private fun happens(): Boolean {
         return randomProvider.randomOfTen() <= PROBABILITY_OUT_OF_TEN
+    }
+
+    private fun Char.isVowel(): Boolean {
+        return LIST_OF_VOWELS.contains(this)
+    }
+
+    private fun Char.isBasicAsciiCharacter(): Boolean {
+        return code in ASCII_CODE_START_UPPER..ASCII_CODE_END_UPPER ||
+            code in ASCII_CODE_START_LOWER..ASCII_CODE_END_LOWER
     }
 }
