@@ -5,11 +5,10 @@ class SubstituteRandomCharactersByDsUseCase(
 ) {
     private companion object {
         private const val PROBABILITY_OUT_OF_TEN = 1
-        private val LIST_OF_UNCHANGEABLE_CHARACTERS = listOf(
-            '¿', '?', '!', '¡', 'a', 'e', 'i', 'o', 'u', ' ',
-            'y', 'A', 'E', 'I', 'O', 'U', '.', ',', '-', '*', '(', ')',
-            '/', '&', '%', '#', '$', '€', '"', '\'', 'º', 'ª', ':', ';'
-        )
+        private const val ASCII_CODE_START_UPPER = 65
+        private const val ASCII_CODE_END_UPPER = 90
+        private const val ASCII_CODE_START_LOWER = 97
+        private const val ASCII_CODE_END_LOWER = 122
     }
 
     fun execute(request: String): String {
@@ -23,7 +22,10 @@ class SubstituteRandomCharactersByDsUseCase(
         return character
     }
 
-    private fun isChangeableCharacter(character: Char) = !LIST_OF_UNCHANGEABLE_CHARACTERS.contains(character)
+    private fun isChangeableCharacter(character: Char): Boolean {
+        return character.code in ASCII_CODE_START_UPPER..ASCII_CODE_END_UPPER ||
+            character.code in ASCII_CODE_START_LOWER..ASCII_CODE_END_LOWER
+    }
 
     private fun replaceCharByD(character: Char): Char {
         if (character.isLowerCase()) {
