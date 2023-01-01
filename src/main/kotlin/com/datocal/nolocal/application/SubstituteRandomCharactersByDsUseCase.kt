@@ -9,7 +9,7 @@ class SubstituteRandomCharactersByDsUseCase(
         private const val ASCII_CODE_END_UPPER = 90
         private const val ASCII_CODE_START_LOWER = 97
         private const val ASCII_CODE_END_LOWER = 122
-        private val LIST_OF_VOWELS = listOf('a', 'e', 'i', 'o', 'u')
+        private val LIST_OF_VOWELS = listOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
     }
 
     fun execute(request: String): String {
