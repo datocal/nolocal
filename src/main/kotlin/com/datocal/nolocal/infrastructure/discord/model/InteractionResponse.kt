@@ -2,7 +2,7 @@ package com.datocal.nolocal.infrastructure.discord.model
 
 data class InteractionResponse private constructor(
     val type: Int,
-    val data: InteractionResponseData?
+    val data: InteractionResponseData?,
 ) {
     companion object {
         private const val TYPE_ACK: Int = 1

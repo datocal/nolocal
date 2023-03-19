@@ -5,7 +5,7 @@ import com.datocal.nolocal.domain.roulette.Roulette
 import com.datocal.nolocal.domain.roulette.RouletteItem
 
 class GetRandomItemUseCase(
-    private val repository: RandomItemRepository
+    private val repository: RandomItemRepository,
 ) {
 
     fun execute(request: GetRandomItemUseCaseRequest): GetRandomItemUseCaseResponse {
@@ -24,9 +24,9 @@ class GetRandomItemUseCase(
 }
 
 data class GetRandomItemUseCaseRequest(
-    val items: List<String>
+    val items: List<String>,
 )
 
 data class GetRandomItemUseCaseResponse(
-    val item: String?
+    val item: String?,
 )

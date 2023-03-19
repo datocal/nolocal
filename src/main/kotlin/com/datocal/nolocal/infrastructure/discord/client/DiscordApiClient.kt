@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.web.reactive.function.client.WebClient
 
 class DiscordApiClient(
-    private val client: WebClient
+    private val client: WebClient,
 ) {
 
     private val logger: Logger = LoggerFactory.getLogger(DiscordApiClient::class.java)

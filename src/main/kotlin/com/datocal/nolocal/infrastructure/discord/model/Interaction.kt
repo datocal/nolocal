@@ -28,7 +28,7 @@ data class Data(
 )
 
 data class Resolved(
-    val messages: Map<String, PartialMessage?> = emptyMap()
+    val messages: Map<String, PartialMessage?> = emptyMap(),
 )
 
 data class PartialMessage(

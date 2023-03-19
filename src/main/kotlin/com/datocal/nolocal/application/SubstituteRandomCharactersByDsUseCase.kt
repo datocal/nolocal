@@ -1,7 +1,7 @@
 package com.datocal.nolocal.application
 
 class SubstituteRandomCharactersByDsUseCase(
-    private val randomProvider: RandomProvider
+    private val randomProvider: RandomProvider,
 ) {
     private companion object {
         private const val PROBABILITY_OUT_OF_TEN = 1

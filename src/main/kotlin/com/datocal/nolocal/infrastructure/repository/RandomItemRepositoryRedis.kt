@@ -4,7 +4,7 @@ import com.datocal.nolocal.domain.roulette.RandomItemRepository
 import redis.clients.jedis.JedisPool
 
 class RandomItemRepositoryRedis(
-    private val jedisPool: JedisPool
+    private val jedisPool: JedisPool,
 ) : RandomItemRepository {
 
     override fun save(randomItem: String) {

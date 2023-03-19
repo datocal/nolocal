@@ -67,7 +67,7 @@ internal class RouletteCommandTest {
             return Interaction(
                 data = Data(
                     name = "roulette",
-                    resolved = Resolved()
+                    resolved = Resolved(),
                 ),
                 type = 1,
             )
@@ -80,9 +80,9 @@ internal class RouletteCommandTest {
                     resolved = Resolved(
                         messages = mapOf(
                             "" to null,
-                            "a" to PartialMessage()
-                        )
-                    )
+                            "a" to PartialMessage(),
+                        ),
+                    ),
                 ),
                 type = 1,
             )
@@ -95,13 +95,13 @@ internal class RouletteCommandTest {
                     resolved = Resolved(
                         messages = mapOf(
                             "123" to PartialMessage(
-                                content = "abc"
+                                content = "abc",
                             ),
                             "456" to PartialMessage(
-                                content = "def"
-                            )
-                        )
-                    )
+                                content = "def",
+                            ),
+                        ),
+                    ),
                 ),
                 type = 1,
             )
@@ -109,13 +109,13 @@ internal class RouletteCommandTest {
 
         private fun emptyUseCaseRequest(): Any {
             return GetRandomItemUseCaseRequest(
-                emptyList()
+                emptyList(),
             )
         }
 
         private fun actualUseCaseRequest(): Any {
             return GetRandomItemUseCaseRequest(
-                listOf("abc", "def")
+                listOf("abc", "def"),
             )
         }
     }

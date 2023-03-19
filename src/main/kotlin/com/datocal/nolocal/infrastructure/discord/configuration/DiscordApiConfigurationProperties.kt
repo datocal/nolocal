@@ -35,7 +35,10 @@ class DiscordApiConfigurationProperties {
     }
 
     private fun customPort(): String {
-        return if (port == null) ""
-        else ":$port"
+        return if (port == null) {
+            ""
+        } else {
+            ":$port"
+        }
     }
 }

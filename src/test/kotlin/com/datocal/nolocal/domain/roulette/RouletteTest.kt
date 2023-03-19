@@ -20,8 +20,8 @@ internal class RouletteTest {
                 RouletteItem("~~aa~~"),
                 RouletteItem("bb"),
                 RouletteItem("~~cc~~"),
-                RouletteItem("~~dd~~")
-            )
+                RouletteItem("~~dd~~"),
+            ),
         ).random()
 
         assertNotNull(response)

@@ -15,8 +15,8 @@ class AckIntegrationTest : IntegrationTest() {
             .contentType(ContentType.JSON)
             .body(
                 mapOf(
-                    "type" to 1
-                )
+                    "type" to 1,
+                ),
             )
             .`when`()
             .post("/discord/interactions")

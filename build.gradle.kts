@@ -2,12 +2,12 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 
 plugins {
-    id("org.springframework.boot") version "2.6.6"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
-    id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
-    id("info.solidsoft.pitest") version "1.7.4"
-    kotlin("jvm") version "1.6.20"
-    kotlin("plugin.spring") version "1.6.20"
+    id("org.springframework.boot") version "2.7.9"
+    id("io.spring.dependency-management") version "1.0.15.RELEASE"
+    id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
+    id("info.solidsoft.pitest") version "1.9.11"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
     jacoco
 }
 
@@ -25,16 +25,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.4")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
     implementation("redis.clients:jedis:4.3.1")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.17.4")
-    testImplementation("io.rest-assured:spring-mock-mvc:5.2.0")
-    testImplementation("org.testcontainers:testcontainers:1.17.4")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:4.0.0")
-    testImplementation("org.mockito:mockito-inline:4.8.0")
-    testImplementation("org.testcontainers:mockserver:1.17.4")
-    testImplementation("org.mock-server:mockserver-client-java:5.14.0")
+    testImplementation("org.testcontainers:junit-jupiter:1.17.6")
+    testImplementation("io.rest-assured:spring-mock-mvc:5.3.0")
+    testImplementation("org.testcontainers:testcontainers:1.17.6")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
+    testImplementation("org.mockito:mockito-inline:5.2.0")
+    testImplementation("org.testcontainers:mockserver:1.17.6")
+    testImplementation("org.mock-server:mockserver-client-java:5.15.0")
     testImplementation("org.apache.commons:commons-text:1.10.0")
 }
 
@@ -65,6 +65,6 @@ fun generateJacocoXmlReportsOnCheck() {
 
 fun configureMutationTests() {
     pitest {
-        junit5PluginVersion.set("0.15")
+        junit5PluginVersion.set("1.0.0")
     }
 }

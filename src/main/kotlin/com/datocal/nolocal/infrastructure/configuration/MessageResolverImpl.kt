@@ -7,7 +7,7 @@ import java.util.Locale
 
 @Component
 class MessageResolverImpl(
-    private val messageSource: ResourceBundleMessageSource
+    private val messageSource: ResourceBundleMessageSource,
 ) : MessageResolver {
     override fun get(key: String): String {
         return messageSource.getMessage(key, emptyArray(), Locale("es"))

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class InteractionsController(
-    private val commands: Map<String, DiscordCommand>
+    private val commands: Map<String, DiscordCommand>,
 ) {
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
 

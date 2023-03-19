@@ -24,8 +24,8 @@ import org.testcontainers.utility.DockerImageName
 @ContextConfiguration(
     initializers = [
         MockServerInitializer::class,
-        RedisInitializer::class
-    ]
+        RedisInitializer::class,
+    ],
 )
 class IntegrationTest {
 
@@ -47,7 +47,7 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
     private val container: MockServerContainer by lazy {
         MockServerContainer(
             DockerImageName.parse("mockserver/mockserver")
-                .withTag("mockserver-" + MockServerClient::class.java.getPackage().implementationVersion)
+                .withTag("mockserver-" + MockServerClient::class.java.getPackage().implementationVersion),
         )
     }
     private val logger = LoggerFactory.getLogger(MockServerInitializer::class.java)
@@ -65,8 +65,8 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
                 mapOf(
                     "discord.api.host" to "http://" + container.host,
                     "discord.api.port" to container.serverPort,
-                )
-            )
+                ),
+            ),
         )
     }
 }
@@ -76,7 +76,7 @@ class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationCo
     private val container = GenericContainer<Nothing>(
         DockerImageName
             .parse("redis")
-            .withTag("latest")
+            .withTag("latest"),
     ).apply { withExposedPorts(REDIS_PORT) }
 
     private val logger = LoggerFactory.getLogger(RedisInitializer::class.java)
@@ -92,8 +92,8 @@ class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationCo
                 mapOf(
                     "redis.host" to container.host,
                     "redis.port" to container.getMappedPort(REDIS_PORT),
-                )
-            )
+                ),
+            ),
         )
     }
 

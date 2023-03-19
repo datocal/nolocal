@@ -28,12 +28,12 @@ class DiscordApiClientStubs {
                     .withMethod("POST")
                     .withContentType(MediaType.APPLICATION_JSON)
                     .withBody(JsonBody(COMMANDS_POST_REQUEST.format(givenCommand.name, givenCommand.description, givenCommand.type))),
-                Times.once()
+                Times.once(),
             )
             .respond(
                 HttpResponse.response()
                     .withContentType(MediaType.APPLICATION_JSON)
-                    .withBody(COMMANDS_GET_RESPONSE_TEST_COMMAND)
+                    .withBody(COMMANDS_GET_RESPONSE_TEST_COMMAND),
             )
     }
 
@@ -43,12 +43,12 @@ class DiscordApiClientStubs {
                 HttpRequest.request()
                     .withPath("${discordProperties.endpoint}/commands")
                     .withMethod("GET"),
-                Times.once()
+                Times.once(),
             )
             .respond(
                 HttpResponse.response()
                     .withContentType(MediaType.APPLICATION_JSON)
-                    .withBody(COMMANDS_GET_RESPONSE_TWO_COMMANDS)
+                    .withBody(COMMANDS_GET_RESPONSE_TWO_COMMANDS),
             )
     }
 
@@ -58,12 +58,12 @@ class DiscordApiClientStubs {
                 HttpRequest.request()
                     .withPath("${discordProperties.endpoint}/commands")
                     .withMethod("GET"),
-                Times.once()
+                Times.once(),
             )
             .respond(
                 HttpResponse.response()
                     .withContentType(MediaType.APPLICATION_JSON)
-                    .withBody(COMMANDS_GET_RESPONSE_EMPTY_COMMANDS)
+                    .withBody(COMMANDS_GET_RESPONSE_EMPTY_COMMANDS),
             )
     }
 
@@ -73,12 +73,12 @@ class DiscordApiClientStubs {
                 HttpRequest.request()
                     .withPath("${discordProperties.endpoint}/commands")
                     .withMethod("GET"),
-                Times.once()
+                Times.once(),
             )
             .respond(
                 HttpResponse.response()
                     .withContentType(MediaType.APPLICATION_JSON)
-                    .withStatusCode(204)
+                    .withStatusCode(204),
             )
     }
 
@@ -88,12 +88,12 @@ class DiscordApiClientStubs {
                 HttpRequest.request()
                     .withPath("${discordProperties.endpoint}/commands")
                     .withMethod("GET"),
-                Times.once()
+                Times.once(),
             )
             .respond(
                 HttpResponse.response()
                     .withContentType(MediaType.APPLICATION_JSON)
-                    .withStatusCode(400)
+                    .withStatusCode(400),
             )
     }
 

@@ -30,12 +30,12 @@ internal class DiscordApiClientTest : IntegrationTest() {
         ApplicationCommand(
             name = "culo",
             description = "El culo tuyo",
-            type = 1
+            type = 1,
         ),
         ApplicationCommand(
             name = "roulette",
             description = "",
-            type = 3
+            type = 3,
         ),
     )
 

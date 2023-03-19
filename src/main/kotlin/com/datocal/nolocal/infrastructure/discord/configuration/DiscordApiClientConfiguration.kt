@@ -29,7 +29,7 @@ class DiscordApiClientConfiguration {
                 mapOf(
                     "client-id" to discordProperties.clientId,
                     "guild-id" to discordProperties.guildId,
-                )
+                ),
             )
             .build()
     }

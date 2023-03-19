@@ -67,7 +67,6 @@ class RouletteCommandIntegrationTest : IntegrationTest() {
 
     @Test
     fun `should not find any message when there is no message`() {
-
         val content = doRequestReturningContent(ROULETTE_WITHOUT_MESSAGE_REQUEST)
 
         assertEquals(messages.get(NO_ITEMS_FOUND_RESPONSE), content)

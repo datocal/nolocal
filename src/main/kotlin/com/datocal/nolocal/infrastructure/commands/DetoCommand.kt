@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
     type = Command.TYPE_MESSAGE,
 )
 class DetoCommand(
-    private val substituteRandomLettersByDsUseCase: SubstituteRandomCharactersByDsUseCase
+    private val substituteRandomLettersByDsUseCase: SubstituteRandomCharactersByDsUseCase,
 ) : DiscordCommand {
 
     override fun accept(interaction: Interaction): InteractionResponse {
