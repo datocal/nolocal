@@ -24,7 +24,7 @@ internal class CommandRegistratorTest {
         `when the discord api doesnt provide any command`()
         val commandExecutors = `given a discord command without annotation`()
 
-        CommandRegistrator(commandExecutors, apiClient).registerCommands()
+        CommandRegistrator(commandExecutors, apiClient).run(null)
 
         verify(apiClient, never()).register(`application command`(1))
     }
@@ -34,7 +34,7 @@ internal class CommandRegistratorTest {
         `when the discord api provides a command `()
         val commandExecutors = `given an annotated discord command`()
 
-        CommandRegistrator(commandExecutors, apiClient).registerCommands()
+        CommandRegistrator(commandExecutors, apiClient).run(null)
 
         verify(apiClient, never()).register(`application command`())
     }
@@ -44,7 +44,7 @@ internal class CommandRegistratorTest {
         `when the discord api doesnt provide any command`()
         val commandExecutors = `given an annotated discord command`()
 
-        CommandRegistrator(commandExecutors, apiClient).registerCommands()
+        CommandRegistrator(commandExecutors, apiClient).run(null)
 
         verify(apiClient).register(`application command`())
     }
@@ -54,7 +54,7 @@ internal class CommandRegistratorTest {
         `when the discord api provides a command `()
         val commandExecutors = `given some annotated discord commands`()
 
-        CommandRegistrator(commandExecutors, apiClient).registerCommands()
+        CommandRegistrator(commandExecutors, apiClient).run(null)
 
         verify(apiClient, times(2)).register(any())
         verify(apiClient, never()).register(`application command`(1))

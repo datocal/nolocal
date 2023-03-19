@@ -4,26 +4,17 @@ import com.datocal.nolocal.infrastructure.commands.DiscordCommand
 import com.datocal.nolocal.infrastructure.discord.client.DiscordApiClient
 import com.datocal.nolocal.infrastructure.discord.model.ApplicationCommand
 import com.datocal.nolocal.infrastructure.discord.model.Command
+import org.springframework.boot.ApplicationArguments
+import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
-import javax.annotation.PostConstruct
 
 @Component
 @Profile(value = ["production"])
 class CommandRegistrator(
     private val commandExecutors: List<DiscordCommand>,
     private val client: DiscordApiClient,
-) {
-
-    @PostConstruct
-    fun registerCommands() {
-        val currentCommands = client.getCommands()
-        commandExecutors
-            .mapNotNull(this::toAnnotatedCommand)
-            .map(this::toApplicationCommand)
-            .filter { notOnCurrentCommands(currentCommands, it) }
-            .forEach(this.client::register)
-    }
+) : ApplicationRunner {
 
     private fun toAnnotatedCommand(command: DiscordCommand): Command? =
         command.javaClass.getDeclaredAnnotation(Command::class.java)
@@ -36,4 +27,13 @@ class CommandRegistrator(
 
     private fun notOnCurrentCommands(currentCommands: List<ApplicationCommand>, it: ApplicationCommand) =
         !currentCommands.contains(it)
+
+    override fun run(args: ApplicationArguments?) {
+        val currentCommands = client.getCommands()
+        commandExecutors
+            .mapNotNull(this::toAnnotatedCommand)
+            .map(this::toApplicationCommand)
+            .filter { notOnCurrentCommands(currentCommands, it) }
+            .forEach(this.client::register)
+    }
 }
