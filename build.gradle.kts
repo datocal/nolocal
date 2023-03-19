@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 
 plugins {
@@ -67,4 +68,8 @@ fun configureMutationTests() {
     pitest {
         junit5PluginVersion.set("1.0.0")
     }
+}
+
+tasks.withType<BootJar> {
+    archiveVersion.set("")
 }
