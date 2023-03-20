@@ -169,7 +169,7 @@ jobs:
     needs: [ Check, Snyk, PrepareImage, BuildDocs, PrepareOracleCLoud, SetUpCaddy]
     steps:
       - name: Download the docker-compose file
-        uses: actions/download-artifact@v3.0.0
+        uses: actions/download-artifact@v3.0.2
         with:
           name: compose
           path: .
