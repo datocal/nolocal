@@ -73,7 +73,7 @@ jobs:
       - name: Checkout project
         uses: actions/checkout@v3.0.0
       - name: Docker login
-        uses: docker/login-action@v1.14.1
+        uses: docker/login-action@v2.1.0
         with:
           username: davidtca
           password: ${{secrets.DOCKERHUB_TOKEN}}
@@ -107,7 +107,7 @@ jobs:
           path: ./docker-compose.yml
           name: compose
       - name: Docker login
-        uses: docker/login-action@v1.14.1
+        uses: docker/login-action@v2.1.0
         with:
           username: davidtca
           password: ${{secrets.DOCKERHUB_TOKEN}}
