@@ -28,4 +28,26 @@ internal class SubstituteRandomCharactersByDsUseCaseTest {
 
         assertEquals("adada duedadda", result)
     }
+
+
+    @Test
+    fun `should replace characters when happens with uppercase`() {
+        val givenAStringToChange = "aBada quedabra"
+        whenever(randomProvider.randomOfTen()).thenReturn(1)
+
+        val result = useCase.execute(givenAStringToChange)
+
+        assertEquals("aDada duedadda", result)
+    }
+
+
+    @Test
+    fun `should not replace characters when not happens`() {
+        val givenAStringToChange = "abada quedabra"
+        whenever(randomProvider.randomOfTen()).thenReturn(0)
+
+        val result = useCase.execute(givenAStringToChange)
+
+        assertEquals("abada quedabra", result)
+    }
 }
