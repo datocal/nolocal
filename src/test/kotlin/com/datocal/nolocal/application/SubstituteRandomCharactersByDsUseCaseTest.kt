@@ -44,7 +44,7 @@ internal class SubstituteRandomCharactersByDsUseCaseTest {
     @Test
     fun `should not replace characters when not happens`() {
         val givenAStringToChange = "abada quedabra"
-        whenever(randomProvider.randomOfTen()).thenReturn(0)
+        whenever(randomProvider.randomOfTen()).thenReturn(9)
 
         val result = useCase.execute(givenAStringToChange)
 
