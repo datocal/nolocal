@@ -29,7 +29,6 @@ internal class SubstituteRandomCharactersByDsUseCaseTest {
         assertEquals("adada duedadda", result)
     }
 
-
     @Test
     fun `should replace characters when happens with uppercase`() {
         val givenAStringToChange = "aBada quedabra"
@@ -39,7 +38,6 @@ internal class SubstituteRandomCharactersByDsUseCaseTest {
 
         assertEquals("aDada duedadda", result)
     }
-
 
     @Test
     fun `should not replace characters when not happens`() {
