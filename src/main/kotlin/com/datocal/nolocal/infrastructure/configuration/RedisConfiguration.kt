@@ -16,7 +16,9 @@ class RedisConfiguration {
     private var redisPort: Int = 0
 
     @Bean
-    fun redisClient() = JedisPool(redisHost, redisPort)
+    fun redisClient(): JedisPool {
+        return JedisPool(redisHost, redisPort)
+    }
 
     @Bean
     fun randomItemRepositoryRedis(redisClient: JedisPool): RandomItemRepositoryRedis {

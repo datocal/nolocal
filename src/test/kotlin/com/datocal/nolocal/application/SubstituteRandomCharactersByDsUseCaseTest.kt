@@ -21,12 +21,12 @@ internal class SubstituteRandomCharactersByDsUseCaseTest {
 
     @Test
     fun `should replace characters when happens`() {
-        val givenAStringToChange = "abada quedabra"
+        val givenAStringToChange = "abada quedabra!"
         whenever(randomProvider.randomOfTen()).thenReturn(1)
 
         val result = useCase.execute(givenAStringToChange)
 
-        assertEquals("adada duedadda", result)
+        assertEquals("adada duedadda!", result)
     }
 
     @Test
