@@ -28,6 +28,16 @@ class DetoCommandIntegrationTest : IntegrationTest() {
                     "type" : 2
                 }
             """
+
+        private const val DETO_WITHOUT_MESSAGE_REQUEST =
+            """
+                {
+                    "data": {
+                        "name" : "deto"
+                    },
+                    "type" : 2
+                }
+            """
     }
 
     @Test
@@ -37,6 +47,15 @@ class DetoCommandIntegrationTest : IntegrationTest() {
         val content = doRequestReturningContent(validRequest)
 
         Assertions.assertTrue(listOf("Abada", "Adada").contains(content))
+    }
+
+    @Test
+    fun `should do nothing`() {
+        val validRequest = DETO_WITHOUT_MESSAGE_REQUEST
+
+        val content = doRequestReturningContent(validRequest)
+
+        Assertions.assertEquals("", content)
     }
 
     private fun doRequestReturningContent(body: String): String {

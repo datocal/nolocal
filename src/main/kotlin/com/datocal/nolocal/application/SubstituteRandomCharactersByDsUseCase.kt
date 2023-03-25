@@ -12,7 +12,7 @@ class SubstituteRandomCharactersByDsUseCase(
         private val LIST_OF_VOWELS = listOf('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
     }
 
-    fun execute(request: String): String {
+    fun     execute(request: String): String {
         return request.map(this::randomReplaceCharacter).joinToString("")
     }
 
