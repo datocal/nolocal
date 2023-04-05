@@ -35,7 +35,7 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers:1.17.6")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
     testImplementation("org.mockito:mockito-inline:5.2.0")
-    testImplementation("org.testcontainers:mockserver:1.17.6")
+    testImplementation("org.testcontainers:mockserver:1.18.0")
     testImplementation("org.mock-server:mockserver-client-java:5.15.0")
     testImplementation("org.apache.commons:commons-text:1.10.0")
 }
