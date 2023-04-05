@@ -30,7 +30,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.2")
     implementation("redis.clients:jedis:4.3.2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.17.6")
+    testImplementation("org.testcontainers:junit-jupiter:1.18.0")
     testImplementation("io.rest-assured:spring-mock-mvc:5.3.0")
     testImplementation("org.testcontainers:testcontainers:1.17.6")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
