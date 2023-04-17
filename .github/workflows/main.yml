@@ -92,7 +92,8 @@ jobs:
         uses: actions/setup-java@v3.11.0
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'
+          cache: 'gradle'
       - name: Build Jar
         run: |
           chmod +x ./gradlew
