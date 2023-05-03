@@ -10,7 +10,7 @@ plugins {
     kotlin("jvm") version "1.8.20"
     kotlin("plugin.spring") version "1.8.20"
     jacoco
-    id("org.jetbrains.kotlinx.kover") version "0.7.0-Alpha"
+    id("org.jetbrains.kotlinx.kover") version "0.7.0-Beta"
 }
 
 group = "com.datocal"
