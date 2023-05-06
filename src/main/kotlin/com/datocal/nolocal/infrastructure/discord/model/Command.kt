@@ -1,5 +1,7 @@
 package com.datocal.nolocal.infrastructure.discord.model
 
+import kotlin.reflect.KClass
+
 /**
  * Annotation to register discord commands. A description can only be provided to the TYPE_CHAT_INPUT commands,
  * otherwise the application will fail to load the commands.
@@ -18,6 +20,7 @@ annotation class Command(
     val command: String,
     val description: String = "",
     val type: Int = TYPE_CHAT_INPUT,
+    val options: KClass<out OptionProvider> = OptionProvider::class,
 ) {
 
     companion object {

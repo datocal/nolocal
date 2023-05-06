@@ -8,6 +8,7 @@ import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
+import kotlin.reflect.full.createInstance
 
 @Component
 @Profile(value = ["production"])
@@ -23,6 +24,7 @@ class CommandRegistrator(
         name = command.command,
         description = command.description,
         type = command.type,
+        options = command.options.createInstance().options(),
     )
 
     private fun notOnCurrentCommands(currentCommands: List<ApplicationCommand>, it: ApplicationCommand) =
