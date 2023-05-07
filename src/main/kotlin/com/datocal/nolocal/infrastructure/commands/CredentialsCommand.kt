@@ -1,11 +1,19 @@
 package com.datocal.nolocal.infrastructure.commands
 
+import com.datocal.nolocal.application.server.SetUpCredentialsUseCase
+import com.datocal.nolocal.application.server.SetUpCredentialsUseCaseRequest
+import com.datocal.nolocal.domain.MessageResolver
+import com.datocal.nolocal.domain.account.Tenant
+import com.datocal.nolocal.domain.server.CloudFlavor
+import com.datocal.nolocal.domain.server.NonExistingCloudFlavorException
+import com.datocal.nolocal.domain.server.PasswordNotLongEnoughException
 import com.datocal.nolocal.infrastructure.discord.model.ApplicationCommandOption
 import com.datocal.nolocal.infrastructure.discord.model.ApplicationCommandOptionChoice
 import com.datocal.nolocal.infrastructure.discord.model.Command
 import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
 import com.datocal.nolocal.infrastructure.discord.model.OptionProvider
+import com.datocal.nolocal.infrastructure.discord.model.RequiredOptionException
 import org.springframework.stereotype.Component
 
 @Component("credentials")
@@ -15,9 +23,29 @@ import org.springframework.stereotype.Component
     type = Command.TYPE_CHAT_INPUT,
     options = CredentialOptionsProvider::class,
 )
-class CredentialsCommand : DiscordCommand {
+class CredentialsCommand(
+    private val setUpCredentialsUseCase: SetUpCredentialsUseCase,
+    private val messageResolver: MessageResolver,
+) : DiscordCommand {
     override fun accept(interaction: Interaction): InteractionResponse {
-        return InteractionResponse("test")
+        try{
+            setUpCredentialsUseCase.execute(request = SetUpCredentialsUseCaseRequest(
+                token = interaction.findOption(name="token")!!,
+                userId = interaction.getUserId(),
+                tenant = Tenant.DISCORD,
+                encryptionKey = interaction.findOption(name="password")!!,
+                flavor = CloudFlavor.fromValue(interaction.findOption(name="provider")!!),
+            ))
+        }catch (e: PasswordNotLongEnoughException){
+            return InteractionResponse(messageResolver.get("credentials.errors.password"))
+        }catch (e: NonExistingCloudFlavorException){
+            return InteractionResponse(messageResolver.get("credentials.errors.flavor"))
+        }catch (e: RequiredOptionException){
+            return InteractionResponse(messageResolver.get("credentials.errors.required"))
+        }catch (e: Exception){
+            return InteractionResponse(messageResolver.get("credentials.errors.unspecified"))
+        }
+        return InteractionResponse(messageResolver.get("credentials.success"))
     }
 }
 
