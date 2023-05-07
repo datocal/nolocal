@@ -4,17 +4,17 @@ data class Interaction(
     val data: Data?,
     val type: Long,
     val member: GuildMember?,
-    val user: User?
+    val user: User?,
 ) {
-    fun findOption(name: String, required : Boolean = true): String? {
+    fun findOption(name: String, required: Boolean = true): String? {
         val value = data?.options?.find { it.name == name }?.value
-        if(required && value == null){
+        if (required && value == null) {
             throw RequiredOptionException(name)
         }
         return value
     }
 
-    fun getUserId() : String {
+    fun getUserId(): String {
         return member?.user?.id ?: user?.id!!
     }
 
@@ -40,7 +40,7 @@ data class GuildMember(
     val user: User,
 )
 
-data class User (
+data class User(
     val id: String,
 )
 

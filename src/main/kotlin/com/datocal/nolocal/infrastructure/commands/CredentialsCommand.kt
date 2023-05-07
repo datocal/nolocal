@@ -28,21 +28,23 @@ class CredentialsCommand(
     private val messageResolver: MessageResolver,
 ) : DiscordCommand {
     override fun accept(interaction: Interaction): InteractionResponse {
-        try{
-            setUpCredentialsUseCase.execute(request = SetUpCredentialsUseCaseRequest(
-                token = interaction.findOption(name="token")!!,
-                userId = interaction.getUserId(),
-                tenant = Tenant.DISCORD,
-                encryptionKey = interaction.findOption(name="password")!!,
-                flavor = CloudFlavor.fromValue(interaction.findOption(name="provider")!!),
-            ))
-        }catch (e: PasswordNotLongEnoughException){
+        try {
+            setUpCredentialsUseCase.execute(
+                request = SetUpCredentialsUseCaseRequest(
+                    token = interaction.findOption(name = "token")!!,
+                    userId = interaction.getUserId(),
+                    tenant = Tenant.DISCORD,
+                    encryptionKey = interaction.findOption(name = "password")!!,
+                    flavor = CloudFlavor.fromValue(interaction.findOption(name = "provider")!!),
+                ),
+            )
+        } catch (e: PasswordNotLongEnoughException) {
             return InteractionResponse(messageResolver.get("credentials.errors.password"))
-        }catch (e: NonExistingCloudFlavorException){
+        } catch (e: NonExistingCloudFlavorException) {
             return InteractionResponse(messageResolver.get("credentials.errors.flavor"))
-        }catch (e: RequiredOptionException){
+        } catch (e: RequiredOptionException) {
             return InteractionResponse(messageResolver.get("credentials.errors.required"))
-        }catch (e: Exception){
+        } catch (e: Exception) {
             return InteractionResponse(messageResolver.get("credentials.errors.unspecified"))
         }
         return InteractionResponse(messageResolver.get("credentials.success"))
