@@ -32,7 +32,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.18.3")
     testImplementation("io.rest-assured:spring-mock-mvc:5.3.0")
-    testImplementation("org.testcontainers:testcontainers:1.18.2")
+    testImplementation("org.testcontainers:testcontainers:1.18.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:4.1.0")
     testImplementation("org.mockito:mockito-inline:5.2.0")
     testImplementation("org.testcontainers:mockserver:1.18.3")
