@@ -4,7 +4,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
     id("org.springframework.boot") version "3.1.1"
-    id("io.spring.dependency-management") version "1.1.1"
+    id("io.spring.dependency-management") version "1.1.2"
     id("org.jlleitschuh.gradle.ktlint") version "11.5.0"
     id("info.solidsoft.pitest") version "1.9.11"
     kotlin("jvm") version "1.9.0"
