@@ -14,7 +14,7 @@ discord:
     base-endpoint: /api/v8/applications
     secret: ${DISCORD_TOKEN:dummy-token}
     client-id: 899356200745984010
-    guild-id: 508685261190987776
+    guild-id: 1132336831149641898
     guild-mode: true
 redis:
   host: redis
