@@ -3,7 +3,7 @@
 FROM alpine:latest AS unzipper
 RUN apk add unzip wget curl unzip; curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip ; unzip newrelic-java.zip
 
-FROM openjdk:19-jdk-alpine
+FROM eclipse-temurin:20-alpine
 
 # Prepare no local application jar
 ARG JAR_FILE=build/libs/*.jar
