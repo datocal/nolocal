@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 # Downloads the new relic agent to use it in the target image
-from alpine:latest as unzipper
+FROM alpine:latest AS unzipper
 RUN apk add unzip wget curl unzip; curl -O https://download.newrelic.com/newrelic/java-agent/newrelic-agent/current/newrelic-java.zip ; unzip newrelic-java.zip
 
 FROM openjdk:19-jdk-alpine

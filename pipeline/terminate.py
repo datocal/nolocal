@@ -50,7 +50,7 @@ def terminate_vcn(compartment):
 
 def terminator():
     logging.info("Starting cleanup of nolocal environment")
-    i_client, compartment = init_client()
+    _, compartment = init_client()
     if not compartment:
         logging.info("No compartment found; exiting....")
         return
