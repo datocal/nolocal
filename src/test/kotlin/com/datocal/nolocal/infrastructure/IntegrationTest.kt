@@ -1,6 +1,8 @@
 package com.datocal.nolocal.infrastructure
 
 import io.restassured.module.mockmvc.RestAssuredMockMvc
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.mockserver.client.MockServerClient
 import org.slf4j.LoggerFactory
@@ -23,8 +25,7 @@ import org.testcontainers.utility.DockerImageName
 @AutoConfigureMockMvc
 @ContextConfiguration(
     initializers = [
-        MockServerInitializer::class,
-        RedisInitializer::class,
+        ContainerInitializer::class,
     ],
 )
 class IntegrationTest {
@@ -42,38 +43,17 @@ class IntegrationTest {
     }
 }
 
-class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
+class ContainerInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private val container: MockServerContainer by lazy {
+    private val logger = LoggerFactory.getLogger(ContainerInitializer::class.java)
+    private var logConsumer = Slf4jLogConsumer(logger)
+    private val mockserverContainer: MockServerContainer by lazy {
         MockServerContainer(
             DockerImageName.parse("mockserver/mockserver")
                 .withTag("mockserver-" + MockServerClient::class.java.getPackage().implementationVersion),
         )
     }
-    private val logger = LoggerFactory.getLogger(MockServerInitializer::class.java)
-    private var logConsumer = Slf4jLogConsumer(logger)
-
-    override fun initialize(context: ConfigurableApplicationContext) {
-        container.start()
-        container.followOutput(logConsumer)
-
-        val client = MockServerClient(container.host, container.serverPort)
-        context.beanFactory.registerSingleton("mockServerClient", client)
-        context.environment.propertySources.addFirst(
-            MapPropertySource(
-                "mockServerProperties",
-                mapOf(
-                    "discord.api.host" to "http://" + container.host,
-                    "discord.api.port" to container.serverPort,
-                ),
-            ),
-        )
-    }
-}
-
-class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
-
-    private val container: GenericContainer<Nothing> by lazy {
+    private val redisContainer: GenericContainer<Nothing> by lazy {
         GenericContainer<Nothing> (
             DockerImageName
                 .parse("redis")
@@ -81,22 +61,47 @@ class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationCo
         ).apply { withExposedPorts(REDIS_PORT) }
     }
 
-    private val logger = LoggerFactory.getLogger(RedisInitializer::class.java)
-    private var logConsumer = Slf4jLogConsumer(logger)
+    private fun mockserver(context: ConfigurableApplicationContext) {
+        mockserverContainer.start()
+        mockserverContainer.followOutput(logConsumer)
 
-    override fun initialize(context: ConfigurableApplicationContext) {
-        container.start()
-        container.followOutput(logConsumer)
+        val client = MockServerClient(mockserverContainer.host, mockserverContainer.serverPort)
+        context.beanFactory.registerSingleton("mockServerClient", client)
+        context.environment.propertySources.addFirst(
+            MapPropertySource(
+                "mockServerProperties",
+                mapOf(
+                    "discord.api.host" to "http://" + mockserverContainer.host,
+                    "discord.api.port" to mockserverContainer.serverPort,
+                ),
+            ),
+        )
+    }
+
+    private fun redis(context: ConfigurableApplicationContext) {
+        redisContainer.start()
+        redisContainer.followOutput(logConsumer)
 
         context.environment.propertySources.addFirst(
             MapPropertySource(
                 "redisProperties",
                 mapOf(
-                    "redis.host" to container.host,
-                    "redis.port" to container.getMappedPort(REDIS_PORT),
+                    "redis.host" to redisContainer.host,
+                    "redis.port" to redisContainer.getMappedPort(REDIS_PORT),
                 ),
             ),
         )
+    }
+
+    override fun initialize(context: ConfigurableApplicationContext) {
+        runBlocking {
+            launch {
+                redis(context)
+            }
+            launch {
+                mockserver(context)
+            }
+        }
     }
 
     private companion object {
