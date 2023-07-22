@@ -73,7 +73,7 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
 
 class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private val container : GenericContainer<Nothing> by lazy {
+    private val container: GenericContainer<Nothing> by lazy {
         GenericContainer<Nothing> (
             DockerImageName
                 .parse("redis")
