@@ -73,11 +73,13 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
 
 class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
 
-    private val container = GenericContainer<Nothing>(
-        DockerImageName
-            .parse("redis")
-            .withTag("latest"),
-    ).apply { withExposedPorts(REDIS_PORT) }
+    private val container : GenericContainer<Nothing> by lazy {
+        GenericContainer<Nothing> (
+            DockerImageName
+                .parse("redis")
+                .withTag("latest"),
+        ).apply { withExposedPorts(REDIS_PORT) }
+    }
 
     private val logger = LoggerFactory.getLogger(RedisInitializer::class.java)
     private var logConsumer = Slf4jLogConsumer(logger)
