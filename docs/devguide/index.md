@@ -17,6 +17,7 @@
 | MkDocs         | Static site generator | Tool to generate a static site for documentation                                   | [Link](https://www.mkdocs.org/)                |
 | Oracle Cloud   | Hosting               | Cloud provider of this service deployment (free tier)                              | [Link](https://www.oracle.com/cloud/)          |
 | Uptime Robot   | Monitoring            | Monitor to check the health of the application periodically by external http calls | [Link](https://uptimerobot.com/)               |
+| New Relic      | Monitoring            | Advanced monitoring from application metrics and log ingestion using a java agent  | [Link](https://docs.newrelic.com//)            |
 
 ## Building it
 

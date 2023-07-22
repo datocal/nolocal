@@ -5,8 +5,8 @@ logging:
   path: /var/log
   level:
     root: ERROR
-    org.springframework: INFO
-    com.datocal.nolocal: TRACE
+    org.springframework: WARN
+    com.datocal.nolocal: INFO
     reactor.netty.http.client: DEBUG
 discord:
   api:

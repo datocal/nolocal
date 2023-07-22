@@ -135,6 +135,14 @@ a compatible S3 api, so it looks like:
 [Cloud Object Storage URI Formats](https://docs.oracle.com/en-us/iaas/autonomous-database/doc/cloud-storage-uris.html)
 [Understanding Object Storage Namespaces](https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/understandingnamespaces.htm)
 
+### NEWRELIC_KEY
+Secret key of the new relic agent for java applications. Originally located in the file [newrelic.yml](..%2F..%2F..%2Fnewrelic.yml)
+Obtained in the new relic cloud page to send application metrics and logs to be monitored.
+
+![img.png](newrelickeys.png)
+
+[Monitoring a java application in docker with New Relic](https://docs.newrelic.com/install/java/?deployment=docker)
+
 ## VM Infrastructure settings
 The following secrets will be related to the deployment and the infrastructure where the application is deployed. 
 It's not related to the console configuration like the previous ones.
