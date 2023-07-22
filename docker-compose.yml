@@ -16,6 +16,7 @@ services:
     container_name: nolocal
     environment:
       - DISCORD_TOKEN
+      - NEWRELIC_KEY
   redis:
     image: redis:latest
     container_name: redis
