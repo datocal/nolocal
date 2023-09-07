@@ -18,7 +18,7 @@ jobs:
           cp docs/architecture/c4model.html docs/devguide/c4model.md
           mkdocs build
       - name: Upload docs
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3.1.3
         with:
           path: site/
           name: documentation
