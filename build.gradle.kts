@@ -38,7 +38,7 @@ dependencies {
     testImplementation("org.mockito:mockito-inline:5.2.0")
     testImplementation("org.testcontainers:mockserver:1.19.1")
     testImplementation("org.mock-server:mockserver-client-java:5.15.0")
-    testImplementation("org.apache.commons:commons-text:1.10.0")
+    testImplementation("org.apache.commons:commons-text:1.11.0")
 }
 
 tasks.withType<KotlinCompile> {
