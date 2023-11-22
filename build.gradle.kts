@@ -31,7 +31,7 @@ dependencies {
     implementation("redis.clients:jedis:5.0.2")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.19.2")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.3")
     testImplementation("io.rest-assured:spring-mock-mvc:5.3.2")
     testImplementation("org.testcontainers:testcontainers:1.19.2")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.1.0")
