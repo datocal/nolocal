@@ -43,7 +43,7 @@ jobs:
           cp docs/architecture/c4model.html docs/devguide/c4model.md
           mkdocs build
       - name: Upload docs
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4.0.0
         with:
           path: site/
           name: documentation
@@ -99,11 +99,11 @@ jobs:
           chmod +x ./gradlew
           ./gradlew --no-daemon bootJar
       - name: Publish Jar
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4.0.0
         with:
           path: ./build/libs/nolocal.jar
       - name: Publish compose
-        uses: actions/upload-artifact@v3.1.3
+        uses: actions/upload-artifact@v4.0.0
         with:
           path: ./docker-compose.yml
           name: compose
