@@ -70,6 +70,8 @@ class ComputeOciClient:
         return request
 
     def __create_shape_config(self):
+        if self.configuration.INSTANCE_SHAPE_CONFIG is None:
+            return None
         shape_config = LaunchInstanceShapeConfigDetails()
         shape_config.ocpus = self.configuration.INSTANCE_SHAPE_CONFIG["ocpus"]
         shape_config.memory_in_gbs = self.configuration.INSTANCE_SHAPE_CONFIG["memory_in_gbs"]
