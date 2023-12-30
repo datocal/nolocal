@@ -2,57 +2,57 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://datocal.github.io/nolocal/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/addingCommands/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/c4model/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/persistence/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/security/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/ci/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/ci/configuration/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/ci/jobs/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/devguide/ci/secrets/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://datocal.github.io/nolocal/userguide/</loc>
-         <lastmod>2023-12-10</lastmod>
+         <lastmod>2023-12-30</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
