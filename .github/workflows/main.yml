@@ -218,5 +218,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
-            sudo docker-compose up -d s3fs
-            sudo docker-compose up -d redis
+            sudo docker compose up -d s3fs
+            sudo docker compose up -d redis

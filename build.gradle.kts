@@ -29,6 +29,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-actuator")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
     implementation("redis.clients:jedis:5.1.0")
+    implementation("com.oracle.oci.sdk:oci-java-sdk:3.31.0")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.19.3")

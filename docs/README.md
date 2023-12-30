@@ -16,8 +16,19 @@ This is a work in progress bot for discord. In the time writing this, the bot is
 But it has a great infrastructure to create and deploy a bot in few steps! you can see de details in the full documentation.
 
 ## Why
-The intention of this project is being a sandbox to experiment technologies, features, and more on a fully productive environment.
+The intention of this project is being a sandbox to experiment technologies, features, and more on a fully productive environment. 
+
+All the development is using free tools and services, so it's a great way to create a discord bot free of charge with high monitoring, infrastructure, CI/CD, etc...
+
 
 ## How
 
 You can check out the full documentation [in this site](https://datocal.github.io/nolocal/)
+
+
+### Can I fork it and have my own bot?
+Sure, that would be ideal.
+
+However, although there is a general documentation explaining all necessary integrations, It may be too hard to install it without an specific guide.
+
+It should be as simple as fork it and change the secrets and environment settings for your own.
