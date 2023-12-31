@@ -30,7 +30,7 @@ class Configuration:
 
     INSTANCE_NAME = "nolocal-instance"
     INSTANCE_OPERATING_SYSTEM = "Canonical Ubuntu"
-    INSTANCE_OPERATING_SYSTEM_VERSION = "20.04"
+    INSTANCE_OPERATING_SYSTEM_VERSION = "22.04"
 
     # leave this dictionary to None if there is no shape config
     INSTANCE_SHAPE_CONFIG = None

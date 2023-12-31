@@ -144,10 +144,30 @@ jobs:
           fi
       - name: SSH wait
         run: |
-          while ! nc -w5 -z ${{ steps.oci.outputs.INSTANCE_IP }} 22; do
-                  sleep 5
-                  echo "SSH not available, retrying..."
-          done; echo "SSH ready!"
+          retry=0
+          maxRetries=12
+          ssh_host="${{ steps.oci.outputs.INSTANCE_IP }}"
+          ssh_key="${{ secrets.INFRA_SSH_PRIVATE_KEY }}" 
+          
+          echo "$ssh_key" > ssh_key.pem
+          chmod 600 ssh_key.pem
+
+          while [ $retry -lt $maxRetries ]; do
+              if ssh -o ConnectTimeout=10 -o BatchMode=yes -o StrictHostKeyChecking=no -i ssh_key.pem username@$ssh_host "exit"; then
+                  echo "SSH connection established."
+                  break
+              else
+                  echo "SSH not available yet, retrying..."
+                  sleep 10
+                  retry=$((retry+1))
+              fi
+          done
+
+          if [ $retry -eq $maxRetries ]; then
+              echo "SSH connection could not be established after multiple retries."
+              exit 1
+          fi
+          rm ssh_key.pem
       - name: Upload initialization script
         uses: betanzos/scp-upload@v1
         with:
