@@ -19,3 +19,10 @@ discord:
 redis:
   host: redis
   port: 6379
+
+cloud:
+  oracle:
+    tenant-id: ${CLOUD_ORACLE_TENANT}
+    user-id: ${CLOUD_ORACLE_USER}
+    fingerprint: ${CLOUD_ORACLE_FINGERPRINT}
+    private-key: ${CLOUD_ORACLE_PRIVATE_KEY}

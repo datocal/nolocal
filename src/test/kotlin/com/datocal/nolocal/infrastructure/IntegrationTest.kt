@@ -26,6 +26,7 @@ import org.testcontainers.utility.DockerImageName
         MockServerInitializer::class,
         RedisInitializer::class,
     ],
+    classes = [IntegrationTestConfiguration::class],
 )
 class IntegrationTest {
 

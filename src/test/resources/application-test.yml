@@ -1,0 +1,6 @@
+cloud:
+  oracle:
+    tenant-id: dummyTenant
+    user-id: dummyUser
+    fingerprint: dummyFingerprint
+    private-key: dummyPrivateKey

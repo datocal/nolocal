@@ -1,11 +1,12 @@
 package com.datocal.nolocal.infrastructure.controller
 
 import com.datocal.nolocal.domain.dummy.Ping
+import com.oracle.bmc.identity.IdentityClient
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-class PingController(private val ping: Ping) {
+class PingController(private val ping: Ping, private val identityClient: IdentityClient) {
 
     @GetMapping("/ping")
     fun ping(): String {
