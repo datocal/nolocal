@@ -40,7 +40,6 @@ jobs:
           pip install mkdocs
           pip install mkdocs-material
           pip install mkdocs-git-revision-date-localized-plugin
-          cp docs/architecture/c4model.html docs/devguide/c4model.md
           mkdocs build
       - name: Upload docs
         uses: actions/upload-artifact@v4.0.0
@@ -222,7 +221,7 @@ jobs:
             echo 'CLOUD_ORACLE_TENANT=${{secrets.INFRA_TENANCY}}' >> .env
             echo 'CLOUD_ORACLE_USER=${{secrets.INFRA_USER_OCID}}' >> .env
             echo 'CLOUD_ORACLE_FINGERPRINT=${{secrets.INFRA_FINGERPRINT}}' >> .env
-            echo 'CLOUD_ORACLE_PRIVATE_KEY=${{secrets.INFRA_SSH_PRIVATE_KEY}}' >> .env
+            echo 'CLOUD_ORACLE_PRIVATE_KEY=${{secrets.INFRA_SSH_PRIVATE_KEY_B64}}' >> .env
             sudo docker-compose pull -q
             sudo docker-compose up -d nolocal
       - name: Update DuckDNS IP
