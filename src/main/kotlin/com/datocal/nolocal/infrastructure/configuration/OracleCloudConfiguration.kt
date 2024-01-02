@@ -18,16 +18,16 @@ class OracleCloudConfiguration {
 
     private val logger: Logger = LoggerFactory.getLogger(OracleCloudConfiguration::class.java)
 
-    @Value("cloud.oracle.tenant-id")
+    @Value("\${cloud.oracle.tenant-id}")
     private lateinit var tenantId: String
 
-    @Value("cloud.oracle.user-id")
+    @Value("\${cloud.oracle.user-id}")
     private lateinit var userId: String
 
-    @Value("cloud.oracle.fingerprint")
+    @Value("\${cloud.oracle.fingerprint}")
     private lateinit var fingerprint: String
 
-    @Value("cloud.oracle.private-key")
+    @Value("\${cloud.oracle.private-key}")
     private lateinit var privateKey: String
 
     @Bean
