@@ -1,6 +1,6 @@
 package com.datocal.nolocal.infrastructure.commands
 
-class Commands(name: String) {
+class Commands {
 
     companion object {
         const val PING = "culo"
