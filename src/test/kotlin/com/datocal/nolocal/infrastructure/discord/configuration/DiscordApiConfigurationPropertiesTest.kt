@@ -40,7 +40,7 @@ internal class DiscordApiConfigurationPropertiesTest {
     }
 
     @Test
-    fun `should create a webhooks url`(){
+    fun `should create a webhooks url`() {
         val configurationProperties = `given a configuration properties with guild mode by`(guildMode = false)
 
         assertEquals(EXPECTED_WEBHOOKS_DISCORD_URL, configurationProperties.fullWebHooksUrl)

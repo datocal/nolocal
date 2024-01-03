@@ -33,13 +33,13 @@ class DiscordApiConfigurationProperties {
     @Value("\${discord.webhooks-api.base-endpoint}")
     lateinit var webhooksBaseEndpoint: String
 
-    private val portAppender : String
-        get() =  port?.let { ":$it" } ?: ""
+    private val portAppender: String
+        get() = port?.let { ":$it" } ?: ""
 
     private val fullHost: String
         get() = "$host$portAppender"
 
-    private val guildPath : String
+    private val guildPath: String
         get() = if (guildMode) "/guilds/{guild-id}" else ""
 
     private val parameterApplicationsEndpoint: String
@@ -55,6 +55,4 @@ class DiscordApiConfigurationProperties {
         get() = parameterApplicationsEndpoint
             .replace("{client-id}", clientId)
             .replace("{guild-id}", guildId)
-
-
 }
