@@ -9,7 +9,7 @@ class DiscordApiConfigurationProperties {
     @Value("\${discord.host}")
     lateinit var host: String
 
-    @Value("\${discord.port}")
+    @Value("\${discord.port:#{null}}")
     var port: String? = null
 
     @Value("\${discord.base-endpoint}")
@@ -27,7 +27,7 @@ class DiscordApiConfigurationProperties {
     @Value("\${discord.applications-api.guild-id}")
     lateinit var guildId: String
 
-    @Value("\${discord.applications-api.guild-mode}")
+    @Value("\${discord.applications-api.guild-mode:true}")
     var guildMode: Boolean = true
 
     @Value("\${discord.webhooks-api.base-endpoint}")
