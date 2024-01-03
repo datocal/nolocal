@@ -21,7 +21,7 @@ class DiscordApiClientConfiguration {
     fun webCLient(discordProperties: DiscordApiConfigurationProperties): WebClient {
         return WebClient
             .builder()
-            .baseUrl(discordProperties.fullBaseUrlWithPlaceholders)
+            .baseUrl(discordProperties.fullApplicationsUrl)
             .defaultHeader(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
             .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
             .defaultHeader(HttpHeaders.AUTHORIZATION, "Bot ${discordProperties.secret}")

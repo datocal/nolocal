@@ -9,13 +9,17 @@ logging:
     com.datocal.nolocal: INFO
     reactor.netty.http.client: DEBUG
 discord:
-  api:
-    host: https://discord.com
-    base-endpoint: /api/v10/applications
-    secret: ${DISCORD_TOKEN:dummy-token}
+  host: https://discord.com
+  base-endpoint: /api/v10
+  secret: ${DISCORD_TOKEN:dummy-token}
+  applications-api:
+    base-endpoint: /applications
     client-id: 899356200745984010
     guild-id: 1132336831149641898
     guild-mode: true
+  webhooks-api:
+    base-endpoint: /webhooks
+
 redis:
   host: redis
   port: 6379

@@ -64,8 +64,8 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
             MapPropertySource(
                 "mockServerProperties",
                 mapOf(
-                    "discord.api.host" to "http://" + container.host,
-                    "discord.api.port" to container.serverPort,
+                    "discord.host" to "http://" + container.host,
+                    "discord.port" to container.serverPort,
                 ),
             ),
         )
