@@ -11,6 +11,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
     jacoco
     id("org.jetbrains.kotlinx.kover") version "0.7.5"
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "com.datocal"
@@ -79,4 +80,12 @@ fun configureMutationTests() {
 
 tasks.withType<BootJar> {
     archiveVersion.set("")
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "datocal_nolocal")
+        property("sonar.organization", "datocal")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
