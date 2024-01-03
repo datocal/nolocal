@@ -7,7 +7,7 @@ internal class DiscordApiConfigurationPropertiesTest {
 
     private companion object {
         private const val HOST = "https://discord.com"
-        private const val BASE_ENDPOINT = "/api/v8/applications"
+        private const val BASE_ENDPOINT = "/api/v10/applications"
         private const val EXPECTED_DISCORD_URL = "$HOST$BASE_ENDPOINT/{client-id}"
         private const val EXPECTED_DISCORD_GUILD_URL = "$EXPECTED_DISCORD_URL/guilds/{guild-id}"
     }

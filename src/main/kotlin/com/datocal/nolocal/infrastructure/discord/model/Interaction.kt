@@ -1,6 +1,8 @@
 package com.datocal.nolocal.infrastructure.discord.model
 
 data class Interaction(
+    val id: String,
+    val token: String,
     val data: Data?,
     val type: Long,
 ) {

@@ -11,7 +11,7 @@ logging:
 discord:
   api:
     host: https://discord.com
-    base-endpoint: /api/v8/applications
+    base-endpoint: /api/v10/applications
     secret: ${DISCORD_TOKEN:dummy-token}
     client-id: 899356200745984010
     guild-id: 1132336831149641898
