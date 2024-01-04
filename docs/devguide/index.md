@@ -13,7 +13,6 @@
 | Gradle         | Build Tool            | Tool to build the project, with all the tasks related to compile, test and more    | [Link](https://gradle.org/)                    |
 | Github Actions | CI/CD                 | Tool to orchestrate the checks, deploy and everything happening after a commit     | [Link](https://github.com/features/actions)    |
 | Sonarcloud     | Quality Analysis      | Tool to analyse the project to detect quality improvements (code smells, bugs...)  | [Link](https://sonarcloud.io/)                 |
-| Codecov        | Coverage Analysis     | Tool to show the testing coverage and its evolution                                | [Link](https://about.codecov.io/)              |
 | MkDocs         | Static site generator | Tool to generate a static site for documentation                                   | [Link](https://www.mkdocs.org/)                |
 | Oracle Cloud   | Hosting               | Cloud provider of this service deployment (free tier)                              | [Link](https://www.oracle.com/cloud/)          |
 | Uptime Robot   | Monitoring            | Monitor to check the health of the application periodically by external http calls | [Link](https://uptimerobot.com/)               |

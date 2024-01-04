@@ -2,9 +2,7 @@
 The pipeline execute multiple jobs in parallel. When every Job is finished, the deploy proceeds.
 
 ## Check
-Executes the gradle _check_ task. It will run the unit tests and the integration tests. This task generates some
-jacoco reports that will be uploaded [to codecov](https://app.codecov.io/gh/datocal/nolocal) to show the current coverage
-of the project
+Executes the gradle _check_ task. It will run the unit tests and the integration tests. 
 
 ## BuildDocs
 This Job will build the docs under the docs folder. This folder contains a Docusaurus project that generates a static site
