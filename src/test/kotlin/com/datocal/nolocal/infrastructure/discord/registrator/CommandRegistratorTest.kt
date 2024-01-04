@@ -2,7 +2,7 @@ package com.datocal.nolocal.infrastructure.discord.registrator
 
 import com.datocal.nolocal.infrastructure.commands.DiscordCommand
 import com.datocal.nolocal.infrastructure.discord.CommandRegistrator
-import com.datocal.nolocal.infrastructure.discord.client.DiscordApiClient
+import com.datocal.nolocal.infrastructure.discord.client.DiscordApplicationsClient
 import com.datocal.nolocal.infrastructure.discord.model.ApplicationCommand
 import com.datocal.nolocal.infrastructure.discord.model.Command
 import com.datocal.nolocal.infrastructure.discord.model.Interaction
@@ -17,7 +17,7 @@ import org.mockito.kotlin.verify
 
 internal class CommandRegistratorTest {
 
-    private val apiClient: DiscordApiClient = mock()
+    private val apiClient: DiscordApplicationsClient = mock()
 
     @Test
     fun `should not register a command when it is not annotated`() {

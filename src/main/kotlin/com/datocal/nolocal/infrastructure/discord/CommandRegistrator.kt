@@ -1,7 +1,7 @@
 package com.datocal.nolocal.infrastructure.discord
 
 import com.datocal.nolocal.infrastructure.commands.DiscordCommand
-import com.datocal.nolocal.infrastructure.discord.client.DiscordApiClient
+import com.datocal.nolocal.infrastructure.discord.client.DiscordApplicationsClient
 import com.datocal.nolocal.infrastructure.discord.model.ApplicationCommand
 import com.datocal.nolocal.infrastructure.discord.model.Command
 import org.springframework.boot.ApplicationArguments
@@ -14,7 +14,7 @@ import kotlin.reflect.full.createInstance
 @Profile(value = ["production"])
 class CommandRegistrator(
     private val commandExecutors: List<DiscordCommand>,
-    private val client: DiscordApiClient,
+    private val client: DiscordApplicationsClient,
 ) : ApplicationRunner {
 
     private fun toAnnotatedCommand(command: DiscordCommand): Command? =

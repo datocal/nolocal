@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.client.WebClientResponseExcepti
 internal class DiscordApiClientTest : IntegrationTest() {
 
     @Autowired
-    private lateinit var client: DiscordApiClient
+    private lateinit var client: DiscordApplicationsClient
 
     @Autowired
     private lateinit var given: DiscordApiClientStubs
