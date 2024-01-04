@@ -8,9 +8,9 @@ import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
 import com.datocal.nolocal.infrastructure.discord.model.OptionProvider
 import org.springframework.stereotype.Component
 
-@Component("credentials")
+@Component(Commands.CREDENTIALS)
 @Command(
-    command = "credentials",
+    command = Commands.CREDENTIALS,
     description = "Stores a token for a cloud provider using a password",
     type = Command.TYPE_CHAT_INPUT,
     options = CredentialOptionsProvider::class,

@@ -24,10 +24,6 @@ jobs:
         run: |
           chmod +x ./gradlew
           ./gradlew --no-daemon --stacktrace check
-      - name: Codecov coverage report upload
-        uses: codecov/codecov-action@v3.1.4
-        with:
-          files: ./build/reports/jacoco/test/jacocoTestReport.xml
   BuildDocs:
     runs-on: ubuntu-latest
     steps:
@@ -40,7 +36,6 @@ jobs:
           pip install mkdocs
           pip install mkdocs-material
           pip install mkdocs-git-revision-date-localized-plugin
-          cp docs/architecture/c4model.html docs/devguide/c4model.md
           mkdocs build
       - name: Upload docs
         uses: actions/upload-artifact@v4.0.0
@@ -121,50 +116,71 @@ jobs:
   PrepareOracleCLoud:
     runs-on: ubuntu-latest
     outputs:
-      ip: ${{ steps.oci.outputs.ip }}
-      created: ${{ steps.oci.outputs.created }}
+      ip: ${{ steps.oci.outputs.INSTANCE_IP }}
+      created: ${{ steps.oci.outputs.INSTANCE_CREATED }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
-      - name: Set up Python 3.10
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.10"
+          python-version: "3.12.1"
       - name: Create Infrastructure
         id : oci
         run: |
           cd pipeline
           pip install oci
-          result=( `python create.py ${{secrets.INFRA_AVAILABILITY_DOMAIN}} ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_REGION}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}`)
+          result=( `python create.py  ${{secrets.INFRA_USER_OCID}} ${{secrets.INFRA_FINGERPRINT}} ${{secrets.INFRA_TENANCY}} ${{secrets.INFRA_KEY_CONTENT}} ${{secrets.INFRA_AUTHORIZED_KEYS}}`)
           
-          echo "::set-output name=ip::${result[0]}"
+          echo "INSTANCE_IP=${result[0]}" >> $GITHUB_OUTPUT
           if ((${#result[@]} > 1));
           then
-            echo "::set-output name=created::true"
+            echo "INSTANCE_CREATED=true" >> $GITHUB_OUTPUT
           fi
       - name: SSH wait
         run: |
-          while ! nc -w5 -z ${{ steps.oci.outputs.ip }} 22; do
-                  sleep 5
-                  echo "SSH not available, retrying..."
-          done; echo "SSH ready!"
+          retry=0
+          maxRetries=12
+          ssh_host="${{ steps.oci.outputs.INSTANCE_IP }}"
+          ssh_key="${{ secrets.INFRA_SSH_PRIVATE_KEY }}" 
+          
+          echo "$ssh_key" > ssh_key.pem
+          chmod 600 ssh_key.pem
+
+          while [ $retry -lt $maxRetries ]; do
+              if ssh -o ConnectTimeout=10 -o BatchMode=yes -o StrictHostKeyChecking=no -i ssh_key.pem ubuntu@$ssh_host "exit"; then
+                  echo "SSH connection established."
+                  break
+              else
+                  echo "SSH not available yet, retrying..."
+                  sleep 10
+                  retry=$((retry+1))
+              fi
+          done
+
+          if [ $retry -eq $maxRetries ]; then
+              echo "SSH connection could not be established after multiple retries."
+              exit 1
+          fi
+          rm ssh_key.pem
       - name: Upload initialization script
         uses: betanzos/scp-upload@v1
         with:
-          host: ${{ steps.oci.outputs.ip  }}
+          host: ${{ steps.oci.outputs.INSTANCE_IP  }}
           username: ubuntu
           key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           source: "./pipeline/init.sh"
       - name: Prepare machine
-        if: ${{ steps.oci.outputs.created }}
+        if: ${{ steps.oci.outputs.INSTANCE_CREATED }}
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ steps.oci.outputs.ip }}
+          host: ${{ steps.oci.outputs.INSTANCE_IP }}
           username: ubuntu
           key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
             chmod +x init.sh
             ./init.sh
+
   Deploy:
     runs-on: ubuntu-latest
     needs: [ Check, Snyk, PrepareImage, BuildDocs, PrepareOracleCLoud, SetUpCaddy]
@@ -198,11 +214,15 @@ jobs:
             echo 'UID=999' >> .env
             echo 'GID=999' >> .env
             echo 'NEWRELIC_KEY=${{secrets.NEWRELIC_KEY}}' >> .env
+            echo 'CLOUD_ORACLE_TENANT=${{secrets.INFRA_TENANCY}}' >> .env
+            echo 'CLOUD_ORACLE_USER=${{secrets.INFRA_USER_OCID}}' >> .env
+            echo 'CLOUD_ORACLE_FINGERPRINT=${{secrets.INFRA_FINGERPRINT}}' >> .env
+            echo 'CLOUD_ORACLE_PRIVATE_KEY=${{secrets.INFRA_SSH_PRIVATE_KEY_B64}}' >> .env
             sudo docker-compose pull -q
             sudo docker-compose up -d nolocal
       - name: Update DuckDNS IP
         run: |
-          curl 'https://www.duckdns.org/update?domains=nolocalbot&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
+          curl 'https://www.duckdns.org/update?domains=nolocaldisc&token=${{secrets.DUCKDNS_TOKEN}}&ip=${{ needs.PrepareOracleCLoud.outputs.ip }}'
       - name: Start Caddy
         uses: appleboy/ssh-action@master
         with:
@@ -218,5 +238,5 @@ jobs:
           username: ubuntu
           key: ${{ secrets.INFRA_SSH_PRIVATE_KEY }}
           script: |
-            sudo docker-compose up -d s3fs
-            sudo docker-compose up -d redis
+            sudo docker compose up -d s3fs
+            sudo docker compose up -d redis

@@ -6,7 +6,7 @@ import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
 import org.springframework.stereotype.Component
 
-@Component("deto")
+@Component(Commands.DETO)
 @Command(
     command = "deto",
     type = Command.TYPE_MESSAGE,

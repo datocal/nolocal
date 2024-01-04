@@ -1,20 +1,21 @@
 import sys
 
-import config
-from client.identity_client import NoLocalIdentityOciClient
-from client.network_client import NoLocalNetworkOciClient
-from client.compute_client import NoLocalComputeOciClient
+from client.identity_client import IdentityOciClient
+from client.network_client import NetworkOciClient
+from client.compute_client import ComputeOciClient
 import logging
 
+import config
 
-def init_client():
-    i_client = NoLocalIdentityOciClient()
+
+def init_client(configuration):
+    i_client = IdentityOciClient(configuration)
     compartment = i_client.get_compartment()
     return i_client, compartment
 
 
-def terminate_instance(compartment):
-    c_client = NoLocalComputeOciClient(compartment)
+def terminate_instance(configuration, compartment):
+    c_client = ComputeOciClient(configuration, compartment)
     instance = c_client.get_instance()
     if instance:
         c_client.delete_instance(instance)
@@ -38,8 +39,8 @@ def terminate_internet_gateway(n_client, vcn, route_table):
         logging.info("Internet Gateway deleted")
 
 
-def terminate_vcn(compartment):
-    n_client = NoLocalNetworkOciClient(compartment)
+def terminate_vcn(configuration, compartment):
+    n_client = NetworkOciClient(configuration, compartment)
     vcn, route_table = n_client.get_vcn()
     if vcn:
         terminate_subnet(n_client, vcn)
@@ -48,22 +49,22 @@ def terminate_vcn(compartment):
     return vcn
 
 
-def terminator():
+def terminator(configuration):
     logging.info("Starting cleanup of nolocal environment")
-    _, compartment = init_client()
+    _, compartment = init_client(configuration)
     if not compartment:
         logging.info("No compartment found; exiting....")
         return
 
     logging.info("Deleting instance....")
-    instance = terminate_instance(compartment)
+    instance = terminate_instance(configuration, compartment)
     if not instance:
         logging.info("No instance found, skipping...")
     else:
         logging.info("Instance deleted")
 
     logging.info("Deleting VCN.....")
-    vcn = terminate_vcn(compartment)
+    vcn = terminate_vcn(configuration, compartment)
     if not vcn:
         logging.info("No vcn found, skipping...")
     else:
@@ -75,5 +76,6 @@ def terminator():
 
 if __name__ == "__main__":
     logging.basicConfig(level='INFO')
-    config.set_config(sys.argv)
-    terminator()
+    config = config.Configuration()
+    config.override_config_from_arguments(sys.argv)
+    terminator(config)

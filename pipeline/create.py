@@ -1,14 +1,14 @@
-from client.identity_client import NoLocalIdentityOciClient
-from client.network_client import NoLocalNetworkOciClient
-from client.compute_client import NoLocalComputeOciClient
+from client.identity_client import IdentityOciClient
+from client.network_client import NetworkOciClient
+from client.compute_client import ComputeOciClient
 import logging
 import os
 import sys
 import config
 
 
-def create_compartment():
-    client = NoLocalIdentityOciClient()
+def create_compartment(configuration):
+    client = IdentityOciClient(configuration)
     compartment = client.get_compartment()
     if compartment:
         logging.info("Compartment found.... skipping creation")
@@ -53,8 +53,8 @@ def add_route_rule(client, route_table, internet_gateway):
     logging.info("Route rules added")
 
 
-def create_network(compartment):
-    client = NoLocalNetworkOciClient(compartment)
+def create_network(configuration, compartment):
+    client = NetworkOciClient(configuration, compartment)
     vcn, route_table = client.get_vcn()
     if vcn:
         logging.info("VCN found.... skipping creation")
@@ -68,8 +68,8 @@ def create_network(compartment):
     return subnet
 
 
-def create_instance(compartment, subnet):
-    client = NoLocalComputeOciClient(compartment)
+def create_instance(configuration, compartment, subnet):
+    client = ComputeOciClient(configuration, compartment)
     instance = client.get_instance()
     created = False
     if instance:
@@ -81,29 +81,30 @@ def create_instance(compartment, subnet):
     return instance, created
 
 
-def get_ip(compartment, instance):
-    compute_client = NoLocalComputeOciClient(compartment)
-    network_client = NoLocalNetworkOciClient(compartment)
+def get_ip(configuration, compartment, instance):
+    compute_client = ComputeOciClient(configuration, compartment)
+    network_client = NetworkOciClient(configuration, compartment)
     vnic_id = compute_client.get_vnic_id(instance)
     return network_client.get_ip(vnic_id)
 
 
-def creator():
+def creator(configuration):
     logging.info("Creating compartment...")
-    compartment = create_compartment()
+    compartment = create_compartment(configuration)
     logging.info("Creating VCN....")
-    subnet = create_network(compartment)
+    subnet = create_network(configuration, compartment)
     logging.info("Creating instance.....")
-    instance, created = create_instance(compartment, subnet)
+    instance, created = create_instance(configuration, compartment, subnet)
     logging.info("Getting IP.....")
-    ip = get_ip(compartment, instance)
+    ip = get_ip(configuration, compartment, instance)
     print(ip)
     if created:
         print(created)
 
 
 if __name__ == "__main__":
-    LOGLEVEL = os.environ.get('LOGLEVEL', 'WARN').upper()
+    LOGLEVEL = os.environ.get('LOGLEVEL', 'INFO').upper()
     logging.basicConfig(level=LOGLEVEL)
-    config.set_config(sys.argv)
-    creator()
+    config = config.Configuration()
+    config.override_config_from_arguments(sys.argv)
+    creator(config)

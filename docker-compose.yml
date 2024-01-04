@@ -17,6 +17,10 @@ services:
     environment:
       - DISCORD_TOKEN
       - NEWRELIC_KEY
+      - CLOUD_ORACLE_TENANT
+      - CLOUD_ORACLE_USER
+      - CLOUD_ORACLE_FINGERPRINT
+      - CLOUD_ORACLE_PRIVATE_KEY
   redis:
     image: redis:latest
     container_name: redis

@@ -11,6 +11,7 @@ plugins {
     kotlin("plugin.spring") version "1.9.22"
     jacoco
     id("org.jetbrains.kotlinx.kover") version "0.7.5"
+    id("org.sonarqube") version "4.4.1.3373"
 }
 
 group = "com.datocal"
@@ -27,8 +28,13 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.16.1")
     implementation("redis.clients:jedis:5.1.0")
+
+    implementation(platform("com.oracle.oci.sdk:oci-java-sdk-bom:3.31.0"))
+    implementation("com.oracle.oci.sdk:oci-java-sdk-core")
+    implementation("com.oracle.oci.sdk:oci-java-sdk-identity")
+    implementation("com.oracle.oci.sdk:oci-java-sdk-common-httpclient-jersey3")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.testcontainers:junit-jupiter:1.19.3")
@@ -74,4 +80,12 @@ fun configureMutationTests() {
 
 tasks.withType<BootJar> {
     archiveVersion.set("")
+}
+
+sonar {
+    properties {
+        property("sonar.projectKey", "datocal_nolocal")
+        property("sonar.organization", "datocal")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }

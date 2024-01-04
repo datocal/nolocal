@@ -9,9 +9,9 @@ import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
 import org.springframework.stereotype.Component
 
-@Component("roulette")
+@Component(Commands.ROULETTE)
 @Command(
-    command = "roulette",
+    command = Commands.ROULETTE,
     type = Command.TYPE_MESSAGE,
 )
 class RouletteCommand(
