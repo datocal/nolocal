@@ -8,7 +8,6 @@ import redis.clients.jedis.JedisPool
 
 @Configuration
 class RedisConfiguration {
-
     @Value("\${redis.host}")
     private lateinit var redisHost: String
 

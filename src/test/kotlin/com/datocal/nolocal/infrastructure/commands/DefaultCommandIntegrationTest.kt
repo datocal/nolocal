@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class DefaultCommandIntegrationTest : IntegrationTest() {
-
     private companion object {
         private const val UNKNOWN_COMMAND_REQUEST =
             """

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import redis.clients.jedis.JedisPool
 
 class CloudCredentialsRedisRepositoryTest : IntegrationTest() {
-
     @Autowired
     private lateinit var repository: CloudCredentialsRedisRepository
 
@@ -42,7 +41,13 @@ class CloudCredentialsRedisRepositoryTest : IntegrationTest() {
     }
 
     private fun `given some stored credentials`() {
-        return jedisPool.resource.use { it.hset("servers:tenant:${Tenant.DISCORD}:owner:Example#1234:digitalocean", "encryptedToken", "123") }
+        return jedisPool.resource.use {
+            it.hset(
+                "servers:tenant:${Tenant.DISCORD}:owner:Example#1234:digitalocean",
+                "encryptedToken",
+                "123",
+            )
+        }
     }
 
     private fun `expected credentials`(): CloudCredentials {

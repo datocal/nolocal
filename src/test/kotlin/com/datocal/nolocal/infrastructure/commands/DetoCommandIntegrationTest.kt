@@ -11,7 +11,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class DetoCommandIntegrationTest : IntegrationTest() {
     private companion object {
-
         private const val DETO_REQUEST =
             """
                 {
@@ -59,16 +58,17 @@ class DetoCommandIntegrationTest : IntegrationTest() {
     }
 
     private fun doRequestReturningContent(body: String): String {
-        val response = RestAssuredMockMvc.given()
-            .contentType(ContentType.JSON)
-            .body(body)
-            .`when`()
-            .post(INTERACTIONS_ENDPOINT)
-            .then()
-            .assertThat(MockMvcResultMatchers.status().isOk)
-            .body("type", Matchers.equalTo(4))
-            .extract()
-            .asString()
+        val response =
+            RestAssuredMockMvc.given()
+                .contentType(ContentType.JSON)
+                .body(body)
+                .`when`()
+                .post(INTERACTIONS_ENDPOINT)
+                .then()
+                .assertThat(MockMvcResultMatchers.status().isOk)
+                .body("type", Matchers.equalTo(4))
+                .extract()
+                .asString()
         return JsonPath(response).get<String>("data.content").toString()
     }
 }

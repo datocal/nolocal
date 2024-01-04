@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class EncryptionServiceTest {
-
     private val encryptionService = EncryptionService()
 
     private companion object {

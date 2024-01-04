@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class AckIntegrationTest : IntegrationTest() {
-
     @Test
     fun `should ack a discord call`() {
         RestAssuredMockMvc.given()

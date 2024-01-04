@@ -10,7 +10,6 @@ import redis.clients.jedis.JedisPool
 
 @Configuration
 class CloudCredentialsConfiguration {
-
     @Bean
     fun setUpCredentialsUseCase(
         repository: CloudCredentialsRepository,

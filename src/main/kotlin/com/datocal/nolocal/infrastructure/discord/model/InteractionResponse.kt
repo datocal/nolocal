@@ -11,9 +11,10 @@ data class InteractionResponse private constructor(
         operator fun invoke(message: String) =
             InteractionResponse(
                 type = TYPE_TEXT,
-                data = InteractionResponseData(
-                    content = message,
-                ),
+                data =
+                    InteractionResponseData(
+                        content = message,
+                    ),
             )
 
         operator fun invoke() =

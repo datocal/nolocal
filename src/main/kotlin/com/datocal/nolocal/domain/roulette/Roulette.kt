@@ -11,7 +11,6 @@ class Roulette(
 class RouletteItem(
     val value: String,
 ) {
-
     fun isValidItem(): Boolean {
         return !value.contains(INVALIDATION_SEQUENCE)
     }

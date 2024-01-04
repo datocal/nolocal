@@ -6,7 +6,6 @@ import redis.clients.jedis.JedisPool
 class RandomItemRepositoryRedis(
     private val jedisPool: JedisPool,
 ) : RandomItemRepository {
-
     override fun save(randomItem: String) {
         jedisPool.resource.use { it.lpush(COMMAND_ROULETTE_RANDOMS_KEY, randomItem) }
     }

@@ -10,7 +10,6 @@ import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
 
 internal class GetRandomItemUseCaseTest {
-
     private val repository: RandomItemRepository = mock()
 
     @Test

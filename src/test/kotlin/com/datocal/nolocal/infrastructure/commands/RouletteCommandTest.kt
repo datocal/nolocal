@@ -17,7 +17,6 @@ import org.mockito.Mockito.`when`
 import java.util.stream.Stream
 
 internal class RouletteCommandTest {
-
     private val useCase: GetRandomItemUseCase = mock(GetRandomItemUseCase::class.java)
 
     private val messageResolver: MessageResolver = mock(MessageResolver::class.java)
@@ -26,7 +25,10 @@ internal class RouletteCommandTest {
 
     @ParameterizedTest
     @MethodSource("interactionShouldProvideRequest")
-    fun `should build request`(interaction: Interaction, request: GetRandomItemUseCaseRequest) {
+    fun `should build request`(
+        interaction: Interaction,
+        request: GetRandomItemUseCaseRequest,
+    ) {
         `when`(useCase.execute(request)).thenReturn(GetRandomItemUseCaseResponse(null))
         `when`(messageResolver.get("roulette.not_found")).thenReturn("Not found")
 
@@ -56,53 +58,63 @@ internal class RouletteCommandTest {
 
         private fun nullResolvesInteraction(): Interaction {
             return Interaction(
-                data = Data(
-                    name = "roulette",
-                ),
+                data =
+                    Data(
+                        name = "roulette",
+                    ),
                 type = 1,
             )
         }
 
         private fun emptyMessagesInteraction(): Interaction {
             return Interaction(
-                data = Data(
-                    name = "roulette",
-                    resolved = Resolved(),
-                ),
+                data =
+                    Data(
+                        name = "roulette",
+                        resolved = Resolved(),
+                    ),
                 type = 1,
             )
         }
 
         private fun nullEntriesInteraction(): Interaction {
             return Interaction(
-                data = Data(
-                    name = "roulette",
-                    resolved = Resolved(
-                        messages = mapOf(
-                            "" to null,
-                            "a" to PartialMessage(),
-                        ),
+                data =
+                    Data(
+                        name = "roulette",
+                        resolved =
+                            Resolved(
+                                messages =
+                                    mapOf(
+                                        "" to null,
+                                        "a" to PartialMessage(),
+                                    ),
+                            ),
                     ),
-                ),
                 type = 1,
             )
         }
 
         private fun goodInteraction(): Interaction {
             return Interaction(
-                data = Data(
-                    name = "roulette",
-                    resolved = Resolved(
-                        messages = mapOf(
-                            "123" to PartialMessage(
-                                content = "abc",
+                data =
+                    Data(
+                        name = "roulette",
+                        resolved =
+                            Resolved(
+                                messages =
+                                    mapOf(
+                                        "123" to
+                                            PartialMessage(
+                                                content = "abc",
+                                            ),
+                                        "456" to
+                                            PartialMessage(
+                                                content = "def",
+                                            ),
+                                    ),
                             ),
-                            "456" to PartialMessage(
-                                content = "def",
-                            ),
-                        ),
                     ),
-                ),
                 type = 1,
             )
         }

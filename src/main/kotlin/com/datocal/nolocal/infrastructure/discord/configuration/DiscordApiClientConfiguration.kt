@@ -11,14 +11,17 @@ import org.springframework.web.reactive.function.client.WebClient
 
 @Configuration
 class DiscordApiClientConfiguration {
-
     @Bean
-    fun applicationClient(@Qualifier("applicationWebClient") webclient: WebClient): DiscordApplicationsClient {
+    fun applicationClient(
+        @Qualifier("applicationWebClient") webclient: WebClient,
+    ): DiscordApplicationsClient {
         return DiscordApplicationsClient(webclient)
     }
 
     @Bean
-    fun webhooksClient(@Qualifier("webhooksWebClient") webclient: WebClient): DiscordWebhooksClient {
+    fun webhooksClient(
+        @Qualifier("webhooksWebClient") webclient: WebClient,
+    ): DiscordWebhooksClient {
         return DiscordWebhooksClient(webclient)
     }
 

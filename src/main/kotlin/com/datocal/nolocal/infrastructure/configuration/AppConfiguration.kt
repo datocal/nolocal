@@ -11,7 +11,6 @@ import java.util.Locale
 
 @Configuration
 class AppConfiguration {
-
     @Bean
     fun localeResolver(): LocaleResolver {
         val sessionLocaleResolver = SessionLocaleResolver()

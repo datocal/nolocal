@@ -12,8 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
 
 @Component
+@Suppress("ktlint:standard:function-naming")
 class DiscordApiClientStubs {
-
     @Autowired
     private lateinit var discordProperties: DiscordApiConfigurationProperties
 

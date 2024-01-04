@@ -9,7 +9,6 @@ import redis.clients.jedis.JedisPool
 import java.util.UUID
 
 internal class RandomItemRepositoryRedisTest : IntegrationTest() {
-
     @Autowired
     private lateinit var repositoryRedis: RandomItemRepository
 

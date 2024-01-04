@@ -18,7 +18,6 @@ class RouletteCommand(
     private val getRandomItemUseCase: GetRandomItemUseCase,
     private val messageResolver: MessageResolver,
 ) : DiscordCommand {
-
     override fun accept(interaction: Interaction): InteractionResponse {
         val request = buildRequest(interaction)
         val response = getRandomItemUseCase.execute(request)
@@ -30,14 +29,15 @@ class RouletteCommand(
     }
 
     private fun buildRequest(interaction: Interaction): GetRandomItemUseCaseRequest {
-        val items = interaction
-            .textMessages
-            .asSequence()
-            .map { it.lines() }
-            .flatten()
-            .map { it.trim() }
-            .filter { it.isNotEmpty() }
-            .toList()
+        val items =
+            interaction
+                .textMessages
+                .asSequence()
+                .map { it.lines() }
+                .flatten()
+                .map { it.trim() }
+                .filter { it.isNotEmpty() }
+                .toList()
         return GetRandomItemUseCaseRequest(items)
     }
 }
