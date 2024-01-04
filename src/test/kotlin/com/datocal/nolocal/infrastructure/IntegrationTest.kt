@@ -29,7 +29,6 @@ import org.testcontainers.utility.DockerImageName
     classes = [IntegrationTestConfiguration::class],
 )
 class IntegrationTest {
-
     companion object {
         const val INTERACTIONS_ENDPOINT = "/discord/interactions"
     }
@@ -44,7 +43,6 @@ class IntegrationTest {
 }
 
 class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
-
     private val container: MockServerContainer by lazy {
         MockServerContainer(
             DockerImageName.parse("mockserver/mockserver")
@@ -73,12 +71,12 @@ class MockServerInitializer : ApplicationContextInitializer<ConfigurableApplicat
 }
 
 class RedisInitializer : ApplicationContextInitializer<ConfigurableApplicationContext> {
-
-    private val container = GenericContainer<Nothing>(
-        DockerImageName
-            .parse("redis")
-            .withTag("latest"),
-    ).apply { withExposedPorts(REDIS_PORT) }
+    private val container =
+        GenericContainer<Nothing>(
+            DockerImageName
+                .parse("redis")
+                .withTag("latest"),
+        ).apply { withExposedPorts(REDIS_PORT) }
 
     private val logger = LoggerFactory.getLogger(RedisInitializer::class.java)
     private var logConsumer = Slf4jLogConsumer(logger)

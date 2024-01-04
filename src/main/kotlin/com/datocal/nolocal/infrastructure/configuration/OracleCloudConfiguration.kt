@@ -15,7 +15,6 @@ import java.util.Base64
 
 @Configuration
 class OracleCloudConfiguration {
-
     private val logger: Logger = LoggerFactory.getLogger(OracleCloudConfiguration::class.java)
 
     @Value("\${cloud.oracle.tenant-id}")
@@ -42,9 +41,10 @@ class OracleCloudConfiguration {
 
     @Bean
     fun identityClient(): IdentityClient {
-        val identityClient = IdentityClient.builder()
-            .region(Region.UK_LONDON_1)
-            .build(authenticationDetailsProvider())
+        val identityClient =
+            IdentityClient.builder()
+                .region(Region.UK_LONDON_1)
+                .build(authenticationDetailsProvider())
         identityClient.initService()
         return identityClient
     }

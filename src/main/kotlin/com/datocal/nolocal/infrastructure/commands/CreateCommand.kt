@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component
     type = Command.TYPE_CHAT_INPUT,
 )
 class CreateCommand(private val ping: Ping, private val apiClient: DiscordApplicationsClient) : DiscordCommand {
-
     override fun accept(interaction: Interaction): InteractionResponse {
         return InteractionResponse(ping.ping())
     }

@@ -6,7 +6,6 @@ import kotlin.reflect.KProperty
 import kotlin.reflect.full.companionObject
 
 class CommandsTest {
-
     private companion object {
         private const val REGEX_TO_MATCH = "^[-_\\p{L}\\p{N}\\p{sc=Deva}\\p{sc=Thai}]{1,32}\$"
     }

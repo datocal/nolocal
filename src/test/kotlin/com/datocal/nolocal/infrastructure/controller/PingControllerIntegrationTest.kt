@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class PingControllerIntegrationTest : IntegrationTest() {
-
     @Test
     fun `should say hello`() {
         RestAssuredMockMvc.given()

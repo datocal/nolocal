@@ -1,7 +1,6 @@
 package com.datocal.nolocal.infrastructure.commands
 
 class Commands {
-
     companion object {
         const val PING = "culo"
         const val ROULETTE = "roulette"

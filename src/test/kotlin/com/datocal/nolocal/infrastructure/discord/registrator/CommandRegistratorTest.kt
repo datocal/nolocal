@@ -16,7 +16,6 @@ import org.mockito.kotlin.times
 import org.mockito.kotlin.verify
 
 internal class CommandRegistratorTest {
-
     private val apiClient: DiscordApplicationsClient = mock()
 
     @Test
@@ -78,14 +77,14 @@ internal class CommandRegistratorTest {
         return listOf(DiscordCommandMock())
     }
 
-    private fun `given some annotated discord commands`(): List<DiscordCommand> =
-        listOf(DiscordCommandMock2(), DiscordCommandMock3())
+    private fun `given some annotated discord commands`(): List<DiscordCommand> = listOf(DiscordCommandMock2(), DiscordCommandMock3())
 
-    private fun `application command`(n: Int = 1) = ApplicationCommand(
-        name = "command-$n",
-        description = "description",
-        type = 3,
-    )
+    private fun `application command`(n: Int = 1) =
+        ApplicationCommand(
+            name = "command-$n",
+            description = "description",
+            type = 3,
+        )
 }
 
 @Command(

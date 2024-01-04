@@ -15,7 +15,9 @@ class InteractionsController(
     private val logger = LoggerFactory.getLogger(InteractionsController::class.java)
 
     @PostMapping("/discord/interactions")
-    fun execute(@RequestBody interaction: Interaction): InteractionResponse {
+    fun execute(
+        @RequestBody interaction: Interaction,
+    ): InteractionResponse {
         logger.trace("Incoming request: $interaction")
         val response = commands[interaction.command]?.accept(interaction) ?: defaultResponse()
         logger.trace("Response: $response")

@@ -12,7 +12,6 @@ import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 
 class CreateCloudCredentialsUseCaseTest {
-
     private val encryptionService: EncryptionService = mock()
     private val repository: CloudCredentialsRepository = mock()
     private val useCase = SetUpCredentialsUseCase(repository, encryptionService)
@@ -26,17 +25,20 @@ class CreateCloudCredentialsUseCaseTest {
 
     @Test
     fun `should save account`() {
-        val givenRequest = SetUpCredentialsUseCaseRequest(
-            userId = USER_ID,
-            tenant = Tenant.DISCORD,
-            encryptionKey = ENCRYPTION_KEY,
-            token = CLOUD_TOKEN,
-            flavor = CloudFlavor.DIGITAL_OCEAN,
-        )
+        val givenRequest =
+            SetUpCredentialsUseCaseRequest(
+                userId = USER_ID,
+                tenant = Tenant.DISCORD,
+                encryptionKey = ENCRYPTION_KEY,
+                token = CLOUD_TOKEN,
+                flavor = CloudFlavor.DIGITAL_OCEAN,
+            )
         whenever(encryptionService.encrypt(CLOUD_TOKEN, ENCRYPTION_KEY)).thenReturn(ENCRYPTED_TOKEN)
 
         useCase.execute(givenRequest)
 
-        verify(repository).save(CloudCredentials(Account(USER_ID, Tenant.DISCORD), encryptedToken = ENCRYPTED_TOKEN, flavor = CloudFlavor.DIGITAL_OCEAN))
+        verify(
+            repository,
+        ).save(CloudCredentials(Account(USER_ID, Tenant.DISCORD), encryptedToken = ENCRYPTED_TOKEN, flavor = CloudFlavor.DIGITAL_OCEAN))
     }
 }

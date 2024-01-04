@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 internal class DiscordApiConfigurationPropertiesTest {
-
     private companion object {
         private const val HOST = "https://discord.com"
         private const val BASE_ENDPOINT = "/api/v10"

@@ -16,19 +16,20 @@ class CommandRegistrator(
     private val commandExecutors: List<DiscordCommand>,
     private val client: DiscordApplicationsClient,
 ) : ApplicationRunner {
+    private fun toAnnotatedCommand(command: DiscordCommand): Command? = command.javaClass.getDeclaredAnnotation(Command::class.java)
 
-    private fun toAnnotatedCommand(command: DiscordCommand): Command? =
-        command.javaClass.getDeclaredAnnotation(Command::class.java)
+    private fun toApplicationCommand(command: Command) =
+        ApplicationCommand(
+            name = command.command,
+            description = command.description,
+            type = command.type,
+            options = command.options.createInstance().options(),
+        )
 
-    private fun toApplicationCommand(command: Command) = ApplicationCommand(
-        name = command.command,
-        description = command.description,
-        type = command.type,
-        options = command.options.createInstance().options(),
-    )
-
-    private fun notOnCurrentCommands(currentCommands: List<ApplicationCommand>, it: ApplicationCommand) =
-        !currentCommands.contains(it)
+    private fun notOnCurrentCommands(
+        currentCommands: List<ApplicationCommand>,
+        it: ApplicationCommand,
+    ) = !currentCommands.contains(it)
 
     override fun run(args: ApplicationArguments?) {
         val currentCommands = client.getCommands()

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class DiscordApiConfigurationProperties {
-
     @Value("\${discord.host}")
     lateinit var host: String
 
@@ -52,7 +51,8 @@ class DiscordApiConfigurationProperties {
         get() = "$fullHost$baseEndpoint$webhooksBaseEndpoint/{client-id}"
 
     val endpoint: String
-        get() = parameterApplicationsEndpoint
-            .replace("{client-id}", clientId)
-            .replace("{guild-id}", guildId)
+        get() =
+            parameterApplicationsEndpoint
+                .replace("{client-id}", clientId)
+                .replace("{guild-id}", guildId)
 }

@@ -15,7 +15,7 @@ data class Interaction(
                 data
                     ?.resolved
                     ?.messages
-                )?.entries
+            )?.entries
                 ?.mapNotNull { it.value?.content }
                 ?.toList() ?: emptyList()
         }

@@ -7,7 +7,6 @@ import com.datocal.nolocal.domain.roulette.RouletteItem
 class GetRandomItemUseCase(
     private val repository: RandomItemRepository,
 ) {
-
     fun execute(request: GetRandomItemUseCaseRequest): GetRandomItemUseCaseResponse {
         val roulette = Roulette(request.items.map { RouletteItem(it) })
 

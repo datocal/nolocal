@@ -14,7 +14,6 @@ import org.springframework.stereotype.Component
 class DetoCommand(
     private val substituteRandomLettersByDsUseCase: SubstituteRandomCharactersByDsUseCase,
 ) : DiscordCommand {
-
     override fun accept(interaction: Interaction): InteractionResponse {
         val response = substituteRandomLettersByDsUseCase.execute(interaction.firstMessage)
         return InteractionResponse(response)

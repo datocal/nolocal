@@ -7,7 +7,6 @@ import org.springframework.boot.test.mock.mockito.MockBean
 
 @TestConfiguration
 class IntegrationTestConfiguration {
-
     @MockBean
     private lateinit var identityClient: IdentityClient
 

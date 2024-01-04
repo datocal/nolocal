@@ -4,7 +4,7 @@ data class ApplicationCommand(
     val name: String,
     val type: Int,
     val description: String,
-    val options: List<ApplicationCommandOption> ? = null,
+    val options: List<ApplicationCommandOption>? = null,
 )
 
 data class ApplicationCommandOption(

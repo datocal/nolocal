@@ -11,13 +11,13 @@ class SetUpCredentialsUseCase(
     private val cloudCredentialsRepository: CloudCredentialsRepository,
     private val encryptionService: EncryptionService,
 ) {
-
     fun execute(request: SetUpCredentialsUseCaseRequest) {
-        val cloudCredentials = CloudCredentials(
-            Account(request.userId, request.tenant),
-            request.flavor,
-            encryptionService.encrypt(request.token, request.encryptionKey),
-        )
+        val cloudCredentials =
+            CloudCredentials(
+                Account(request.userId, request.tenant),
+                request.flavor,
+                encryptionService.encrypt(request.token, request.encryptionKey),
+            )
 
         cloudCredentialsRepository.save(cloudCredentials)
     }

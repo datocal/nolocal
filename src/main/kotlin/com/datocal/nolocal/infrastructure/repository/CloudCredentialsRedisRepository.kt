@@ -13,7 +13,10 @@ class CloudCredentialsRedisRepository(
         jedisPool.resource.use { it.hset(cloudCredentials.redisKey(), "encryptedToken", cloudCredentials.encryptedToken) }
     }
 
-    override fun get(owner: Account, flavor: CloudFlavor): CloudCredentials {
+    override fun get(
+        owner: Account,
+        flavor: CloudFlavor,
+    ): CloudCredentials {
         val encryptedToken = jedisPool.resource.use { it.hget(owner.redisKey(flavor), "encryptedToken") }
         return CloudCredentials(owner, flavor, encryptedToken)
     }

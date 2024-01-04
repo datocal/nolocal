@@ -22,7 +22,6 @@ annotation class Command(
     val type: Int = TYPE_CHAT_INPUT,
     val options: KClass<out OptionProvider> = OptionProvider::class,
 ) {
-
     companion object {
         const val TYPE_CHAT_INPUT: Int = 1
         const val TYPE_USER: Int = 2

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.reactive.function.client.WebClientResponseException
 
 internal class DiscordApiClientTest : IntegrationTest() {
-
     @Autowired
     private lateinit var client: DiscordApplicationsClient
 
@@ -26,18 +25,19 @@ internal class DiscordApiClientTest : IntegrationTest() {
         assertEquals(expectedCommands(), commands.toSet())
     }
 
-    private fun expectedCommands() = setOf(
-        ApplicationCommand(
-            name = "culo",
-            description = "El culo tuyo",
-            type = 1,
-        ),
-        ApplicationCommand(
-            name = "roulette",
-            description = "",
-            type = 3,
-        ),
-    )
+    private fun expectedCommands() =
+        setOf(
+            ApplicationCommand(
+                name = "culo",
+                description = "El culo tuyo",
+                type = 1,
+            ),
+            ApplicationCommand(
+                name = "roulette",
+                description = "",
+                type = 3,
+            ),
+        )
 
     @Test
     fun `should get empty list of application commands`() {

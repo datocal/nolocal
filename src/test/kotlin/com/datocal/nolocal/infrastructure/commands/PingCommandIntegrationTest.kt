@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers
 
 class PingCommandIntegrationTest : IntegrationTest() {
-
     private companion object {
         private const val PING_REQUEST =
             """

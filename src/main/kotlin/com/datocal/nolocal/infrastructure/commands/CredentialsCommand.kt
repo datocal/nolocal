@@ -29,12 +29,13 @@ class CredentialOptionsProvider : OptionProvider() {
                 description = "The cloud provider to store the token",
                 type = 3,
                 required = true,
-                choices = listOf(
-                    ApplicationCommandOptionChoice(
-                        name = "Digital Ocean",
-                        value = "digital_ocean",
+                choices =
+                    listOf(
+                        ApplicationCommandOptionChoice(
+                            name = "Digital Ocean",
+                            value = "digital_ocean",
+                        ),
                     ),
-                ),
             ),
             ApplicationCommandOption(
                 name = "token",

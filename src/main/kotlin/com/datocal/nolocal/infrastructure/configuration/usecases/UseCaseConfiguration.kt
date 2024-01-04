@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class UseCaseConfiguration {
-
     @Bean
     fun getRandomItemUseCase(repository: RandomItemRepository): GetRandomItemUseCase {
         return GetRandomItemUseCase(repository)

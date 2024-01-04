@@ -8,7 +8,6 @@ import org.springframework.web.reactive.function.client.WebClient
 class DiscordApplicationsClient(
     private val client: WebClient,
 ) {
-
     private val logger: Logger = LoggerFactory.getLogger(DiscordApplicationsClient::class.java)
 
     fun getCommands(): List<ApplicationCommand> {
@@ -23,13 +22,14 @@ class DiscordApplicationsClient(
     }
 
     fun register(applicationCommand: ApplicationCommand) {
-        val registeredCommand = client
-            .post()
-            .uri("/commands")
-            .bodyValue(applicationCommand)
-            .retrieve()
-            .toEntity(ApplicationCommand::class.java)
-            .block()
+        val registeredCommand =
+            client
+                .post()
+                .uri("/commands")
+                .bodyValue(applicationCommand)
+                .retrieve()
+                .toEntity(ApplicationCommand::class.java)
+                .block()
         logger.info("Command registered:  $registeredCommand")
     }
 }
