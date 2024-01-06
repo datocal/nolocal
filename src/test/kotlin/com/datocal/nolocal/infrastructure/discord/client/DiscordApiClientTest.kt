@@ -13,7 +13,7 @@ internal class DiscordApiClientTest : IntegrationTest() {
     private lateinit var client: DiscordApplicationsClient
 
     @Autowired
-    private lateinit var given: DiscordApiClientStubs
+    private lateinit var given: DiscordApplicationClientStubs
 
     @Test
     fun `should get all application commands`() {

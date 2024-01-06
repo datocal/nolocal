@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component
 
 @Component
 @Suppress("ktlint:standard:function-naming")
-class DiscordApiClientStubs {
+class DiscordApplicationClientStubs {
     @Autowired
     private lateinit var discordProperties: DiscordApiConfigurationProperties
 
@@ -24,7 +24,7 @@ class DiscordApiClientStubs {
         mockServerClient
             .`when`(
                 HttpRequest.request()
-                    .withPath("${discordProperties.endpoint}/commands")
+                    .withPath("${discordProperties.applicationsEndpoint}/commands")
                     .withMethod("POST")
                     .withContentType(MediaType.APPLICATION_JSON)
                     .withBody(JsonBody(COMMANDS_POST_REQUEST.format(givenCommand.name, givenCommand.description, givenCommand.type))),
@@ -41,7 +41,7 @@ class DiscordApiClientStubs {
         mockServerClient
             .`when`(
                 HttpRequest.request()
-                    .withPath("${discordProperties.endpoint}/commands")
+                    .withPath("${discordProperties.applicationsEndpoint}/commands")
                     .withMethod("GET"),
                 Times.once(),
             )
@@ -56,7 +56,7 @@ class DiscordApiClientStubs {
         mockServerClient
             .`when`(
                 HttpRequest.request()
-                    .withPath("${discordProperties.endpoint}/commands")
+                    .withPath("${discordProperties.applicationsEndpoint}/commands")
                     .withMethod("GET"),
                 Times.once(),
             )
@@ -71,7 +71,7 @@ class DiscordApiClientStubs {
         mockServerClient
             .`when`(
                 HttpRequest.request()
-                    .withPath("${discordProperties.endpoint}/commands")
+                    .withPath("${discordProperties.applicationsEndpoint}/commands")
                     .withMethod("GET"),
                 Times.once(),
             )
@@ -86,7 +86,7 @@ class DiscordApiClientStubs {
         mockServerClient
             .`when`(
                 HttpRequest.request()
-                    .withPath("${discordProperties.endpoint}/commands")
+                    .withPath("${discordProperties.applicationsEndpoint}/commands")
                     .withMethod("GET"),
                 Times.once(),
             )

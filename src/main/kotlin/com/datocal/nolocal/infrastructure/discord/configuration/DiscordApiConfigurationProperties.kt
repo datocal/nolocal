@@ -44,15 +44,24 @@ class DiscordApiConfigurationProperties {
     private val parameterApplicationsEndpoint: String
         get() = "$baseEndpoint$applicationsBaseEndpoint/{client-id}$guildPath"
 
+    private val parameterWebhooksEndpoint: String
+        get() = "$baseEndpoint$webhooksBaseEndpoint/{client-id}"
+
     val fullApplicationsUrl: String
         get() = "$fullHost$parameterApplicationsEndpoint"
 
     val fullWebHooksUrl: String
         get() = "$fullHost$baseEndpoint$webhooksBaseEndpoint/{client-id}"
 
-    val endpoint: String
+    val applicationsEndpoint: String
         get() =
             parameterApplicationsEndpoint
+                .replace("{client-id}", clientId)
+                .replace("{guild-id}", guildId)
+
+    val webhooksEndpoint: String
+        get() =
+            parameterWebhooksEndpoint
                 .replace("{client-id}", clientId)
                 .replace("{guild-id}", guildId)
 }
