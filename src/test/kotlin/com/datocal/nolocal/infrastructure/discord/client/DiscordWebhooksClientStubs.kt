@@ -41,7 +41,7 @@ class DiscordWebhooksClientStubs {
             )
     }
 
-    fun `a follow up message have been send`(expectations: Array<Expectation>)  {
+    fun `a follow up message have been send`(expectations: Array<Expectation>) {
         expectations.forEach { mockServer.verify(it.id) }
     }
 

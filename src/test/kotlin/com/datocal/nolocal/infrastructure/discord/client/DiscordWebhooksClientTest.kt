@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 class DiscordWebhooksClientTest : IntegrationTest() {
-
     @Autowired
     private lateinit var client: DiscordWebhooksClient
 
@@ -13,7 +12,7 @@ class DiscordWebhooksClientTest : IntegrationTest() {
     private lateinit var stubs: DiscordWebhooksClientStubs
 
     @Test
-    fun `should request discord a followup for a message`()  {
+    fun `should request discord a followup for a message`() {
         val expectations = stubs.`a followup returns 200`(INTERACTION_TOKEN, INTERACTION_FOLLOWUP_MESSAGE)
 
         client.followup(

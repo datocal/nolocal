@@ -6,11 +6,10 @@ import org.springframework.web.reactive.function.client.WebClient
 class DiscordWebhooksClient(
     private val client: WebClient,
 ) {
-
     fun followup(
         interactionToken: String,
         request: FollowUpRequest,
-    )  {
+    ) {
         client
             .post()
             .uri("/$interactionToken")
