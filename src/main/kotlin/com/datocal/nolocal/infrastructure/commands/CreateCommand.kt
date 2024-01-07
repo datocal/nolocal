@@ -1,14 +1,16 @@
 package com.datocal.nolocal.infrastructure.commands
 
 import com.datocal.nolocal.domain.dummy.Ping
-import com.datocal.nolocal.infrastructure.discord.client.DiscordApplicationsClient
 import com.datocal.nolocal.infrastructure.discord.client.DiscordWebhooksClient
 import com.datocal.nolocal.infrastructure.discord.client.FollowUpRequest
 import com.datocal.nolocal.infrastructure.discord.model.Command
 import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.springframework.stereotype.Component
-import kotlinx.coroutines.*
+
 @Component(Commands.CREATE)
 @Command(
     command = Commands.CREATE,
