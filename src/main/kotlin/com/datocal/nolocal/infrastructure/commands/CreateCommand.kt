@@ -3,7 +3,7 @@ package com.datocal.nolocal.infrastructure.commands
 import com.datocal.nolocal.infrastructure.discord.model.Command
 import com.datocal.nolocal.infrastructure.discord.model.Interaction
 import com.datocal.nolocal.infrastructure.discord.model.InteractionResponse
-import com.datocal.nolocal.infrastructure.messaging.CommandPublisher
+import com.datocal.nolocal.infrastructure.messaging.server.CreateCommandPublisher
 
 @Command(
     command = Commands.CREATE,
@@ -11,7 +11,7 @@ import com.datocal.nolocal.infrastructure.messaging.CommandPublisher
     type = Command.TYPE_CHAT_INPUT,
 )
 class CreateCommand(
-    private val commandPublisher: CommandPublisher<*>,
+    private val commandPublisher: CreateCommandPublisher,
 ) : DiscordCommand {
     override fun accept(interaction: Interaction): InteractionResponse {
         commandPublisher.publish(interaction)
