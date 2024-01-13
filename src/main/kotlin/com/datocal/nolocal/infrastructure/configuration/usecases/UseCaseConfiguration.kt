@@ -3,6 +3,7 @@ package com.datocal.nolocal.infrastructure.configuration.usecases
 import com.datocal.nolocal.application.RandomProvider
 import com.datocal.nolocal.application.SubstituteRandomCharactersByDsUseCase
 import com.datocal.nolocal.application.roulette.GetRandomItemUseCase
+import com.datocal.nolocal.application.server.CreateServerUseCase
 import com.datocal.nolocal.domain.MessageResolver
 import com.datocal.nolocal.domain.dummy.Ping
 import com.datocal.nolocal.domain.roulette.RandomItemRepository
@@ -24,6 +25,11 @@ class UseCaseConfiguration {
     @Bean
     fun substituteRandomLettersByDsUseCase(): SubstituteRandomCharactersByDsUseCase {
         return SubstituteRandomCharactersByDsUseCase(randomProvider())
+    }
+
+    @Bean
+    fun createServerUseCase(): CreateServerUseCase? {
+        return CreateServerUseCase()
     }
 
     @Bean
