@@ -9,9 +9,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class CommandsConfiguration {
     @Bean(Commands.CREATE)
-    fun createCommand(
-        createCommandPublisher: CreateCommandPublisher,
-    ): CreateCommand {
+    fun createCommand(createCommandPublisher: CreateCommandPublisher): CreateCommand {
         return CreateCommand(createCommandPublisher)
     }
 }

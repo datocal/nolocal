@@ -15,11 +15,10 @@ class EventConfiguration {
         return CreateCommandPublisher(applicationEventPublisher)
     }
 
-
     @Bean
     fun createCommandListener(
         createServerUseCase: CreateServerUseCase,
-        discordWebhooksClient: DiscordWebhooksClient
+        discordWebhooksClient: DiscordWebhooksClient,
     ): CreateCommandListener {
         return CreateCommandListener(createServerUseCase, discordWebhooksClient)
     }
