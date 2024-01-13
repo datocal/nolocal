@@ -2,7 +2,7 @@ package com.datocal.nolocal.infrastructure.discord.model
 
 data class Interaction(
     val id: String = "1",
-    val token: String = "a",
+    val token: String = "dummy-token",
     val data: Data?,
     val type: Long,
 ) {
