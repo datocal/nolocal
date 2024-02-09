@@ -43,7 +43,7 @@ dependencies {
     testImplementation("org.testcontainers:testcontainers:1.19.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
     testImplementation("org.mockito:mockito-inline:5.2.0")
-    testImplementation("org.testcontainers:mockserver:1.19.3")
+    testImplementation("org.testcontainers:mockserver:1.19.5")
     testImplementation("org.mock-server:mockserver-client-java:5.15.0")
     testImplementation("org.apache.commons:commons-text:1.11.0")
     testImplementation("org.awaitility:awaitility:4.2.0")
