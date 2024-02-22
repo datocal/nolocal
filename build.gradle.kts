@@ -38,7 +38,7 @@ dependencies {
     implementation("com.oracle.oci.sdk:oci-java-sdk-common-httpclient-jersey3")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    testImplementation("org.testcontainers:junit-jupiter:1.19.3")
+    testImplementation("org.testcontainers:junit-jupiter:1.19.6")
     testImplementation("io.rest-assured:spring-mock-mvc:5.4.0")
     testImplementation("org.testcontainers:testcontainers:1.19.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.2.1")
