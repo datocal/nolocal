@@ -87,7 +87,7 @@ jobs:
           username: davidtca
           password: ${{secrets.DOCKERHUB_TOKEN}}
       - name: Docker build & push
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v5.2.0
         with:
           context: ./caddy
           push: true
@@ -122,7 +122,7 @@ jobs:
           username: davidtca
           password: ${{secrets.DOCKERHUB_TOKEN}}
       - name: Docker build & push
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v5.2.0
         with:
           context: .
           push: true
